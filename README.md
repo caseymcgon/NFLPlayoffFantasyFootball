@@ -1,7 +1,7 @@
 # NFL-Playoff-Fantasy-Football
 Webscraping, Regex, and Pandas skills mobilized to efficiently compile and manipulate NFL Playoff scoring data for family and friends' Playoff Fantasy Football Pool
 
-#DESCRIPTION
+# DESCRIPTION
 
 This project's purpose was to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
 
