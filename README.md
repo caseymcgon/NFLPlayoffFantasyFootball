@@ -13,4 +13,4 @@ Ultimately, this notebook exports the tables it creates to Excel (in order to sh
 
 # REPRODUCTION
 
-This project was written and run in python in a Jupyter Notebook. If you'd like to run the code, it is suggested that you import the code into a Jupyter Notebook of your own.
+This project was written and run in python in a Jupyter Notebook. If you'd like to run the code, it is suggested that you import the code into a Jupyter Notebook (or Google Colab) python enviornment of your own.
