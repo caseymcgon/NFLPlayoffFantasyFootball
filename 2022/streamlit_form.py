@@ -2,12 +2,17 @@ def make_form():
     import streamlit as st
     import numpy as np
     import pandas as pd
+    import gsheetsdb
+    from gsheetsdb import connect
     st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
 
     # Intro & Instructions
     st.write(f"""
     # **2022 McGon NFL Playoff Fantasy Pool**
+    ##### $10 Buy-In. Winner-Take-All
+    venmo @kelly-McGonigle or arrange with John McGonigle
+    ---
     ##### Scoring
      - **TD** = 5 + 1 for every 10 yards
         - Ex: 47yd TD = 9 pts
@@ -18,10 +23,6 @@ def make_form():
      - **Safety** = 2 (for defense)
        - All returns for a TD, including INTs, fumbles, KO’s, and punts, count as Defense TD’s.  
        - These TD’s and safeties are the only way for defenses to score.
-    ---  
-    ##### $10 Buy-In. Winner-Take-All
-    venmo @kelly-McGonigle or arrange with John McGonigle
-
     ---
     ##### Input Your Playoff Roster Below
      - 2 Quarterbacks
