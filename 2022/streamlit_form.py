@@ -11,8 +11,11 @@ def make_form():
     st.write(f"""
     # **2022 McGon NFL Playoff Fantasy Pool**
     ##### $10 Buy-In. Winner-Take-All
+    
     venmo @kelly-McGonigle or arrange with John McGonigle
+
     ---
+
     ##### Scoring
      - **TD** = 5 + 1 for every 10 yards
         - Ex: 47yd TD = 9 pts
