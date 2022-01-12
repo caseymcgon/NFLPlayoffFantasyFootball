@@ -1,7 +1,7 @@
 def make_form():
     import streamlit as st
-    import numpy as np
-    import pandas as pd
+    #import numpy as np
+    #import pandas as pd
     import datetime
 
     from google.oauth2.service_account import Credentials
