@@ -2,20 +2,38 @@ def make_form():
     import streamlit as st
     import numpy as np
     import pandas as pd
-    import gsheetsdb
     from gsheetsdb import connect
     st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
+
+
+    # Setup Connection to Google Sheets
+    # Create a connection object.
+
+    conn = connect()
+
+    # Test Connection to Google Sheet (READ)
+    # Perform SQL query on the Google Sheet.
+    # Uses st.cache to only rerun when the query changes or after 10 min.
+    @st.cache(ttl=600)
+    def run_query(query):
+        rows = conn.execute(query, headers=1)
+        return rows
+
+    sheet_url = st.secrets["gsheets_url"]
+    rows = run_query(f'SELECT * FROM "{sheet_url}"')
+
+    # Print results.
+    for row in rows:
+        st.write(f"{row.player} has QB1 :{row.QB1} and QB2:{row.QB2}")
+
 
     # Intro & Instructions
     st.write(f"""
     # **2022 McGon NFL Playoff Fantasy Pool**
     ##### $10 Buy-In. Winner-Take-All
-    
     venmo @kelly-McGonigle or arrange with John McGonigle
-
     ---
-
     ##### Scoring
      - **TD** = 5 + 1 for every 10 yards
         - Ex: 47yd TD = 9 pts
