@@ -3,6 +3,7 @@ def make_form():
     import numpy as np
     import pandas as pd
     from gsheetsdb import connect
+    import datetime
     st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
 
@@ -119,14 +120,17 @@ def make_form():
     # Logic for what to do when user hits Submit Button
     if submit:
         # Add user inputs to my database
-        dataFramer().append({"Name": name, "QB 1": qb1, "QB 2": qb2, "K 1": k1, "K 2": k2,
-                           "D 1": d1, "D 2": d2, "Pos 1": p1, "Pos 2": p2, "Pos 3" : p3,
-                           "Pos 4": p4, "Pos 5": p5, "Pos 6": p6, "Pos 7": p7,
-                           "SB Champ": champ, "Runner-Up": runner, "SB Total Points": score})
-        st.write(pd.DataFrame(dataFramer()))
+        # dataFramer().append({"Name": name, "QB 1": qb1, "QB 2": qb2, "K 1": k1, "K 2": k2,
+        #                    "D 1": d1, "D 2": d2, "Pos 1": p1, "Pos 2": p2, "Pos 3" : p3,
+        #                    "Pos 4": p4, "Pos 5": p5, "Pos 6": p6, "Pos 7": p7,
+        #                    "SB Champ": champ, "Runner-Up": runner, "SB Total Points": score})
+        # st.write(pd.DataFrame(dataFramer()))
+
+        ct = datetime.datetime.now()
 
         # Allow user to see their team
         st.title(f"{name}'s Team")
+        st.write("**Submitted @**: ", ct)
 
         st.write("**Quarterbacks**")
         st.write(f'   1. {qb1} 2. {qb2}')
