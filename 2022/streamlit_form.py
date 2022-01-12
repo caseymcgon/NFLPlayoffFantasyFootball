@@ -1,8 +1,7 @@
 def make_form():
     import streamlit as st
-    #import numpy as np
-    #import pandas as pd
-    import datetime
+    from datetime import datetime
+    import pytz
 
     from google.oauth2.service_account import Credentials
     import gspread
@@ -62,7 +61,7 @@ def make_form():
     form = st.form(key='Player Input')
     with form:
         # Section for Participant's Name
-        name = form.text_input(label='Your Name')
+        name = form.text_input(label='Your Full Name')
 
         form.write("""---""")
         # Section for Player Inputs
@@ -106,8 +105,10 @@ def make_form():
     # Logic for what to do when user hits Submit Button
     if submit:
 
-        ct = datetime.datetime.now()
-        sheet1.append_rows(values=[[f"{name}", f"{ct}" , f"{qb1}", f"{qb2}",
+        PST = pytz.timezone('America/Los_Angeles')
+        dt = datetime.now(PST)
+        entryTime = dt.strftime('%Y-%m-%d %H:%M')
+        sheet1.append_rows(values=[[f"{name}", f"{entryTime}" , f"{qb1}", f"{qb2}",
                                     f"{k1}", f"{k2}", f"{d1}", f"{d2}",
                                     f"{p1}", f"{p2}", f"{p3}", f"{p4}",
                                     f"{p5}", f"{p6}", f"{p7}",
@@ -116,7 +117,8 @@ def make_form():
 
         # Allow user to see their team
         st.title(f"{name}'s Team")
-        st.write("**Submitted @**: ", ct)
+        st.write("**Submitted @**: ", entryTime, "pst")
+
 
         st.write("**Quarterbacks**")
         st.write(f'   1. {qb1} 2. {qb2}')
