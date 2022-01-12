@@ -25,7 +25,7 @@ def make_form():
 
     # Print results.
     for row in rows:
-        st.write(f"{row.Player} has QBs: {row.QB1} and {row.K1} and {row.K2}  and {row.D1} ")
+        st.write(f"{row.Player} has QBs: {row.QB1} and {row.K1} and {row.K2}   ")
 
 
     # Intro & Instructions
