@@ -12,6 +12,7 @@ def make_form():
 
 
     # CONNECT TO GOOGLE SHEETS
+    # credit: https://www.codeforests.com/2020/11/22/gspread-read-write-google-sheet/
     scopes = [
         'https://www.googleapis.com/auth/spreadsheets',
         'https://www.googleapis.com/auth/drive'
