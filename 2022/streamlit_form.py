@@ -3,23 +3,24 @@ def make_form():
     import numpy as np
     import pandas as pd
     import datetime
-    #import gspread
+
     from google.oauth2.service_account import Credentials
+    import gspread
 
     st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
 
 
-    # # CONNECT TO GOOGLE SHEETS
-    # scopes = [
-    #     'https://www.googleapis.com/auth/spreadsheets',
-    #     'https://www.googleapis.com/auth/drive'
-    # ]
-    #
-    # creds = Credentials.from_service_account_file(".streamlit/keys.json", scopes=scopes)
-    # client = gspread.authorize(creds)
-    # google_sh = client.open("Rosters_2022")
-    # sheet1 = google_sh.get_worksheet(0)
+    # CONNECT TO GOOGLE SHEETS
+    scopes = [
+        'https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive'
+    ]
+
+    creds = Credentials.from_service_account_file(".streamlit/keys.json", scopes=scopes)
+    client = gspread.authorize(creds)
+    google_sh = client.open("Rosters_2022")
+    sheet1 = google_sh.get_worksheet(0)
 
     # Intro & Instructions
     st.write(f"""
