@@ -117,8 +117,6 @@ def make_form():
 
         # Allow user to see their team
         st.title(f"{name}'s Team")
-        st.write("**Submitted @**: ", entryTime, "pst")
-
 
         st.write("**Quarterbacks**")
         st.write(f'   1. {qb1} 2. {qb2}')
@@ -136,6 +134,8 @@ def make_form():
         st.write(f'1. SB Champ: {champ}')
         st.write(f'2. SB Runner-Up: {runner}')
         st.write(f'3. SB Total Points: {score}')
+
+        st.write("**Submitted @**: ", entryTime, "pst")
 
 
 # Press the green button in the gutter to run the script.
