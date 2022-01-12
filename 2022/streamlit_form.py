@@ -23,11 +23,6 @@ def make_form():
     sheet1 = google_sh.get_worksheet(0)
 
 
-    # creds = Credentials.from_service_account_file(".streamlit/keys.json", scopes=scopes)
-    # client = gspread.authorize(creds)
-    # google_sh = client.open("Rosters_2022")
-    # sheet1 = google_sh.get_worksheet(0)
-
     # Intro & Instructions
     st.write(f"""
     # **2022 McGon NFL Playoff Fantasy Pool**
