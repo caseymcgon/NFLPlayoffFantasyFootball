@@ -42,7 +42,7 @@ def make_form():
     form = st.form(key='Player Input')
     with form:
         # Section for Participant's Name
-        name = form.text_input(label='Your Full Name')
+        name = form.text_input(label='Your Name')
 
         form.write("""---""")
         # Section for Player Inputs
