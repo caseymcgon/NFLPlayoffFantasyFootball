@@ -3,17 +3,15 @@ def make_form():
     import numpy as np
     import pandas as pd
     import datetime
+
     import gspread
     from google.oauth2.service_account import Credentials
-    #
-    import json
 
     st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
 
 
-# THIRD SHEET CONNECTOR
-
+    # CONNECT TO GOOGLE SHEETS
     scopes = [
         'https://www.googleapis.com/auth/spreadsheets',
         'https://www.googleapis.com/auth/drive'
@@ -23,58 +21,6 @@ def make_form():
     client = gspread.authorize(creds)
     google_sh = client.open("Rosters_2022")
     sheet1 = google_sh.get_worksheet(0)
-    # print(sheet1.cell(2,3).value)
-
-    #sheet1.append_rows(values=[["Casey", "c", "Mahomes", "Stafford", "Tucker", "Gay", "NE"]])
-
-# # NEW GOOGLE SHEET CONNECTOR
-#     from google.oauth2 import service_account
-#     from googleapiclient.discovery import build
-#
-#     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-#     SERVICE_ACCOUNT_FILE = '.streamlit/keys.json'
-#
-#     creds = None
-#     creds = service_account.Credentials.from_service_account_file(
-#         SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-#
-#     # The Rosters Spreadsheet
-#     Rosters_Spreadsheet_id = "1dZbaUynP7P4OQv_WKZE9jWicuZEIQNSyZUKjRigkl_E"
-#
-#     service = build('sheets', 'v4', credentials=creds)
-#
-#     sheet = service.spreadsheets()
-#     result = sheet.values().get(spreadsheetID =Rosters_Spreadsheet_id,
-#                                 range="Sheet1!A1:O10").execute()
-#     st.write(result)
-
-    # # OLD GOOGLE SHEET CONNECTOR
-    # # Setup Connection to Google Sheets
-    # # Create a connection object.
-    #
-    # conn = connect()
-    #
-    # # Test Connection to Google Sheet (READ)
-    # # Perform SQL query on the Google Sheet.
-    # # Uses st.cache to only rerun when the query changes or after 10 min.
-    # @st.cache(ttl=600)
-    # def run_query(query):
-    #     rows = conn.execute(query, headers=1)
-    #     return rows
-    #
-    # sheet_url = st.secrets["public_gsheets_url"]
-    # rows = run_query(f'SELECT * FROM "{sheet_url}"')
-    #
-    # # Print results.
-    # for row in rows:
-    #     st.write(f"**{row.Player}**")
-    #     st.write(f"QBs: {row.QB1} and {row.QB2}")
-    #     st.write(f"Ks: {row.K1} and {row.K2}")
-    #     st.write(f"Ds: {row.D2} and {row.D1}")
-    #     st.write(f"Pos: {row.P1}, {row.P2}, {row.P3}, {row.P4}, {row.P5}, {row.P6}, and {row.P7}")
-    #     st.write(" ")
-    #
-    #
 
     # Intro & Instructions
     st.write(f"""
