@@ -20,7 +20,7 @@ def make_form():
         rows = conn.execute(query, headers=1)
         return rows
 
-    sheet_url = st.secrets["gsheets_url"]
+    sheet_url = st.secrets["public_gsheets_url"]
     rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
     # Print results.
