@@ -100,19 +100,10 @@ def make_form():
         submit = st.form_submit_button('Submit')
         form.write("please venmo $10 @kelly-McGonigle")
 
-    #@st.cache(allow_output_mutation=False)
-    def dataFramer():
-        return pd.DataFrame()
 
 
     # Logic for what to do when user hits Submit Button
     if submit:
-        # Add user inputs to my database
-        # dataFramer().append({"Name": name, "QB 1": qb1, "QB 2": qb2, "K 1": k1, "K 2": k2,
-        #                    "D 1": d1, "D 2": d2, "Pos 1": p1, "Pos 2": p2, "Pos 3" : p3,
-        #                    "Pos 4": p4, "Pos 5": p5, "Pos 6": p6, "Pos 7": p7,
-        #                    "SB Champ": champ, "Runner-Up": runner, "SB Total Points": score})
-        # st.write(pd.DataFrame(dataFramer()))
 
         ct = datetime.datetime.now()
         sheet1.append_rows(values=[[f"{name}", f"{ct}" , f"{qb1}", f"{qb2}",
@@ -120,8 +111,6 @@ def make_form():
                                     f"{p1}", f"{p2}", f"{p3}", f"{p4}",
                                     f"{p5}", f"{p6}", f"{p7}",
                                     f"{champ}", f"{runner}", f"{score}"]])
-
-
 
 
         # Allow user to see their team
