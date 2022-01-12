@@ -25,14 +25,21 @@ def make_form():
 
     # Print results.
     for row in rows:
-        st.write(f"{row.Player} has QBs: {row.QB1} and {row.QB2}, {row.K1} and {row.K2} and {row.D1} {row.D2}   ")
+        st.write(f"**{row.Player}**")
+        st.write(f"QBs: {row.QB1} and {row.QB2}")
+        st.write(f"Ks: {row.K1} and {row.K2}")
+        st.write(f"Ds: {row.D2} and {row.D1}")
+        st.write(f"Pos: {row.P1}, {row.P2}, {row.P3}, {row.P4}, {row.P5}, {row.P6}, and {row.P7}")
+        st.write(" ")
 
 
     # Intro & Instructions
     st.write(f"""
     # **2022 McGon NFL Playoff Fantasy Pool**
+    ---
     ##### $10 Buy-In. Winner-Take-All
     venmo @kelly-McGonigle or arrange with John McGonigle
+    
     ---
     ##### Scoring
      - **TD** = 5 + 1 for every 10 yards
@@ -44,6 +51,7 @@ def make_form():
      - **Safety** = 2 (for defense)
        - All returns for a TD, including INTs, fumbles, KO’s, and punts, count as Defense TD’s.  
        - These TD’s and safeties are the only way for defenses to score.
+
     ---
     ##### Input Your Playoff Roster Below
      - 2 Quarterbacks
