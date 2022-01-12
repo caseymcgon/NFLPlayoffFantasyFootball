@@ -6,7 +6,7 @@ def make_form():
     from google.oauth2.service_account import Credentials
     import gspread
 
-    st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide")
+    st.set_page_config(page_title="Playoff Fantasy -- Roster Input", layout="wide", page_icon = "🏈")
     deadline = "**Deadline: 1:30pm PST Sat. Jan 15, 2022.**"
 
 
