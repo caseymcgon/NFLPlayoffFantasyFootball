@@ -27,7 +27,7 @@ alive_list = ["GB", "TB", "LAR", "SF", "TEN", "KC", "BUF", "CIN"]
 
 ## Get Teams from Rosters_2022.csv
 
-roster_infos = pd.read_csv("Rosters_2022.csv")[['GM', 'QB1', 'QB2', 'K1', 'K2', 'D1', 'D2', 'P1', 'P2', 'P3', 'P4',
+roster_infos = pd.read_csv("2022/Rosters_2022.csv")[['GM', 'QB1', 'QB2', 'K1', 'K2', 'D1', 'D2', 'P1', 'P2', 'P3', 'P4',
                                                 'P5', 'P6', 'P7', 'SB_Champ', 'Runner_Up', 'SB_Points']]
 allteams2 = roster_infos[['GM', 'QB1', 'QB2', 'K1', 'K2', 'D1', 'D2', 'P1', 'P2', 'P3', 'P4',
                           'P5', 'P6', 'P7']]
