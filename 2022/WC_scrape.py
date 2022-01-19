@@ -271,11 +271,14 @@ def wc_scores():
     col2.dataframe(ari_la)
 
 ## Part B: Concat WC weekend together
+def concat_wc():
 
-wc_games = [lv_cin, ne_buf, phi_tb, sf_dal, pit_kc, ari_la]
+    wc_games = [lv_cin, ne_buf, phi_tb, sf_dal, pit_kc, ari_la]
 
-wc = pd.concat(wc_games)[["player", "points"]]
-wc = wc.groupby("player").sum().reset_index()
-wc_sort = wc.sort_values("points", ascending = 0).reset_index(drop = True).rename(columns = {"points": "WC Points"})
+    wc = pd.concat(wc_games)[["player", "points"]]
+    wc = wc.groupby("player").sum().reset_index()
+    wc_sort = wc.sort_values("points", ascending = 0).reset_index(drop = True).rename(columns = {"points": "WC Points"})
+
+    return wc, wc_sort
 
 

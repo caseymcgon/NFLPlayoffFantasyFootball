@@ -99,6 +99,8 @@ popular_players["Alive"] = np.where(popular_players["NFL"].isin(alive_list), Tru
 # Get the columns in the correct oder
 popular_players = popular_players[["player", "NFL", "Position", "#_squads", "Alive", ]].reset_index(drop=True)
 
+wc, wc_sort = concat_wc()
+
 ## Merge wc_sort (from WC_scrape.py) with popular_players
 wc_full = wc_sort.merge(popular_players, how="right", on="player")[
     ["player", "NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
