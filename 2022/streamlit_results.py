@@ -103,7 +103,7 @@ popular_players = popular_players[["player", "NFL", "Position", "#_squads", "Ali
 
 
 ## Merge wc_sort (from WC_scrape.py) with popular_players
-wc, wc_sort = WC_scrape.concat_wc()
+wc, wc_sort = concat_wc()
 wc_full = wc_sort.merge(popular_players, how="right", on="player")[
     ["player", "NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
 wc_full = wc_full.sort_values(["WC Points"], ascending=0).reset_index(drop=True)
