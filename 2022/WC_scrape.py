@@ -179,27 +179,27 @@ lv_cin_scorers = lv_cin.groupby("player").sum().sort_values("points", ascending=
 
 ne_buf = get_single_game_scores("https://www.espn.com/nfl/game?gameId=401326626")
 ne_buf_scorers = ne_buf.groupby("player").sum().sort_values("points", ascending= False).reset_index()[["player","FG", "PAT","TD", "PAT2","Safety", "points"]]
-ne_buf_scorers
+#ne_buf_scorers
 
 phi_tb = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326630")
 phi_tb_scorers = phi_tb.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
-phi_tb_scorers
+#phi_tb_scorers
 
 sf_dal = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326629")
 sf_dal_scorers = sf_dal.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
-sf_dal_scorers
+#sf_dal_scorers
 
 pit_kc = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326628").replace({"TJ Watt": "PIT"})
 pit_kc_scorers = pit_kc.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
-pit_kc_scorers
+#pit_kc_scorers
 
 ari_la = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326625").replace({"jr 4 yd pass": "4 yd pass", "jr 3 yd interception return": "3 yd interception return"})
 ari_la_scorers = ari_la.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
-ari_la_scorers
+#ari_la_scorers
 
 def wc_scores():
     col1, col2 = st.columns(2)
@@ -272,12 +272,11 @@ def wc_scores():
 
 ## Part B: Concat WC weekend together
 def concat_wc():
-
     wc_games = [lv_cin, ne_buf, phi_tb, sf_dal, pit_kc, ari_la]
 
     wc = pd.concat(wc_games)[["player", "points"]]
     wc = wc.groupby("player").sum().reset_index()
-    wc_sort = wc.sort_values("points", ascending = 0).reset_index(drop = True).rename(columns = {"points": "WC Points"})
+    wc_sort = wc.sort_values("points", ascending=0).reset_index(drop=True).rename(columns={"points": "WC Points"})
 
     return wc, wc_sort
 

@@ -1,4 +1,5 @@
 from WC_scrape import *
+import WC_scrape
 
 import streamlit as st
 import pandas as pd
@@ -99,9 +100,10 @@ popular_players["Alive"] = np.where(popular_players["NFL"].isin(alive_list), Tru
 # Get the columns in the correct oder
 popular_players = popular_players[["player", "NFL", "Position", "#_squads", "Alive", ]].reset_index(drop=True)
 
-wc, wc_sort = concat_wc()
+
 
 ## Merge wc_sort (from WC_scrape.py) with popular_players
+wc, wc_sort = WC_scrape.concat_wc()
 wc_full = wc_sort.merge(popular_players, how="right", on="player")[
     ["player", "NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
 wc_full = wc_full.sort_values(["WC Points"], ascending=0).reset_index(drop=True)
