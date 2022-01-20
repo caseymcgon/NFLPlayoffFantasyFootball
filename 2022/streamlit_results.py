@@ -1,5 +1,5 @@
 ## streamlit_results.py
-st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
+
 from WC_scrape import *
 
 #import WC_scrape
@@ -11,7 +11,7 @@ import streamlit as st
 import requests
 from lxml import html
 from lxml import etree
-#st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
+st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
 
 
 ###
