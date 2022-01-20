@@ -42,15 +42,37 @@ allteams2 = roster_infos[['GM', 'QB1', 'QB2', 'K1', 'K2', 'D1', 'D2', 'P1', 'P2'
 ## Remove all pre- and post-name spaces
 allteams2 = allteams2.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
-## Create teams_dict {owner: roster} & all_owners (list of owners)
+
+## Create teams_dict {owner: roster} & all_owners (list of owners) & sort each position alphabetically per team
 teams_dict = {}
 
 for index, team in allteams2.iterrows():
+    # get GM's name
     name = team["GM"]
-    #print(name)
+
+    # sort QBs in alphabetic for each team
+    qbs = [team["QB1"], team["QB2"]]
+    qbs.sort()
+    team["QB1"], team["QB2"] = qbs
+    # sort Ks in alphabetic for each team
+    ks = [team["K1"], team["K2"]]
+    ks.sort()
+    team["K1"], team["K2"] = ks
+    # sort Ds in alphabetic for each team
+    ds = [team["D1"], team["D2"]]
+    ds.sort()
+    team["D1"], team["D2"] = ds
+    # sort Pos in alphabetic for each team
+    ps = [team["P1"], team["P2"], team["P3"], team["P4"], team["P5"], team["P6"], team["P7"]]
+    ps.sort()
+    team["P1"], team["P2"], team["P3"], team["P4"], team["P5"], team["P6"], team["P7"] = ps
+
+    # create dictionary that makes stores the GM: Team
     team = pd.DataFrame(team[1:])
-    team.columns=["player"]
+    team.columns = ["player"]
     teams_dict[name] = team
+
+
 
 
 all_gms = list(teams_dict.keys())
