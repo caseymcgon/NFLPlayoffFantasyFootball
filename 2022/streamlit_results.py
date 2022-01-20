@@ -506,9 +506,9 @@ wc_scoring_chart = alt.Chart(all_scorers).mark_bar().encode(
 
 def main():
     pages = {
-        "Teams": page_teams,
-        "Standings": page_home,
 
+        "Standings": page_home,
+        "Teams": page_teams,
         "WC Weekend Scoring": page_wc_scoring,
         "WC Weekend Game-by-Game": page_wc,
     }
