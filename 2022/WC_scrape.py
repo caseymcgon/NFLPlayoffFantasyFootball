@@ -10,7 +10,7 @@ import requests
 from lxml import html
 from lxml import etree
 
-from bs4 import BeautifulSoup
+
 
 
 # Part 2 - Create Webscraping Functions

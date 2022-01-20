@@ -12,7 +12,7 @@ import requests
 from lxml import html
 from lxml import etree
 
-from bs4 import BeautifulSoup
+
 
 
 st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
