@@ -506,8 +506,9 @@ wc_scoring_chart = alt.Chart(all_scorers).mark_bar().encode(
 
 def main():
     pages = {
+        "Teams": page_teams,
         "Standings": page_home,
-        #"Teams": page_teams,
+
         "WC Weekend Scoring": page_wc_scoring,
         "WC Weekend Game-by-Game": page_wc,
     }
@@ -541,28 +542,33 @@ def page_home():
     full_stand
 
 def page_teams():
-   # gms_tuple = tuple(full_stand["GM"])
 
+    gms_tuple = tuple(full_stand["GM"])
+    st.write("I'm here to hold places")
     form = st.form("name form")
     with form:
-        # Section for Participant's Name
-        form.write("inside the form")
+    #     Section for Participant's Name
+        qbcols = st.columns(2)
         name = form.selectbox("Which roster do you want to check out?", all_gms)
         name_str = str(name)
-        print(name_str)
-        #teams_dict[name_str]
+        print(name, name_str)
 
+        teams_dict.get(name_str)
+    #
         submitted = form.form_submit_button("Submit")
         if submitted:
-            st.write("submit :)")
-            teams_dict[name]
+            st.title(name_str)
+            teams_df = teams_dict.get(name_str)
+            st.write("**Points:** ", teams_df.loc[13, "Total"])
+            st.write("**Players Left:** ", teams_df.loc[13, "Alive"])
+            st.dataframe(teams_dict.get(name_str).loc[0:12])
+
 
 
 def page_wc_scoring():
     st.title("Full Wild Card Scoring Info")
     st.altair_chart(wc_scoring_chart)
-    wc_sort
-
+   # wc_sort
 
 
 def page_wc():
