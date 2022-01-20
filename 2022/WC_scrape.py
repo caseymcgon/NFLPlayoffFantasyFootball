@@ -270,8 +270,8 @@ def wc_scores():
     col2.write("**Each Scoring Play ... scroll!**")
     col2.dataframe(ari_la)
 
-## Part B: Concat WC weekend together
-def concat_wc():
+
+def concat_wc(word): # Concat WC weekend games together
     wc_games = [lv_cin, ne_buf, phi_tb, sf_dal, pit_kc, ari_la]
 
     wc = pd.concat(wc_games)[["player", "points"]]
