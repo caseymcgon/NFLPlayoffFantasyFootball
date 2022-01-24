@@ -11,7 +11,7 @@ import streamlit as st
 import requests
 from lxml import html
 from lxml import etree
-st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
+#st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
 
 
 ###
@@ -27,7 +27,7 @@ st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_
 #
 
 # List of teams that are still playin'
-alive_list = ["GB", "TB", "LAR", "SF", "TEN", "KC", "BUF", "CIN"]
+alive_list = [ "LAR", "SF",  "KC", "CIN"]
 
 ## Get Teams from Rosters_2022.csv
 
@@ -311,7 +311,7 @@ pit_kc_scorers = pit_kc.groupby("player").sum().sort_values("points", ascending=
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
 #pit_kc_scorers
 
-ari_la = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326625").replace({"jr 4 yd pass": "4 yd pass", "jr 3 yd interception return": "3 yd interception return"})
+ari_la = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326625").replace({"jr 4 yd pass": "4 yd pass", "jr 3 yd interception return": "3 yd interception return", "David Long Jr": "LAR"})
 ari_la_scorers = ari_la.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
         ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
 #ari_la_scorers
@@ -385,6 +385,72 @@ def wc_scores():
     col2.write("**Each Scoring Play ... scroll!**")
     col2.dataframe(ari_la)
 
+## Add Divisional Weekend Games
+cin_ten = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326632")#.replace({"TJ Watt": "PIT"})
+cin_ten_scorers = cin_ten.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
+        ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
+
+sf_gb = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326631").replace({"Talanoa Hufanga": "SF"})
+sf_gb_scorers = sf_gb.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
+        ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
+
+lar_tb = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326634")#.replace({"Talanoa Hufanga": "SF"})
+lar_tb_scorers = lar_tb.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
+        ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
+
+buf_kc = get_single_game_scores("https://www.espn.com/nfl/game/_/gameId/401326633")#.replace({"Talanoa Hufanga": "SF"})
+buf_kc_scorers = buf_kc.groupby("player").sum().sort_values("points", ascending=False).reset_index()[
+        ["player", "FG", "PAT", "TD", "PAT2", "Safety", "points"]]
+
+
+def div_scores():
+    col1, col2 = st.columns(2)
+
+    # Bengals / Titans
+    col1.title("Bengals @ Titans")
+    col1.write("**Points for Each Player**")
+    col1.dataframe(cin_ten_scorers)
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("**Each Scoring Play ... scroll!**")
+    col1.dataframe(cin_ten)
+    col1.write("")
+
+    # 49ers / Packers
+    col1.title("49ers @ Packers")
+    col1.write("**Points for Each Player**")
+    col1.dataframe(sf_gb_scorers)
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("")
+    col1.write("**Each Scoring Play ... scroll!**")
+    col1.dataframe(sf_gb)
+
+
+    # Rams / Bucs
+    col2.title("Rams @ Bucs")
+    col2.write("**Points for Each Player**")
+    col2.dataframe(lar_tb_scorers)
+    col2.write("")
+    col2.write("**Each Scoring Play ... scroll!**")
+    col2.dataframe(lar_tb)
+    col2.write("")
+
+    # Bills / Chiefs
+    col2.title("Bills @ Chiefs")
+    col2.write("**Points for Each Player**")
+    col2.dataframe(buf_kc_scorers)
+    col2.write("")
+    col2.write("**Each Scoring Play ... scroll!**")
+    col2.dataframe(buf_kc)
+    col2.write("")
+
 def concat_wc(word = "Go"): # Concat WC weekend games together
     wc_games = [lv_cin, ne_buf, phi_tb, sf_dal, pit_kc, ari_la]
 
@@ -393,13 +459,30 @@ def concat_wc(word = "Go"): # Concat WC weekend games together
     wc_sort = wc.sort_values("points", ascending=0).reset_index(drop=True).rename(columns={"points": "WC Points"})
 
     return wc, wc_sort
-
-
 # Merge wc_sort (from WC_scrape.py) with popular_players
 wc, wc_sort = concat_wc()
-wc_full = wc_sort.merge(popular_players, how="right", on="player")[
-    ["player", "NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
-wc_full = wc_full.sort_values(["WC Points"], ascending=0).reset_index(drop=True)
+
+def concat_div():
+    div_games = [cin_ten, sf_gb, lar_tb, buf_kc]
+    div = pd.concat(div_games)[["player", "points"]]
+    div = div.groupby("player").sum().reset_index()
+    div_sort = div.sort_values("points", ascending = 0).reset_index(drop=True).rename(columns={"points": "Div Points"})
+
+    return div, div_sort
+
+div, div_sort = concat_div()
+# wc_full = wc_sort.merge(popular_players, how="right", on="player")[
+#     ["player", "NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
+# wc_full = wc_full.sort_values(["WC Points"], ascending=0).reset_index(drop=True)
+
+scoring_full = wc_sort.merge(popular_players, how = "outer", on = "player")#[["player","NFL", "Position", "WC Points", "Alive", "#_squads"]].fillna(0)
+scoring_full = scoring_full.merge(div_sort, how = "outer", on = "player")[["player","NFL", "Position", "WC Points", "Div Points", "Alive", "#_squads"]].fillna(0)
+scoring_full["Total Points"] = scoring_full["WC Points"] + scoring_full["Div Points"]
+scoring_full = scoring_full.sort_values("Total Points", ascending = False).reset_index(drop = True)
+
+scoring_full = scoring_full[["player","NFL", "Position", "Total Points", "WC Points", "Div Points", "Alive", "#_squads"]].fillna(0)
+scoring_full.tail(40)
+
 
 def make_team(squad, standings_df):
     #"""CREATE DF WITH EACH PLAYER ON A (FANTASY) ROSTER AND THEIR POINT TOTALS, BY ROUND"""
@@ -415,12 +498,17 @@ def make_team(squad, standings_df):
     # """Adding Wild Card results"""
     team = team.merge(wc, how = "left", on = "player").fillna(0).rename(columns = {"points" : "WC" })
 
+    # """Adding Divisional results"""
+    team = team.merge(div, how="left", on="player").fillna(0).rename(columns={"points": "Div"})
+
     # """Creating a Total Column that sums all the other columns"""
-    team["Total"] = team["WC"] #+ team["Div"] + team["Ship"] + team["SB"]
+    team["Total"] = team["WC"] + team["Div"]# + team["Ship"] + team["SB"]
     team = team.append(team.sum(numeric_only=True), ignore_index=True)
 
     total = int(team.at[13, "Total"])
     alive = int(team.at[13, "Alive"])
+    wc_points = int(team.at[13, "WC"])
+    div_points = int(team.at[13, "Div"])
     team.at[13, "player"], team.at[13, "NFL"], team.at[13, "Position"] = name, name, "GM"
 
     qbs = list(list(team.loc[(team['Alive'] == True) & (team["Position"] == "QB")]["player"]))
@@ -433,11 +521,11 @@ def make_team(squad, standings_df):
 
 
     # # ## Consider including the list of their players that are still alive?
-    stand.loc[len(stand.index)] = [name, total, alive , qbs, ks, ds, ps, dead]
+    stand.loc[len(stand.index)] = [name, total, wc_points, div_points, alive , qbs, ks, ds, ps, dead]
     return team
 
 
-stand = pd.DataFrame(columns=["Team", "Total Points", "Num Alive", "QBs Remaining", "Ks Remaining", "Ds Remaining",
+stand = pd.DataFrame(columns=["Team", "Total Points", "WC", "Div", "Num Alive", "QBs Remaining", "Ks Remaining", "Ds Remaining",
                               "Positions Remaining", "Dead"])
 
 for index, row in allteams2.iterrows():
@@ -462,7 +550,7 @@ bar = alt.Chart(stand).mark_bar().encode(
     y = alt.Y("Total Points"),
     tooltip = alt.Tooltip(["Team", "Total Points", "Num Alive", "QBs Remaining",
                            "Ks Remaining", "Ds Remaining", "Positions Remaining", "Dead"]),
-    color = alt.Color("Num Alive", scale = alt.Scale(scheme = "darkblue", reverse=False))
+    color = alt.Color("Num Alive", scale = alt.Scale(scheme = "lighttealblue", reverse=True))
     #color=alt.condition(single, 'count()', alt.value('lightgray'), legend = None)
 ).properties(width=1400, height=600, title = "Points by Team").configure_axis(
     labelFontSize=30,
@@ -489,8 +577,8 @@ bar = alt.Chart(stand).mark_bar().encode(
 
 
 ## change next line each week
-all_scorers = wc_full
-wc_scoring_chart = alt.Chart(all_scorers).mark_bar().encode(
+
+wc_scoring_chart = alt.Chart(scoring_full).mark_bar().encode(
     x=alt.X("player", sort=alt.SortField(field="WC Points", order='descending')),
     y="WC Points",
     tooltip=alt.Tooltip(["player", "NFL:O", "Position", "#_squads", "WC Points"]),
@@ -505,10 +593,13 @@ wc_scoring_chart = alt.Chart(all_scorers).mark_bar().encode(
 
 
 def main():
+    st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
     pages = {
 
         "Standings": page_home,
         "Teams": page_teams,
+        "Divisional Weekend Scoring:": page_div_scoring,
+        "Divisional Weekend Game-by-Game": page_div,
         "WC Weekend Scoring": page_wc_scoring,
         "WC Weekend Game-by-Game": page_wc,
     }
@@ -534,6 +625,7 @@ def main():
         page = st.radio("Select your page", tuple(pages.keys()))
 
     pages[page]()
+
 
 def page_home():
     bar
@@ -563,11 +655,16 @@ def page_teams():
             st.write("**Players Left:** ", teams_df.loc[13, "Alive"])
             st.dataframe(teams_dict.get(name_str).loc[0:12])
 
+def page_div_scoring():
+    st.title("Full Divisional Weekend Scoring Info")
 
+def page_div():
+    st.title("Divisional Weekend Game-by-Game")
+    div_scores()
 
 def page_wc_scoring():
     st.title("Full Wild Card Scoring Info")
-    st.altair_chart(wc_scoring_chart)
+    #st.altair_chart(wc_scoring_chart)
    # wc_sort
 
 
