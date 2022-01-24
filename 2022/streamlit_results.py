@@ -480,7 +480,10 @@ scoring_full = scoring_full.merge(div_sort, how = "outer", on = "player")[["play
 scoring_full["Total Points"] = scoring_full["WC Points"] + scoring_full["Div Points"]
 scoring_full = scoring_full.sort_values("Total Points", ascending = False).reset_index(drop = True)
 
-scoring_full = scoring_full[["player","NFL", "Position", "Total Points", "WC Points", "Div Points", "Alive", "#_squads"]].fillna(0)
+scoring_full = scoring_full[["player","NFL", "Position", "Total Points", "WC Points", "Div Points",  "#_squads"]].fillna(0)
+scoring_full["NFL"] = scoring_full["NFL"].replace({0: "na"})
+scoring_full["Position"] = scoring_full["Position"].replace({0: "na"})
+#scoring_full["Alive"] = scoring_full["Alive"].replace({0: "na"})
 scoring_full.tail(40)
 
 
@@ -562,7 +565,7 @@ circ = alt.Chart(stand).mark_circle(size=100).encode(
     y=alt.Y("Num Alive", title="Players Remaining"),
     tooltip=alt.Tooltip(
         ["Team", "Total Points", "Num Alive", "QBs Remaining", "Ks Remaining", "Ds Remaining", "Positions Remaining"]),
-    color=alt.Color("Team", sort=list(stand["Team"]), scale=alt.Scale(scheme="darkblue", reverse=False))
+    color=alt.Color("Team", sort=list(stand["Team"]), scale=alt.Scale(scheme="lighttealblue", reverse=True))
 ).properties(width=1200, height=500, title="Points & Players Remaining by Team").configure_axis(
     labelFontSize=30,
     titleFontSize=35
@@ -571,17 +574,52 @@ circ = alt.Chart(stand).mark_circle(size=100).encode(
 
 
 ## change next line each week
+all_scoring_chart = alt.Chart(scoring_full).mark_bar().encode(
+    x=alt.X("player", sort=alt.SortField(field="Total Points", order='descending')),
+    y="Total Points",
+    tooltip=alt.Tooltip(["player", "NFL:O", "Position", "#_squads","WC Points", "Div Points", "Total Points"]),
+    color=alt.Color("#_squads", scale=alt.Scale(scheme="lighttealblue", reverse=False))
+).properties(width=1600, height=500, title="All Weekends: Points for All Players").configure_axis(
+    labelFontSize=20,
+    titleFontSize=30
+).configure_title(fontSize=40)
+
+div_scoring_chart = alt.Chart(scoring_full).mark_bar().encode(
+    x=alt.X("player", sort=alt.SortField(field="Div Points", order='descending')),
+    y="Div Points",
+    tooltip=alt.Tooltip(["player", "NFL:O", "Position", "#_squads", "Div Points", "Total Points"]),
+    color=alt.Color("#_squads", scale=alt.Scale(scheme="lighttealblue", reverse=False))
+).properties(width=1600, height=500, title="Divisional Weekend: Points for All Players").configure_axis(
+    labelFontSize=20,
+    titleFontSize=30
+).configure_title(fontSize=40)
 
 wc_scoring_chart = alt.Chart(scoring_full).mark_bar().encode(
     x=alt.X("player", sort=alt.SortField(field="WC Points", order='descending')),
     y="WC Points",
-    tooltip=alt.Tooltip(["player", "NFL:O", "Position", "#_squads", "WC Points"]),
-    color=alt.Color("Alive", scale=alt.Scale(domain=[True, False], range=['green', 'red']))
-
-).properties(width=1400, height=500, title="Points for All Owned Players, Wild Card Weekend").configure_axis(
+    tooltip=alt.Tooltip(["player", "NFL:O", "Position", "#_squads", "WC Points", "Total Points"]),
+    color=alt.Color("#_squads", scale=alt.Scale(scheme="lighttealblue", reverse=False))
+).properties(width=1600, height=500, title="Wild Card Weekend: Points for All Players").configure_axis(
     labelFontSize=20,
     titleFontSize=30
-).configure_title(fontSize= 40)
+).configure_title(fontSize=40)
+
+free_agents = scoring_full[scoring_full["#_squads"] == 0].sort_values("Total Points", ascending = 0).reset_index(drop=True)[["player", "Total Points", "WC Points", "Div Points"]]
+free_agents.head()
+
+undrafted_scoring = alt.Chart(free_agents).mark_bar().encode(
+    x=alt.X("player", sort=alt.SortField(field="Total Points", order='descending')),
+    y="Total Points",
+    tooltip=alt.Tooltip(["player",  "WC Points", "Div Points", "Total Points"]),
+    color=alt.Color("#_squads", scale=alt.Scale(scheme="lighttealblue", reverse=False))
+).properties(width=1600, height=500, title="Points for All Undrafted Players").configure_axis(
+    labelFontSize=20,
+    titleFontSize=30
+).configure_title(fontSize=40)
+
+
+
+
 
 
 
@@ -592,9 +630,8 @@ def main():
 
         "Standings": page_home,
         "Teams": page_teams,
-        "Divisional Weekend Scoring:": page_div_scoring,
+        "Scoring By Player": page_player_scoring,
         "Divisional Weekend Game-by-Game": page_div,
-        "WC Weekend Scoring": page_wc_scoring,
         "WC Weekend Game-by-Game": page_wc,
     }
 
@@ -651,17 +688,23 @@ def page_teams():
             st.write("**Players Left:** ", teams_df.loc[13, "Alive"])
             st.dataframe(teams_dict.get(name_str).loc[0:12])
 
-def page_div_scoring():
-    st.title("Full Divisional Weekend Scoring Info")
 
 def page_div():
     st.title("Divisional Weekend Game-by-Game")
     div_scores()
 
-def page_wc_scoring():
-    st.title("Full Wild Card Scoring Info")
-    #st.altair_chart(wc_scoring_chart)
-   # wc_sort
+def page_player_scoring():
+    st.title("All Scorers -- All Rounds")
+    st.altair_chart(all_scoring_chart)
+
+    st.title("All Divisional Weekend Scorers")
+    st.altair_chart(div_scoring_chart)
+
+    st.title("All Wild Card Scorers")
+    st.altair_chart(wc_scoring_chart)
+
+    st.title("Best Undrafted Players")
+    st.altair_chart(undrafted_scoring)
 
 
 def page_wc():
