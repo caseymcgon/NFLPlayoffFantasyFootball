@@ -552,28 +552,22 @@ bar = alt.Chart(stand).mark_bar().encode(
                            "Ks Remaining", "Ds Remaining", "Positions Remaining", "Dead"]),
     color = alt.Color("Num Alive", scale = alt.Scale(scheme = "lighttealblue", reverse=True))
     #color=alt.condition(single, 'count()', alt.value('lightgray'), legend = None)
-).properties(width=1400, height=600, title = "Points by Team").configure_axis(
+).properties(width=1200, height=600, title = "Points by Team").configure_axis(
     labelFontSize=30,
     titleFontSize=35
 ).configure_title(fontSize= 45).add_selection(single)
 
-# bar
-#
-# #### WRITE TO STREAMLIT
-#
-#
-# st.write("---")
-# st.title("Standings")
-# full_stand
-#
-# st.title("Popular Players")
-# st.write("click on columns to sort by different values")
-# wc_full
-#
-#
-# st.title("Full Wild Card Scoring Info")
-# st.dataframe(wc_sort)
-#
+circ = alt.Chart(stand).mark_circle(size=100).encode(
+    x=alt.Y("Total Points", scale=alt.Scale(domain=(min(stand["Total Points"]), max(stand["Total Points"])))),
+    y=alt.Y("Num Alive", title="Players Remaining"),
+    tooltip=alt.Tooltip(
+        ["Team", "Total Points", "Num Alive", "QBs Remaining", "Ks Remaining", "Ds Remaining", "Positions Remaining"]),
+    color=alt.Color("Team", sort=list(stand["Team"]), scale=alt.Scale(scheme="darkblue", reverse=False))
+).properties(width=1200, height=500, title="Points & Players Remaining by Team").configure_axis(
+    labelFontSize=30,
+    titleFontSize=35
+).configure_title(fontSize= 45)#.add_selection(single)
+
 
 
 ## change next line each week
@@ -629,6 +623,8 @@ def main():
 
 def page_home():
     bar
+    st.write("---")
+    circ
     st.write("---")
     st.title("Standings Table")
     full_stand
