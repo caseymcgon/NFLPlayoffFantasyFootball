@@ -611,7 +611,7 @@ undrafted_scoring = alt.Chart(free_agents).mark_bar().encode(
     x=alt.X("player", sort=alt.SortField(field="Total Points", order='descending')),
     y="Total Points",
     tooltip=alt.Tooltip(["player",  "WC Points", "Div Points", "Total Points"]),
-    color=alt.Color("#_squads", scale=alt.Scale(scheme="lighttealblue", reverse=False))
+    color=alt.Color("Total Points", scale=alt.Scale(scheme="teals", reverse=False))
 ).properties(width=1600, height=500, title="Points for All Undrafted Players").configure_axis(
     labelFontSize=20,
     titleFontSize=30
@@ -687,10 +687,7 @@ def page_teams():
 
     #
         submitted = form.form_submit_button()
-        # name2 = cols2.selectbox("What other roster do you want to check out?", all_gms)
-        # name_str2 = str(name2)
-        # print(name2, name_str2)
-        # teams_dict.get(name_str2)
+
 
     if submitted:
         out1, out2 = st.columns(2)
@@ -728,6 +725,9 @@ def page_player_scoring():
 
     st.title("Best Undrafted Players")
     st.altair_chart(undrafted_scoring)
+
+    st.title("All Drafted Players")
+    st.table(scoring_full.sort_values("#_squads", ascending = 0).reset_index(drop=True))
 
 
 def page_wc():
