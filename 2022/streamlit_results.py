@@ -669,24 +669,47 @@ def page_home():
 def page_teams():
 
     gms_tuple = tuple(full_stand["GM"])
-    st.write("I'm here to hold places")
+    #st.write("I'm here to hold places")
     form = st.form("name form")
     with form:
     #     Section for Participant's Name
-        qbcols = st.columns(2)
-        name = form.selectbox("Which roster do you want to check out?", all_gms)
-        name_str = str(name)
-        print(name, name_str)
+        cols1, cols2  = st.columns(2)
 
-        teams_dict.get(name_str)
+        name1 = cols1.selectbox("Which roster do you want to check out?", all_gms)
+        name_str1 = str(name1)
+        print(name1, name_str1)
+        teams_dict.get(name_str1)
+
+        name2 = cols2.selectbox("What other roster do you want to check out?", all_gms)
+        name_str2 = str(name2)
+        print(name2, name_str2)
+        teams_dict.get(name_str2)
+
     #
-        submitted = form.form_submit_button("Submit")
-        if submitted:
-            st.title(name_str)
-            teams_df = teams_dict.get(name_str)
-            st.write("**Points:** ", teams_df.loc[13, "Total"])
-            st.write("**Players Left:** ", teams_df.loc[13, "Alive"])
-            st.dataframe(teams_dict.get(name_str).loc[0:12])
+        submitted = form.form_submit_button()
+        # name2 = cols2.selectbox("What other roster do you want to check out?", all_gms)
+        # name_str2 = str(name2)
+        # print(name2, name_str2)
+        # teams_dict.get(name_str2)
+
+    if submitted:
+        out1, out2 = st.columns(2)
+        out1.title(name_str1)
+        teams_df1 = teams_dict.get(name_str1)
+        out1.write("**Points:** ")
+        out1.write(teams_df1.loc[13, "Total"])
+        out1.write("**Players Left:** ")
+        out1.write(teams_df1.loc[13, "Alive"])
+        out1.dataframe(teams_dict.get(name_str1).loc[0:12])
+
+        out2.title(name_str2)
+        teams_df2 = teams_dict.get(name_str2)
+        out2.write("**Points:** ")
+        out2.write(teams_df2.loc[13, "Total"])
+        out2.write("**Players Left:**")
+        out2.write(teams_df2.loc[13, "Alive"])
+        out2.dataframe(teams_dict.get(name_str2).loc[0:12])
+
 
 
 def page_div():
