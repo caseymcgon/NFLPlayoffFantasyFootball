@@ -668,7 +668,7 @@ wc_scoring_chart = alt.Chart(scoring_full).mark_bar().encode(
     titleFontSize=30
 ).configure_title(fontSize=40)
 
-free_agents = scoring_full[scoring_full["#_squads"] == 0].sort_values("Total Points", ascending = 0).reset_index(drop=True)[["player", "Total Points", "WC Points", "Div Points"]]
+free_agents = scoring_full[scoring_full["#_squads"] == 0].sort_values("Total Points", ascending = 0).reset_index(drop=True)[["player", "Total Points", "WC Points", "Div Points", "Champ Points"]]
 free_agents.head()
 
 undrafted_scoring = alt.Chart(free_agents).mark_bar().encode(
