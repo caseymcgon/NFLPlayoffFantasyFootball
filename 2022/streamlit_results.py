@@ -469,8 +469,7 @@ def champ_scores():
     col1.dataframe(cin_kc_scorers)
     col1.write("")
     col1.write("")
-    col1.write("")
-    col1.write("")
+
     col1.write("**Each Scoring Play ... scroll!**")
     col1.dataframe(cin_kc)
     col1.write("")
@@ -516,7 +515,6 @@ def concat_champ():
     champ = champ.groupby("player").sum().reset_index()
     champ_sort = champ.sort_values("points", ascending = 0).reset_index(drop=True).rename(columns={"points": "Champ Points"})
     return champ, champ_sort
-
 champ, champ_sort = concat_champ()
 
 
@@ -695,6 +693,7 @@ def main():
         "Standings": page_home,
         "Teams": page_teams,
         "Scoring By Player": page_player_scoring,
+        "Championship Weekend Game-by-Game": page_champ,
         "Divisional Weekend Game-by-Game": page_div,
         "WC Weekend Game-by-Game": page_wc,
     }
@@ -771,7 +770,9 @@ def page_teams():
         out2.write(teams_df2.loc[13, "Alive"])
         out2.dataframe(teams_dict.get(name_str2).loc[0:12])
 
-
+def page_champ():
+    st.title("Championship Weekend Game-by-Game")
+    champ_scores()
 
 def page_div():
     st.title("Divisional Weekend Game-by-Game")
