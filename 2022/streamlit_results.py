@@ -674,7 +674,7 @@ free_agents.head()
 undrafted_scoring = alt.Chart(free_agents).mark_bar().encode(
     x=alt.X("player", sort=alt.SortField(field="Total Points", order='descending')),
     y="Total Points",
-    tooltip=alt.Tooltip(["player",  "WC Points", "Div Points", "Total Points"]),
+    tooltip=alt.Tooltip(["player",  "WC Points", "Div Points", "Champ Points", "Total Points"]),
     color=alt.Color("Total Points", scale=alt.Scale(scheme="teals", reverse=False))
 ).properties(width=1600, height=500, title="Points for All Undrafted Players").configure_axis(
     labelFontSize=20,
