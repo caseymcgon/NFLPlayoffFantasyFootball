@@ -11,7 +11,7 @@ import streamlit as st
 import requests
 from lxml import html
 from lxml import etree
-st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
+#st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
 
 
 ###
@@ -687,7 +687,7 @@ undrafted_scoring = alt.Chart(free_agents).mark_bar().encode(
 
 
 def main():
-    #st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
+    st.set_page_config(page_title="Playoff Fantasy -- Results", layout="wide", page_icon="🏈")
     pages = {
 
         "Standings": page_home,
@@ -728,6 +728,33 @@ def page_home():
     st.write("---")
     st.title("Standings Table")
     full_stand
+
+    st.write("---")
+    st.title("Championship Round Update")
+    st.write("""Following 49ers & Chiefs late-game ineptitude, we'll get a **Rams v. Bengals Super Bowl** -- 
+    just what we were all hoping for! Based on our picks, 0/28 of us predicted that 3 weeks ago and only 2 of us 
+    correctly predicted 1 of those teams would be the eventual Super Bowl champion (**Alex Warner** on the Rams, 
+    **Steve Wile** on the Bengals. More on them later)
+    
+In our competition, **Warner** expanded his lead Sunday, putting up the most points again this week. 
+He's now up to an impressive 274 points and still leads the league with 6 players remaining (Rams + Ja'Marr)
+    
+No-one else has passed 250 and the player closest to Warner who owns a player he doesn't is **Jack Withers**. 
+Jack sits 59 points off the lead at 215 and needs a TON of Joe Mixon scoring (something on the order of 
+5 70yard TDs by Mixon in the Super Bowl alongside 0 Matt Stafford/Rams scoring should do it). My roomate 
+**Michael Bellas**(210) also has a shot. He needs the same big Mixon scoring to pass Warner 
+and 1 Ja'Marr Chase TD to push him past Jack.
+    
+After Jack & Michael, those "Burrow bros" still have a shot, in theory. Their leader, **Jim Leetham** (165 points) 
+could use multiple LONG Burrow to Mixon scores. **Troy Nadel** and **Kelly McGonigle** still have hope as well. 
+They're roughly 30 points behind Jim and need a huge Bengals blowout.
+
+Finally, **Steve Wile** deserves credit for his firm belief in his hometown Bengals & Joe Burrow. 
+Though he's "blocked" by Troy from having a chance at taking home our hardware, the McGonigles will be pulling 
+for Joey B and hoping Steve finally gets to celebrate that elusive Super Bowl title. 
+
+As always, please send me any feedback you have on the website. I hope to continue improving it next year.""")
+
 
 def page_teams():
 
