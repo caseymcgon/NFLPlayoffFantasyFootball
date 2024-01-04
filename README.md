@@ -3,7 +3,7 @@ Webscraping, Regex, and Pandas skills mobilized to efficiently compile and manip
 
 # DESCRIPTION
 
-This project's purpose was to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
+This project's original purpose was to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
 
 To do that, I webscraped ESPN's scoring summaries of each playoff game to calculate fantasy scores for each player in those games. (see the function get_single_game_points(input_url))
 
@@ -16,11 +16,60 @@ Ultimately, this notebook exports the tables it creates to Excel (in order to sh
 This project was written and run in python in a Jupyter Notebook. If you'd like to run the code, it is suggested that you import the code into a Jupyter Notebook (or Google Colab) python enviornment of your own.
 
 
+## Progress by Year
+
+### 2020: First Year w/ Automated Scoring for our Leage
+- Created a Jupyter Notebook w/ webscraping functions & pandas manipulation to tally the scoring each week
+- Automated the following work that was previously manual & error-prone: looking at box scores, tallying points, and assigning to each player
+
+### 2021: Minor addition 
+- Added functionality to easily discern how many rosters each player is on
+- Added functionality to determine the top scorers (even those not on rosters)
+
+### 2022: First Year of Deploying a web app (actually 2)
+- Web App #1: Utilized Streamlit to give users an UI to input their teams (as opposed to emailing) 
+- Employed Google's sheets API to store roster inputs from web app (taking advantage of the now standardized inputs)
+- Web App #2: Utilized Streamlit to give users an UI for viewing the results each week
+
+### 2023: Revert to Jupyter Notebook (due to late start & lack of time before beginning of playoffs to spin up web app)
+- Switched from webscraping to using the nflscrapy API (since ESPN changed their format of their pages)
+- Added some additional data analysis (actually compute "standings" table & find the optimal team's scoring)
+
+### 2024: Back to Streamlit 
+- changed from a .venv to conda
+- Added config files to make new years less work to maintain
 
 
 
+###### TODO (This Year)
 
-###### TODO
+- Add yearly_settings.json file to handle config & avoid duplicating files next year
 
-- Break down what's in each folder & what I built, by year
+- determine if I should use nflscrapy or go back to scraping myself
+
+- L113 of streamlit_form.py: remove hard-coding (base it on dt v. deadline)
+
+- Add very basic testing
+
+
+###### Larger Projects / Improvements
+
+- Automate cleaning of player names (both on rosters/user input & on scoring play scraping from ESPN)
+
+- Live Updates to Results App: get a quickly updating API or scrape from somewhere that has an existing url before the game
+
+- Everything as 1 app:
+--> Tab 1: Roster input (available until Kickoff of Week 1)
+--> Tab 2: Roster inspection / comparison (available after Kickoff of Week 1)
+--> Tab 3: Scoring / Results (available after Kickoff of Week 1)
+--> Tab 4: Historical Champions, Winning Rosters, & 'Optimal Team' (available at all times)
+
+- Add & Improve visualizations of standings & roster comparisons
+
+- Allow people to toy with "paths to victory"
+
+- Create an ML Model that picks a team. trained on past years results. 
+    --> inputs: Players' TDs during year, team's seeding, team's record, team's record (last 3 games), has bye, offense's total TDs during year
+
+- Add testing of webscraping functions & handling of odd names
 
