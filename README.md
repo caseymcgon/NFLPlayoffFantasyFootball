@@ -37,15 +37,19 @@ This project was written and run in python in a Jupyter Notebook. If you'd like 
 
 ### 2024: Back to Streamlit 
 - changed from a .venv to conda
-- Added config files to make new years less work to maintain
+- Added yearly_settings.jso (config files) to make new years less work to maintain
 
 
 
 ###### TODO (This Year)
 
-- Add yearly_settings.json file to handle config & avoid duplicating files next year
+- sign in to git!! 
 
 - determine if I should use nflscrapy or go back to scraping myself
+
+--> Check that basic setup works for 2024 
+
+- differentiate WC_scrape.py from streamlit_results.py -- why both? Maybe have 1 be a file of functions, the other calls those functions
 
 - L113 of streamlit_form.py: remove hard-coding (base it on dt v. deadline)
 
