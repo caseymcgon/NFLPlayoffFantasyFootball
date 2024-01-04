@@ -1,0 +1,19 @@
+name: NFL_conda_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy=1.19.2
+  - scipy
+  - pandas
+  - matplotlib
+  - pip 
+  - pip:
+    - gspread>=4.0.1
+    - google-auth>=2.25.2
+    - pytz>=2020.1
+    - protobuf>=3.19.3
+    - streamlit>=1.3.1
+    - urllib3==1.26.7 
+    - beautifulsoup4==4.12.2
+    # - lxml==5.0.0
