@@ -1,0 +1,14 @@
+{
+    "settings": {
+        "2024": {
+            "start_date_deadline": "2022-01-13 1:30PM PST (Saturday)",
+            "roster_google_file_path": "Rosters_2024",
+            "buy_in": "$10"
+        },
+        "2022": {
+            "start_date_deadline": "2022-01-15 1:30PM PST (Saturday)",
+            "roster_google_file_path": "Rosters_2022",
+            "buy_in": "$10"
+        }
+    }
+}
