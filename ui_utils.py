@@ -39,7 +39,8 @@ def display_start_date_countdown(start_date_deadline_str, year):
         else:
             st.write(f"""{-days} days, {hours} hours, {minutes} mins since the {year} NFL Playoffs Kicked Off ({start_date_deadline_str})""")
 
-
+def check_past_deadline(start_date_deadline_str):
+    pass
 
 def function2():
     # Function 2 implementation
