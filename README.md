@@ -1,7 +1,7 @@
 # NFL-Playoff-Fantasy-Football
 Webscraping, Regex, and Pandas skills mobilized to efficiently compile and manipulate NFL Playoff scoring data for family and friends' Playoff Fantasy Football Pool
 
-# DESCRIPTION
+# A Little Backstory
 
 This project's original purpose was to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
 
@@ -11,10 +11,9 @@ This script also combines all players and points on a (fantasy) roster into 1 da
 
 Ultimately, this notebook exports the tables it creates to Excel (in order to share the information in a familiar and legible format)
 
-# REPRODUCTION
+# Reproduction
 
-This project was written and run in python in a Jupyter Notebook. If you'd like to run the code, it is suggested that you import the code into a Jupyter Notebook (or Google Colab) python enviornment of your own.
-
+I use conda to manage my environment (NFL_conda_environment.yml) for the most recent year and yearly_settings.json to keep store key dates & info each year. 
 
 ## Progress by Year
 
@@ -36,22 +35,26 @@ This project was written and run in python in a Jupyter Notebook. If you'd like 
 - Added some additional data analysis (actually compute "standings" table & find the optimal team's scoring)
 
 ### 2024: Back to Streamlit 
-- changed from a .venv to conda
-- Added yearly_settings.jso (config files) to make new years less work to maintain
+- Created a multpage app to host all things for the project, as opposed to individual smaller web apps
+- Changed from a .venv to conda (NFL_conda_environment.yml)
+- Added yearly_settings.json (config files), ui_utils.py (custom streamlit funcs), and scraping_utils.py (custom webscraping funcs) to make future Casey happy (aka: enhance maintainability)
+- 
+
+
 
 
 
 ###### TODO (This Year)
 
-- sign in to git!! 
-
 - determine if I should use nflscrapy or go back to scraping myself
 
---> Check that basic setup works for 2024 
+- Q: How to split teams that won from those that lost, automatically, each week
+
+--> Check that basic setup works for 2024 (write to & read from Google API)
 
 - differentiate WC_scrape.py from streamlit_results.py -- why both? Maybe have 1 be a file of functions, the other calls those functions
 
-- L113 of streamlit_form.py: remove hard-coding (base it on dt v. deadline)
+- L113 of streamlit_form.py: remove hard-coding (base it on dt v. deadline) -- see L42 of ui_utils
 
 - Add very basic testing
 
@@ -59,10 +62,13 @@ This project was written and run in python in a Jupyter Notebook. If you'd like 
 ###### Larger Projects / Improvements
 
 - Automate cleaning of player names (both on rosters/user input & on scoring play scraping from ESPN)
+--> fuzzy_wuzzy.process
 
 - Live Updates to Results App: get a quickly updating API or scrape from somewhere that has an existing url before the game
 
 - Everything as 1 app:
+
+--> Tab 0: Landing Page (w/ # of players, countdown to deadline (Days, Hours til NFL Playoffs Start / since ended), rules, etc. ) 
 --> Tab 1: Roster input (available until Kickoff of Week 1)
 --> Tab 2: Roster inspection / comparison (available after Kickoff of Week 1)
 --> Tab 3: Scoring / Results (available after Kickoff of Week 1)
