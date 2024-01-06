@@ -5,7 +5,7 @@ import ui_utils
 
 st.set_page_config(
     page_title="Hello",
-    page_icon="👋",
+    page_icon="🏈",
 )
 
 # Load the yearly_settings.json file
