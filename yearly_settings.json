@@ -1,14 +1,18 @@
 {
     "settings": {
         "2024": {
-            "start_date_deadline": "2022-01-13 1:30PM PST (Saturday)",
+            "start_date_deadline": "2024-01-13 1:30PM PST (Saturday)",
             "roster_google_file_path": "Rosters_2024",
-            "buy_in": "$10"
+            "buy_in": "$10",
+            "alive_NFC": ["SF"],
+            "alive_AFC": ["BAL"]
         },
         "2022": {
             "start_date_deadline": "2022-01-15 1:30PM PST (Saturday)",
             "roster_google_file_path": "Rosters_2022",
-            "buy_in": "$10"
+            "buy_in": "$10",
+            "alive_NFC": ["LAR"],
+            "alive_AFC": ["CIN"]
         }
     }
 }
