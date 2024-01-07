@@ -1,5 +1,6 @@
 
 from datetime import datetime
+import time
 import pytz
 import streamlit as st
 import numpy as np
@@ -38,6 +39,26 @@ def display_start_date_countdown(start_date_deadline_str, year):
             st.write(f"""# {days} days {hours} hours, {minutes} mins til the {year} NFL Playoffs Kick Off ({start_date_deadline_str})""")
         else:
             st.write(f"""{-days} days, {hours} hours, {minutes} mins since the {year} NFL Playoffs Kicked Off ({start_date_deadline_str})""")
+
+
+        ## If you wanted to make live updating time (seconds, it'd look something like this)
+        # # Streamlit app loop
+        # while True:
+        #     now =  datetime.now(pytz.UTC)
+            
+        #     countdown_time = start_date_deadline - now
+
+        #     # # Check if the deadline has passed
+        #     # if countdown_time.total_seconds() <= 0:
+        #     #     st.write("The deadline has passed!")
+        #     #     break
+
+        #     # Display the countdown
+        #     st.write(f"Time remaining: {countdown_time}")
+
+        #     # Refresh every second
+        #     time.sleep(1)
+        #     st.rerun()
 
 def check_past_deadline(start_date_deadline_str):
     pass
