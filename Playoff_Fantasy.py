@@ -1,72 +1,86 @@
-import streamlit as st
-import json
+selected_year = '2022' ## key to access values from yearly_settings.json
 
-import ui_utils
+def show_league_info(selected_year):
+    import streamlit as st
+    import json
+    import datetime as dt
+    import time
 
-st.set_page_config(
-    page_title="Hello",
-    layout="wide", 
-    page_icon="🏈",
-)
+    from utils import ui_utils
 
-# Load the yearly_settings.json file
-with open('yearly_settings.json', 'r') as yearly_settings:
-    config_data = json.load(yearly_settings)
+    st.set_page_config(
+        page_title="Playoff Fantasy",
+        layout="wide", 
+        page_icon="🏈",
+    )
 
-# Choose the year for which you want to use settings
-selected_year = '2022'  # You can change this to '2024' as needed
+    # load configs & rules stored in external files
+    with open('yearly_settings.json', 'r') as yearly_settings:
+        config_data = json.load(yearly_settings)
 
-st.write(f"# {selected_year} McGonigle Playoff Fantasy Pool")
+    with open('rules.md', 'r') as file:
+        rules = file.read()
 
-# Access the selected year's settings
-if selected_year in config_data.get('settings', {}):
-    year_settings = config_data['settings'][selected_year]
-    start_date_deadline = year_settings.get('start_date_deadline')
-    roster_google_file_path = year_settings.get('roster_google_file_path')
-    buy_in = year_settings.get('buy_in')
-    
-    ui_utils.display_start_date_countdown(start_date_deadline, selected_year)
+    st.write(f"# **{selected_year} McGonigle Playoff Fantasy Football**")
+
+    # Access the selected year's settings
+    if selected_year in config_data.get('settings', {}):
+        year_settings = config_data['settings'][selected_year]
+        start_date_deadline = year_settings.get('start_date_deadline')
+        roster_google_file_path = year_settings.get('roster_google_file_path')
+        buy_in = year_settings.get('buy_in')
+        
+        # ui_utils.display_start_date_countdown(start_date_deadline, selected_year)
+        
+        st.markdown(
+            f"""
+            ---
+            #### ⬅️ Click **Roster Input** on the Left to Choose Your Team
+            """
+        )
+
+        st.markdown(rules, unsafe_allow_html=True)
+
+        st.markdown(
+            f"""
+                ---
+                You have until **{start_date_deadline}** to submit your team (Click **Roster Input** on Left Side)
+
+                You may submit as many times as you'd like before the deadline.
+                Only your final submission before the deadline will be counted.
+
+                ---
+                ##### {buy_in} Buy-In. **Winner-Take-All**
+                Please venmo @kelly-McGonigle or arrange with John McGonigle before the deadline
+                """
+        )
 
 
+    #     # Set your deadline
+    # deadline = dt.datetime(2024, 1, 13, 13, 30, 0)
 
-st.markdown(
-    f"""
-    ## ⬅️ Click Roster Input on the Left to Choose Your Team
+    # # Streamlit app loop
+    # while True:
+    #     # Calculate time remaining
+    #     now = dt.datetime.now()
+        
+    #     countdown_time = deadline - now
 
-    ### So far, xxx people have made a team!
+    #     # Check if the deadline has passed
+    #     if countdown_time.total_seconds() <= 0:
+    #         st.write("The deadline has passed!")
+    #         break
+
+    #     # Display the countdown
+    #     st.write(f"Time remaining: {countdown_time}")
+
+    #     # Refresh every second
+    #     time.sleep(1)
+    #     st.experimental_rerun()
+
+    else:
+        st.write(f"Still working on updating the website for this year. Please come back later")
 
 
-    ### Basic rules of the league: 
-
-    ##### {buy_in} Buy-In. Winner-Take-All
-    venmo @kelly-McGonigle or arrange with John McGonigle
-    
-    ---
-    ##### Scoring
-     - **TD** = 5 + 1 for every 10 yards
-        - Ex: 47yd TD = 9 pts
-     - **FG** = 1 for every 10 yards, + 1 for every yard over 55
-        - Ex: 47yd FG = 4 pts; 57yd FG = 7 pts
-     - **PAT** = 1
-     - **2-point PAT** = 2
-     - **Safety** = 2 (for defense)
-       - All returns for a TD, including INTs, fumbles, KO’s, and punts, count as Defense TD’s.  
-       - These TD’s and safeties are the only way for defenses to score.
-
-    ---
-    ##### Input Your Playoff Roster Below
-     - 2 Quarterbacks
-     - 2 Kickers
-     - 2 Defenses
-     - 7 Position Players (RBs, WRs, TEs)
-       - 1st Tiebreaker: Super Bowl Champion 
-       - 2nd Tiebreaker: Super Bowl Runner-Up
-       - 3rd Tiebreaker: Super Bowl Total Points
-    
-    {start_date_deadline}
-    
-    You may submit as many times as you'd like before the deadline.
-    Only your final submission before the deadline will be counted.
-"""
-)
-
+if __name__ == "__main__":
+    show_league_info(selected_year)
