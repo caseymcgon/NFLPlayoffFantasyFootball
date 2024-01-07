@@ -1,9 +1,5 @@
 ## streamlit_results.py
 
-# from WC_scrape import *
-
-#import WC_scrape
-
 def main():
 
     import altair as alt
@@ -11,9 +7,17 @@ def main():
     import pandas as pd
     import streamlit as st
     import requests
+    import sys
     from lxml import html
     from lxml import etree
-    st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
+
+    # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
+    from utils import ui_utils
+    from utils import WC_scrape
+
+
+    st.write("Not available until the first weekend's games take place")
+    # st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
 
 
     ###

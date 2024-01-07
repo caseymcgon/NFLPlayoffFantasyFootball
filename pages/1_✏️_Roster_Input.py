@@ -1,31 +1,26 @@
+## Roster_Input.py, a page in the Playoff_Fantasy.py app
+
 def make_form():
     import streamlit as st
     from datetime import datetime
     import pytz
     import requests
     import json
+    import sys
 
     from google.oauth2.service_account import Credentials
     import gspread
 
-    ## other packages in this repo
-    import ui_utils 
+    # from utils import ui_utils
     import Playoff_Fantasy
-
-    st.set_page_config(
-        page_title=" Roster Input", 
-        layout="wide", 
-        page_icon = "🏈")
-
-    st.sidebar.header("Plotting Demo")
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
+
+    with open('rules.md', 'r') as file:
+        rules = file.read()
         
-
-
-    
     # Access the selected year's settings
     if Playoff_Fantasy.selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][Playoff_Fantasy.selected_year]
@@ -48,42 +43,6 @@ def make_form():
     client = gspread.authorize(creds)
     google_sh = client.open(roster_google_file_path)
     sheet1 = google_sh.get_worksheet(0)
-
-
-    # Intro & Instructions
-    st.write(f"""
-    # **{Playoff_Fantasy.selected_year} McGon NFL Playoff Fantasy Pool**
-    ---
-    ##### {buy_in} Buy-In. Winner-Take-All
-    venmo @kelly-McGonigle or arrange with John McGonigle
-    
-    ---
-    ##### Scoring
-     - **TD** = 5 + 1 for every 10 yards
-        - Ex: 47yd TD = 9 pts
-     - **FG** = 1 for every 10 yards, + 1 for every yard over 55
-        - Ex: 47yd FG = 4 pts; 57yd FG = 7 pts
-     - **PAT** = 1
-     - **2-point PAT** = 2
-     - **Safety** = 2 (for defense)
-       - All returns for a TD, including INTs, fumbles, KO’s, and punts, count as Defense TD’s.  
-       - These TD’s and safeties are the only way for defenses to score.
-
-    ---
-    ##### Input Your Playoff Roster Below
-     - 2 Quarterbacks
-     - 2 Kickers
-     - 2 Defenses
-     - 7 Position Players (RBs, WRs, TEs)
-       - 1st Tiebreaker: Super Bowl Champion 
-       - 2nd Tiebreaker: Super Bowl Runner-Up
-       - 3rd Tiebreaker: Super Bowl Total Points
-    
-    {deadline}
-    
-    You may submit as many times as you'd like before the deadline.
-    Only your final submission before the deadline will be counted.
-    """)
 
     # Create Form for inputting Roster
     form = st.form(key='Player Input')
