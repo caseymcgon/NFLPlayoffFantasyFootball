@@ -1,4 +1,5 @@
 ## converts the active conda enironment into a requirments.txt file & prepares it for streamlit
+## this should only need to be run 1x every time we update the conda environment
 
 import os
 os.system("pip freeze > requirements.txt")
