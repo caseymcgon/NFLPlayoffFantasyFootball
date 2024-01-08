@@ -1,5 +1,5 @@
 
-##### Roster Makeup
+##### 📋 Roster Makeup
 - 2 Quarterbacks
 - 2 Kickers
 - 2 Defenses
@@ -16,7 +16,7 @@ In other words, when a player's team loses, they become a 'dead' spot in your ro
 Players may not be replaced or swapped, unless they are injured seriously enough to be placed on IR. In that case, they may be replaced with a player from the same NFL team the following week.
 
 ---
-##### Scoring
+##### 🧮 Scoring
 - **TD** = 5 + 1 for every 10 yards
     - Ex: 47yd TD = 9 pts
 - **FG** = 1 for every 10 yards, + 1 for every yard over 55

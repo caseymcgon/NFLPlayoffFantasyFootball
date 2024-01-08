@@ -49,7 +49,7 @@ def show_league_info(selected_year):
         st.markdown(
             f"""
                 ---
-                ##### {buy_in} Buy-In. **Winner-Take-All**
+                ##### 💰 {buy_in} Buy-In. **Winner-Take-All**
                 Please venmo Casey **@cmcgo** or arrange with John McGonigle before the deadline
 
                 ---

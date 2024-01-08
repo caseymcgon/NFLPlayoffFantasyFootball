@@ -28,7 +28,7 @@ def display_deadline_message(start_date_deadline_str, year):
         day_of_week = check_day_of_week(start_date_deadline_utc.astimezone(pst_timezone))
         st.markdown(f"""
                 ---
-                ##### **{day_of_week} {start_date_deadline_str} PST** 
+                ##### 🕜 **{day_of_week} {start_date_deadline_str} PST** 
                 is the deadline to submit your team (in the **Roster Input** tab on the Left Side)
 
                 You may submit as many times as you'd like before the deadline.
@@ -37,7 +37,7 @@ def display_deadline_message(start_date_deadline_str, year):
     else:
         st.markdown(f"""
                 ---
-                Uh oh! The first NFL playoff games of {year} kicked off at {start_date_deadline_str}
+                🕜 Uh oh! The first NFL playoff games of {year} kicked off at {start_date_deadline_str}
 
                 You may no longer submit a team this year :( -- Hope you'll join us next year
          """)
