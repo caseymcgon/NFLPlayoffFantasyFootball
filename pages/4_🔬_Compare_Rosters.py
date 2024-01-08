@@ -8,4 +8,4 @@ import streamlit as st
 #         page_icon = "🏈")
 
 
-st.write("### Not Available until Kickoff on Saturday")
+st.write("Not Available until Kickoff on Saturday")
