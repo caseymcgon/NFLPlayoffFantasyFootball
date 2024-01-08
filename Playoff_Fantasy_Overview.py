@@ -1,4 +1,6 @@
-selected_year = '2022' ## key to access values from yearly_settings.json
+## Playoff_Fantasy.py -- the main / landing page for the app
+
+selected_year = '2024' ## key to access values from yearly_settings.json
 
 def show_league_info(selected_year):
     import streamlit as st
@@ -26,7 +28,7 @@ def show_league_info(selected_year):
     # Access the selected year's settings
     if selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][selected_year]
-        start_date_deadline = year_settings.get('start_date_deadline')
+        start_date_deadline = year_settings.get('start_date_deadline_pst')
         roster_google_file_path = year_settings.get('roster_google_file_path')
         buy_in = year_settings.get('buy_in')
         
@@ -35,23 +37,23 @@ def show_league_info(selected_year):
         st.markdown(
             f"""
             ---
-            #### ⬅️ Click **Roster Input** on the Left to Choose Your Team
+            #### ⬅️ Choose Your Team in the Roster Input Tab
+            ---
             """
         )
 
         st.markdown(rules, unsafe_allow_html=True)
 
+        ui_utils.display_deadline_message(start_date_deadline, selected_year)
+
         st.markdown(
             f"""
                 ---
-                You have until **{start_date_deadline}** to submit your team (Click **Roster Input** on Left Side)
-
-                You may submit as many times as you'd like before the deadline.
-                Only your final submission before the deadline will be counted.
+                ##### {buy_in} Buy-In. **Winner-Take-All**
+                Please venmo Casey **@cmcgo** or arrange with John McGonigle before the deadline
 
                 ---
-                ##### {buy_in} Buy-In. **Winner-Take-All**
-                Please venmo @kelly-McGonigle or arrange with John McGonigle before the deadline
+                As a reminder, the [NFL Playoff Picture can be found here](https://www.nfl.com/standings/playoff-picture)
                 """
         )
 
