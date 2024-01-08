@@ -25,5 +25,5 @@ Players may not be replaced or swapped, unless they are injured seriously enough
 - **2-point PAT** = 2
 - **Safety** = 2 (for defense)
 - All returns for a TD, including INTs, fumbles, KOs, and punts, count as Defense TDs.  
-- These TDs and safeties are the only way for defenses to score.
+
 

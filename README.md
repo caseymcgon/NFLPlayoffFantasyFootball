@@ -3,19 +3,24 @@ Webscraping, Regex, and Pandas skills mobilized to efficiently compile and manip
 
 # A Little Backstory
 
-This project's original purpose was to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
+This project's *original* purpose was just to automate scoring calculations and assignments for my family's Fantasy Football Pool for the 2020 NFL Playoffs.
 
-To do that, I webscraped ESPN's scoring summaries of each playoff game to calculate fantasy scores for each player in those games. (see the function get_single_game_points(input_url))
+To do that, I webscraped ESPN's scoring summaries of each playoff game to calculate fantasy scores for each player in those games. 
 
-This script also combines all players and points on a (fantasy) roster into 1 dataFrame so we can see which of our participants is leading at any given point in the playoffs.
+That script also combined all players and points on a (fantasy) roster into 1 dataFrame so we could see which of our participants was leading at any given point in the playoffs.
 
-Ultimately, this notebook exports the tables it creates to Excel (in order to share the information in a familiar and legible format)
+Ultimately, the original notebook exported the tables it created to Excel (in order to share the information in a familiar and legible format).
+
+In the ensuing years, the scope of the project has grown. I now have a web app (streamlit) that handles Storing user Rosters via the Google Sheets API, Updating Weekly Scoring via the sportsdata.io API, and sharing results with our friends involved in this years' competition.
+
 
 # Reproduction
 
-I use conda to manage my environment (NFL_conda_environment.yml). However, deploying a streamlit app requires a requirements.txt, so I've generated that by running 'conda list --export | grep -v "^#" | sed 's/=/==/g' > requirements.txt' with my conda environment activated
+I use conda to manage my environment (NFL_conda_environment.yml) when running locally. However, 'deploying' a streamlit app requires requirements.txt. To generate that: run the conda_to_requirements.py script.
 
-I use yearly_settings.json to store key dates & info for each year. 
+Likewise, to deploy in streamlit (not just on your local server), the secrets must be shared with the streamlit cloud version of the app as well (via their web UI -- 3 dots > Settings > Secrets)
+
+I also use yearly_settings.json to store key dates & info for each year. Those will need updates each january to make the app function again.
 
 ## Progress by Year
 
