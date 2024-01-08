@@ -1,15 +1,15 @@
 {
     "settings": {
         "2024": {
-            "start_date_deadline": "2024-01-13 1:30PM PST (Saturday)",
-            "roster_google_file_path": "Rosters_2024",
+            "start_date_deadline_pst": "Jan 13, 2024 1:30 PM",
+            "roster_google_sheet_name": "2024_Rosters",
             "buy_in": "$10",
             "alive_NFC": ["SF"],
             "alive_AFC": ["BAL"]
         },
         "2022": {
-            "start_date_deadline": "2022-01-15 1:30PM PST (Saturday)",
-            "roster_google_file_path": "Rosters_2022",
+            "start_date_deadline_pst": "Jan 15, 2022 1:30 PM",
+            "roster_google_sheet_name": "tester_sheet",
             "buy_in": "$10",
             "alive_NFC": ["LAR"],
             "alive_AFC": ["CIN"]
