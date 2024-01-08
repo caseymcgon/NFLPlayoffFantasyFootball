@@ -12,6 +12,7 @@ dependencies:
   - pip:
     - gspread #>=4.0.1
     - google-auth #>=2.25.2
+    - google-auth-oauthlib
     - pytz #>=2020.1
     - protobuf #>=3.19.3
     - streamlit #>=1.27.0
