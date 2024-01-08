@@ -4,8 +4,8 @@
             "start_date_deadline_pst": "Jan 13, 2024 1:30 PM",
             "roster_google_sheet_name": "2024_Rosters",
             "buy_in": "$10",
-            "alive_NFC": ["SF"],
-            "alive_AFC": ["BAL"]
+            "alive_NFC": ["SF", "DAL", "DET", "TB", "PHI", "LAR", "GB"],
+            "alive_AFC": ["BAL", "BUF", "KC", "HOU", "CLE", "MIA", "PIT"]
         },
         "2022": {
             "start_date_deadline_pst": "Jan 15, 2022 1:30 PM",

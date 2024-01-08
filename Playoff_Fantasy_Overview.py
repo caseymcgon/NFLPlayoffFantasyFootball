@@ -36,6 +36,12 @@ def show_league_info(selected_year):
         
         st.markdown(
             f"""
+            The 2024 NFL Playoffs have *finally* arrived. And that means we get 1 last chance at Fantasy Fooball glory this season.
+
+            The goal is simple: pick the guys you think are going to find pay-dirt the most times between now & Super Bowl Sunday.
+
+            Best of luck!
+
             ---
             #### ⬅️ Choose Your Team in the Roster Input Tab
             ---
@@ -57,28 +63,6 @@ def show_league_info(selected_year):
                 """
         )
 
-
-    #     # Set your deadline
-    # deadline = dt.datetime(2024, 1, 13, 13, 30, 0)
-
-    # # Streamlit app loop
-    # while True:
-    #     # Calculate time remaining
-    #     now = dt.datetime.now()
-        
-    #     countdown_time = deadline - now
-
-    #     # Check if the deadline has passed
-    #     if countdown_time.total_seconds() <= 0:
-    #         st.write("The deadline has passed!")
-    #         break
-
-    #     # Display the countdown
-    #     st.write(f"Time remaining: {countdown_time}")
-
-    #     # Refresh every second
-    #     time.sleep(1)
-    #     st.experimental_rerun()
 
     else:
         st.write(f"Still working on updating the website for this year. Please come back later")
