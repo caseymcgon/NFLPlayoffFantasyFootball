@@ -13,7 +13,9 @@ Ultimately, this notebook exports the tables it creates to Excel (in order to sh
 
 # Reproduction
 
-I use conda to manage my environment (NFL_conda_environment.yml) for the most recent year and yearly_settings.json to keep store key dates & info each year. 
+I use conda to manage my environment (NFL_conda_environment.yml). However, deploying a streamlit app requires a requirements.txt, so I've generated that by running 'conda list -e > requirements.txt'
+
+I use yearly_settings.json to store key dates & info for each year. 
 
 ## Progress by Year
 
