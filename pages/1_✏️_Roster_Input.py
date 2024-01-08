@@ -88,7 +88,6 @@ def make_form():
         # Section for the Submit Button
         form.write(f"{deadline}")
         submit = st.form_submit_button('Submit')
-        form.write(f"please venmo {buy_in} @cmcgo")
 
 
 
@@ -111,6 +110,7 @@ def make_form():
                                         f"{p5}", f"{p6}", f"{p7}",
                                         f"{champ}", f"{runner}", f"{score}"]
                                     ], insert_data_option="INSERT_ROWS")
+            st.write(f"#### please venmo {buy_in} @cmcgo")
             st.title("Team submitted Successfully. Good Luck!!")
             # st.write(f"{sheet1.get_all_values()}")
         # MESSAGE FOR PAST DEADLINE
