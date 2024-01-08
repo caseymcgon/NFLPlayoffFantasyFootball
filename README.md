@@ -13,7 +13,7 @@ Ultimately, this notebook exports the tables it creates to Excel (in order to sh
 
 # Reproduction
 
-I use conda to manage my environment (NFL_conda_environment.yml). However, deploying a streamlit app requires a requirements.txt, so I've generated that by running 'conda list -e > requirements.txt'
+I use conda to manage my environment (NFL_conda_environment.yml). However, deploying a streamlit app requires a requirements.txt, so I've generated that by running 'conda list --export | grep -v "^#" | sed 's/=/==/g' > requirements.txt' with my conda environment activated
 
 I use yearly_settings.json to store key dates & info for each year. 
 
