@@ -1,5 +1,4 @@
 
----
 ##### Roster Makeup
 - 2 Quarterbacks
 - 2 Kickers

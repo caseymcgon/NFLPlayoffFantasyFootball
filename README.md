@@ -35,7 +35,7 @@ I use conda to manage my environment (NFL_conda_environment.yml) for the most re
 - Added some additional data analysis (actually compute "standings" table & find the optimal team's scoring)
 
 ### 2024: Back to Streamlit 
-- Created a multpage app to host all things for the project, as opposed to individual smaller web apps
+- Created a multpage app to host all things for the project, as opposed to disconnected smaller web apps (new streamlit feature)
 - Changed from a .venv to conda (NFL_conda_environment.yml)
 - Added yearly_settings.json (config files), ui_utils.py (custom streamlit funcs), and scraping_utils.py (custom webscraping funcs) to make future Casey happy (aka: enhance maintainability)
 - 
@@ -70,9 +70,9 @@ I use conda to manage my environment (NFL_conda_environment.yml) for the most re
 
 --> Tab 0: Landing Page (w/ # of players, countdown to deadline (Days, Hours til NFL Playoffs Start / since ended), rules, etc. ) 
 --> Tab 1: Roster input (available until Kickoff of Week 1)
---> Tab 2: Roster inspection / comparison (available after Kickoff of Week 1)
---> Tab 3: Scoring / Results (available after Kickoff of Week 1)
---> Tab 4: Historical Champions, Winning Rosters, & 'Optimal Team' (available at all times)
+--> Tab 2: Scoring / Results (available after Kickoff of Week 1)
+--> Tab 3: Roster inspection / comparison (available after Kickoff of Week 1)
+--> Tab 4 (todo in offseason): Historical Champions, Winning Rosters, & 'Optimal Team' (available at all times)
 
 - Add & Improve visualizations of standings & roster comparisons
 
@@ -81,5 +81,14 @@ I use conda to manage my environment (NFL_conda_environment.yml) for the most re
 - Create an ML Model that picks a team. trained on past years results. 
     --> inputs: Players' TDs during year, team's seeding, team's record, team's record (last 3 games), has bye, offense's total TDs during year
 
+- Analyze "uniqueness" of teams
+
 - Add testing of webscraping functions & handling of odd names
 
+
+
+##### Yearly ToDos:
+
+- Update the selected_year in Playoff_Fantasy.py
+- Update the settings for the new selected_year in yearly_settings.py
+- Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
