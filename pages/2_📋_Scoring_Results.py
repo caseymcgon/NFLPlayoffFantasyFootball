@@ -15,7 +15,7 @@ def main():
     from utils import WC_scrape
 
 
-    st.write("Coming soon....after the first weekend's games take place")
+    st.write("Coming soon...after the first weekend's games take place")
     # st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
 
 
