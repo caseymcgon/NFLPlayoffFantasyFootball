@@ -43,9 +43,6 @@ def make_form():
     google_sh = client.open(roster_google_sheet_name)
     sheet1 = google_sh.get_worksheet(0)
 
-    print(sheet1)
-    print(dir(sheet1))
-
     ## Add Collapsible Rules section
     expander = st.expander("What are the Rules again?")
     expander.markdown(rules, unsafe_allow_html=True)    
@@ -108,7 +105,6 @@ def make_form():
 
 
         if before_deadline_bool:
-            print(f"{name}, {entry_time}")
             sheet1.append_rows(values=[[f"{name}", f"{entry_time}" , f"{qb1}", f"{qb2}",
                                         f"{k1}", f"{k2}", f"{d1}", f"{d2}",
                                         f"{p1}", f"{p2}", f"{p3}", f"{p4}",
