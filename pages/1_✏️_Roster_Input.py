@@ -12,7 +12,8 @@ def make_form():
     import gspread
 
     # from utils import ui_utils
-    import Playoff_Fantasy
+    import Playoff_Fantasy_Overview
+    from utils import ui_utils
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -22,17 +23,15 @@ def make_form():
         rules = file.read()
         
     # Access the selected year's settings
-    if Playoff_Fantasy.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy.selected_year]
-        start_date_deadline = year_settings.get('start_date_deadline')
-        roster_google_file_path = year_settings.get('roster_google_file_path')
+    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+        start_date_deadline_str = year_settings.get('start_date_deadline_pst')
+        roster_google_sheet_name = year_settings.get('roster_google_sheet_name')
         buy_in = year_settings.get('buy_in')
 
+    deadline = f"**Deadline: {start_date_deadline_str} PST.**"
 
-    deadline = f"**Deadline: {start_date_deadline}.**"
-
-
-    # CONNECT TO GOOGLE SHEETS
+    # CONNECT TO GOOGLE SHEETS (where I store the roster info)
     # credit: https://www.codeforests.com/2020/11/22/gspread-read-write-google-sheet/
     scopes = [
         'https://www.googleapis.com/auth/spreadsheets',
@@ -41,8 +40,15 @@ def make_form():
     creds = Credentials.from_service_account_info(
         st.secrets["gcp_service_account"], scopes=scopes)
     client = gspread.authorize(creds)
-    google_sh = client.open(roster_google_file_path)
+    google_sh = client.open(roster_google_sheet_name)
     sheet1 = google_sh.get_worksheet(0)
+
+    print(sheet1)
+    print(dir(sheet1))
+
+    ## Add Collapsible Rules section
+    expander = st.expander("What are the Rules again?")
+    expander.markdown(rules, unsafe_allow_html=True)    
 
     # Create Form for inputting Roster
     form = st.form(key='Player Input')
@@ -85,25 +91,35 @@ def make_form():
         # Section for the Submit Button
         form.write(f"{deadline}")
         submit = st.form_submit_button('Submit')
-        form.write(f"please venmo {buy_in} @kelly-McGonigle")
+        form.write(f"please venmo {buy_in} @cmcgo")
 
 
 
     # Logic for what to do when user hits Submit Button
     if submit:
 
-        PST = pytz.timezone('America/Los_Angeles')
-        dt = datetime.now(PST)
-        entryTime = dt.strftime('%Y-%m-%d %H:%M')
-        # COMMENT OUT BC PAST DEADLINE
-        # sheet1.append_rows(values=[[f"{name}", f"{entryTime}" , f"{qb1}", f"{qb2}",
-        #                             f"{k1}", f"{k2}", f"{d1}", f"{d2}",
-        #                             f"{p1}", f"{p2}", f"{p3}", f"{p4}",
-        #                             f"{p5}", f"{p6}", f"{p7}",
-        #                             f"{champ}", f"{runner}", f"{score}"]])
-        #
+        # Convert the string to UTC datetime object 
+        start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
+        diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
+
+        pst_timezone = pytz.timezone('US/Pacific')
+        now =  datetime.now().astimezone(pst_timezone)
+        entry_time = datetime.strftime(now, "%Y-%m-%d %H:%M:%S")
+
+
+        if before_deadline_bool:
+            print(f"{name}, {entry_time}")
+            sheet1.append_rows(values=[[f"{name}", f"{entry_time}" , f"{qb1}", f"{qb2}",
+                                        f"{k1}", f"{k2}", f"{d1}", f"{d2}",
+                                        f"{p1}", f"{p2}", f"{p3}", f"{p4}",
+                                        f"{p5}", f"{p6}", f"{p7}",
+                                        f"{champ}", f"{runner}", f"{score}"]
+                                    ], insert_data_option="INSERT_ROWS")
+            st.title("Team submitted Successfully. Good Luck!!")
+            # st.write(f"{sheet1.get_all_values()}")
         # MESSAGE FOR PAST DEADLINE
-        st.title("Sorry! It's past the Deadline!")
+        else:
+            st.title("Sorry! It's past the Deadline!")
 
         return 
         # Allow user to see their team
