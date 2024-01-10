@@ -39,7 +39,7 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ### 2023: Revert to Jupyter Notebook (due to late start & lack of time before beginning of playoffs to spin up web app)
 - Switched from webscraping to using the nflscrapy API (since ESPN changed their format of their pages)
-- Added some additional data analysis (actually compute "standings" table & find the optimal team's scoring)
+- Added some additional data analysis (actually compute 'standings' table & find the optimal team's scoring)
 
 ### 2024: Back to Streamlit 
 - Created a multpage app to host all things for the project, as opposed to disconnected smaller web apps (new streamlit feature)
@@ -53,11 +53,9 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ###### TODO (This Year)
 
-- determine if I should use nflscrapy or go back to scraping myself
+- setup sportsdata.io API for scoring
 
-- Q: How to split teams that won from those that lost, automatically, each week
-
---> Check that basic setup works for 2024 (write to & read from Google API)
+- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?)
 
 - differentiate WC_scrape.py from streamlit_results.py -- why both? Maybe have 1 be a file of functions, the other calls those functions
 
@@ -83,12 +81,12 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - Add & Improve visualizations of standings & roster comparisons
 
-- Allow people to toy with "paths to victory"
+- Allow people to toy with 'paths to victory'
 
 - Create an ML Model that picks a team. trained on past years results. 
     --> inputs: Players' TDs during year, team's seeding, team's record, team's record (last 3 games), has bye, offense's total TDs during year
 
-- Analyze "uniqueness" of teams
+- Analyze 'uniqueness' of teams
 
 - Add testing of webscraping functions & handling of odd names
 
@@ -99,3 +97,14 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 - Update the selected_year in Playoff_Fantasy.py
 - Update the settings for the new selected_year in yearly_settings.py
 - Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
+
+
+###### TODO (Next Year)
+
+- Do cleaning & check for positions inputted correctly on user form 'submit' -- print out cleaned players for user to check
+
+- Build way to automate Defense & SB Champ/ Runner Up cleaning (left out in 2024 b/c it's just a quick 1-time change)
+
+- Create a script out of get_all_team_names() and get_all_players() so I just run that once next year w/ the year and it creates the right json files
+
+- More Testing
