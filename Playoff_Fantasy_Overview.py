@@ -43,7 +43,7 @@ def show_league_info(selected_year):
             Best of luck!
 
             ---
-            #### ⬅️ Choose Your Team in the Roster Input Tab
+            #### ↖️ Choose Your Team in the Roster Input Tab
             ---
             """
         )
