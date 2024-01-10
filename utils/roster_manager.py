@@ -1,11 +1,12 @@
 import streamlit as st
 from datetime import datetime
-import requests
+# import requests
 import json
 import sys
 
 import pandas as pd
 
+from thefuzz import fuzz, process
 from google.oauth2.service_account import Credentials
 import gspread
 
@@ -13,6 +14,8 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import Playoff_Fantasy_Overview
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
+import sportsdata_interface
 
 
 
@@ -34,8 +37,43 @@ def access_sheet_in_drive(roster_google_sheet_name, worksheet_number = 0):
 
     return google_sheet
 
-# def check_roster_is_filled():
-#     return all(value is not None for value in form_values.values()
+def write_all_players_to_json_file():
+    ## Get settings from config file
+    with open('yearly_settings.json', 'r') as yearly_settings:
+        config_data = json.load(yearly_settings)
+
+    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+        afc_alive_teams = year_settings.get("alive_AFC")
+        nfc_alive_teams = year_settings.get("alive_NFC")
+
+        teams = afc_alive_teams + nfc_alive_teams
+                                                                    
+    ## write all playoff_players to a 
+    all_players_dict = sportsdata_interface.get_all_players(teams)
+
+    with open('all_players.json', 'w') as f:
+        json.dump(all_players_dict, f)
+
+
+def write_team_names_to_json_file():
+    ## Get settings from config file
+    with open('yearly_settings.json', 'r') as yearly_settings:
+        config_data = json.load(yearly_settings)
+
+    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+        afc_alive_teams = year_settings.get("alive_AFC")
+        nfc_alive_teams = year_settings.get("alive_NFC")
+
+        teams = afc_alive_teams + nfc_alive_teams
+                                                                    
+    ## write all playoff_players to a  json file
+    all_teams_dict = sportsdata_interface.get_all_teams_names(teams)
+
+    with open('all_playoff_teams.json', 'w') as f:
+        json.dump(all_teams_dict, f)
+
 
 class RosterManager:
 
@@ -43,11 +81,15 @@ class RosterManager:
         self.google_sheet = google_sheet
         self.full_rosters_dict = self.create_full_rosters_dict(google_sheet)
         self.cleaned_full_rosters_dict = self.clean_player_names(self.full_rosters_dict)
+        # self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
         pass
 
     def create_full_rosters_dict(self, google_sheet):
 
-        """Take the Google Sheet of Rosters and return a dict"""
+        """Take the Google Sheet of Rosters and return a dict
+        
+        The dict is formatted like: {"Casey M": {"QB1": "Brock Purdy", "QB2": "Lamar", "K1": "J Tucker"}}, etc.
+        """
         full_rosters_dict = {}
         rows = google_sheet.get_all_values()  # Get all rows in the sheet
 
@@ -71,38 +113,83 @@ class RosterManager:
 
         """Take in a dict of rosters (1 'roster' on each row) and cleans them to match NFL player names
         outputs the GM, orignal_name, fixed_name for each changed name to a name_cleaning.txt file
-        """
-        # Mapping of short names to full names
-        name_mapping = {
-            'Deebo': 'Deebo Samuel',
-            'CD': 'CeeDee Lamb',
-            'CMC': 'Christian McCaffrey'
-            # Add more mappings here
-            ## Will be replaced with data from sportsdata.io / internet
-        }
 
+        Expect: full_rosters_dict is formatted like: {"Casey M": {"QB1": "Brock Purdy", "QB2": "Lamar", "K1": "J Tucker"}}, etc.
+        """
+        # All players in the playoffs, taken from the API (output of write_all_players_to_json_file())
+        with open('all_players.json', 'r') as f:
+            all_players_dict = json.load(f)
+            api_player_names_list = all_players_dict.keys()
+
+        with open('all_playoff_teams.json', 'r') as f:
+            all_teams_dict = json.load(f)
+            api_teams_list = list(all_teams_dict.keys()) + list(all_teams_dict.values())
+        
         cleaned_rosters_dict = {}   
 
+        ## Iterate through each player on each team and 
         with open('name_cleaning.txt', 'w') as f:
             for gm, roster in full_rosters_dict.items():
                 cleaned_roster = {}
-                for pos, player in roster.items():
-                    original_name = player
-                    fixed_name = name_mapping.get(original_name, player)  # Get the full name from the mapping, or use the short name if the full name is not in the mapping
-                    cleaned_roster[pos] = fixed_name
+                for pos, original_player in roster.items():
+                    if pos == 'SB Total Points': ## won't have matches in the api_player_names_list
+                        cleaned_roster["pos"] = original_player
 
-                    if original_name != fixed_name:
-                        f.write(f'{gm}, {original_name}, {fixed_name}\n')  # Write the GM, original name, and fixed name to the file
+                    elif pos in ["D1", "D2", "SB Champ", "SB Runner Up"]:
+                        if original_player == "Niners": ## Deal w/ strange edge case where 'Niners' > 'BAL'
+                            original_player = "49ers"
+                        ## Convert all names to either Key or FullName ("49ers" > "San Francisco 49ers")
+                        api_team_name, ratio = process.extractOne(original_player, api_teams_list)
+                        ## Convert any FullNames into the Key ("San Francisco 49ers" > "SF")
+                        if api_team_name == "San Francisco 49ers":
+                            api_team_key2, ratio = 'SF', 95
+                        else:    
+                            api_team_key2, ratio = process.extractOne(api_team_name, list(all_teams_dict.keys()))
+                        cleaned_roster[pos] = api_team_key2
+
+                        if ratio < 100: ## Write the ratio, GM, original name, and api name to the file so we can inspect the changes
+                            f.write(f'{ratio}, {gm}, {original_player}, {api_team_key2}\n')
+
+                    else:
+                        api_player, ratio = process.extractOne(original_player, api_player_names_list)
+                        cleaned_roster[pos] = api_player
+
+                        if ratio < 100: ## Write the ratio, GM, original name, and api name to the file so we can inspect the changes
+                            f.write(f'{ratio}, {gm}, {original_player}, {api_player}\n') 
+
 
                 cleaned_rosters_dict[gm] = cleaned_roster
 
         return cleaned_rosters_dict
 
 
+    # def alphabetize_players_by_position(self, cleaned_rosters_dict):
+    #     with open('all_players.json', 'r') as f:
+    #         all_players_dict = json.load(f)
+    #         api_player_names_list = all_players_dict.keys()
+
 
 if __name__ == '__main__':
-    gsheet = access_sheet_in_drive()
+    ## Get settings from config file
+    with open('yearly_settings.json', 'r') as yearly_settings:
+        config_data = json.load(yearly_settings)
 
+    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+        roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
+
+    ## Access Data in Rosters Google Sheet
+    gsheet = access_sheet_in_drive(roster_google_sheet_name)
+
+    # create instance of the RosterManager class to do the managin! 
     rm = RosterManager(gsheet)
+    # write_team_names_to_json_file()
+    # print(f"full_rosters_dict {rm.cleaned_full_rosters_dict}")
 
-    print(f"full_rosters_dict {rm.cleaned_full_rosters_dict}")
+    # print("Deebos: ", fuzz.ratio("Deebo", "Deebo Samuel"))
+
+    # print("CeeDees: ", fuzz.ratio("CD", "CeeDee Lamb"))
+
+    # print("CeeDees2: ", fuzz.ratio("C.D.", "CeeDee Lamb"))
+
+    # print("CMC", fuzz.ratio("CMC", "Christian McCaffrey"))
