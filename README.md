@@ -103,7 +103,7 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - Do cleaning & check for positions inputted correctly on user form 'submit' -- print out cleaned players for user to check
 
-- Build way to automate Defense & SB Champ/ Runner Up cleaning (left out in 2024 b/c it's just a quick 1-time change)
+- Could turn Tiebreaker & D sections into dropdowns
 
 - Create a script out of get_all_team_names() and get_all_players() so I just run that once next year w/ the year and it creates the right json files
 

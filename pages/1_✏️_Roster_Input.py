@@ -72,9 +72,9 @@ def make_form():
         form.write("""---""")
         # Section for Tiebreaker Inputs
         tiecols = st.columns(3)
-        champ = tiecols[0].text_input("First Tiebreaker: Super Bowl Champ")
-        runner = tiecols[1].text_input("Second Tiebreaker: Super Bowl Runner-Up")
-        score = tiecols[2].slider("Third Tiebreaker: Super Bowl Total Points", min_value=2, max_value=120, value=2)
+        champ = tiecols[0].text_input("1st Tiebreaker: Super Bowl Champ")
+        runner = tiecols[1].text_input("2nd Tiebreaker: Super Bowl Runner-Up")
+        score = tiecols[2].slider("3rd Tiebreaker: Super Bowl Total Points", min_value=2, max_value=120, value=2)
 
         form.write("""---""")
         # Section for the Submit Button
