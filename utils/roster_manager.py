@@ -81,6 +81,7 @@ class RosterManager:
         self.google_sheet = google_sheet
         self.full_rosters_dict = self.create_full_rosters_dict(google_sheet)
         self.cleaned_full_rosters_dict = self.clean_player_names(self.full_rosters_dict)
+        self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
         # self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
         pass
 
@@ -115,6 +116,7 @@ class RosterManager:
         outputs the GM, orignal_name, fixed_name for each changed name to a name_cleaning.txt file
 
         Expect: full_rosters_dict is formatted like: {"Casey M": {"QB1": "Brock Purdy", "QB2": "Lamar", "K1": "J Tucker"}}, etc.
+        --> return dict will be formatted in the same way (just having player names that match the API player names)
         """
         # All players in the playoffs, taken from the API (output of write_all_players_to_json_file())
         with open('all_players.json', 'r') as f:
@@ -163,10 +165,34 @@ class RosterManager:
         return cleaned_rosters_dict
 
 
-    # def alphabetize_players_by_position(self, cleaned_rosters_dict):
-    #     with open('all_players.json', 'r') as f:
-    #         all_players_dict = json.load(f)
-    #         api_player_names_list = all_players_dict.keys()
+    def alphabetize_players_by_position(self, cleaned_rosters_dict):
+        """
+        Takes in a cleaned dict formatted like {"Casey M": {"QB1": "Lamar Jackson", "QB2": "Brock Purdy", "K1": "Justin Tucker",....}}
+        and returns an 'alphabetized by position' dict -- ie:  {"Casey M": {"QB1": "Brock Purdy", "QB2": "Lamar Jackson", "K1": "Justin Tucker",....}}
+        """
+        alphabetized_rosters_dict = {}
+        positions_list = ["QB", "K", "D", "P"]
+        for gm, roster in cleaned_rosters_dict.items():
+            gm_roster_alphabetized_dict = {}
+            # roster_keys = list(roster.keys())
+            for simple_pos in positions_list:
+                numbered_positions_list = []
+                player_name_list = []
+                for numbered_pos, player_name in roster.items():
+                    if numbered_pos[:-1] == simple_pos:
+                        numbered_positions_list.append(numbered_pos)
+                        player_name_list.append(player_name)
+                player_name_list.sort() 
+                for numbered_pos2, player_name2 in zip(numbered_positions_list, player_name_list):
+                    gm_roster_alphabetized_dict[numbered_pos2] = player_name2
+            alphabetized_rosters_dict[gm] = gm_roster_alphabetized_dict
+        print(alphabetized_rosters_dict)
+        return alphabetized_rosters_dict
+                    
+
+
+
+    
 
 
 if __name__ == '__main__':
