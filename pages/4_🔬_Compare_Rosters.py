@@ -28,7 +28,7 @@ def show_rosters():
     diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
 
 
-    if False: #before_deadline_bool:
+    if before_deadline_bool:
         st.write("Coming soon...after Kickoff on Saturday")
     else: ## Show Roster DFs
        
