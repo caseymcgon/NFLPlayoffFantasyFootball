@@ -82,7 +82,6 @@ class RosterManager:
         self.full_rosters_dict = self.create_full_rosters_dict(google_sheet)
         self.cleaned_full_rosters_dict = self.clean_player_names(self.full_rosters_dict)
         self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
-        # self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
         pass
 
     def create_full_rosters_dict(self, google_sheet):
@@ -140,23 +139,24 @@ class RosterManager:
                     elif pos in ["D1", "D2", "SB Champ", "SB Runner Up"]:
                         if original_player == "Niners": ## Deal w/ strange edge case where 'Niners' > 'BAL'
                             original_player = "49ers"
-                        ## Convert all names to either Key or FullName ("49ers" > "San Francisco 49ers")
+                        ## Need 2 steps here b/c first step cleans into either Key (SF) or team (San Francisco 49ers)
+                        ## and 2nd step converts team into Key
                         api_team_name, ratio = process.extractOne(original_player, api_teams_list)
-                        ## Convert any FullNames into the Key ("San Francisco 49ers" > "SF")
-                        if api_team_name == "San Francisco 49ers":
+                        if api_team_name == "San Francisco 49ers": ## b/c chose BAL over SF (why!?)
                             api_team_key2, ratio = 'SF', 95
                         else:    
+                            ## Future consideration: maybe this second check should just be a mapping based on the API 'team' an 'Key' values
                             api_team_key2, ratio = process.extractOne(api_team_name, list(all_teams_dict.keys()))
                         cleaned_roster[pos] = api_team_key2
 
-                        if ratio < 100: ## Write the ratio, GM, original name, and api name to the file so we can inspect the changes
+                        if ratio < 100: ## Write to name_cleaning.txt so we can inspect the changes
                             f.write(f'{ratio}, {gm}, {original_player}, {api_team_key2}\n')
 
                     else:
                         api_player, ratio = process.extractOne(original_player, api_player_names_list)
                         cleaned_roster[pos] = api_player
 
-                        if ratio < 100: ## Write the ratio, GM, original name, and api name to the file so we can inspect the changes
+                        if ratio < 100: ## Write to name_cleaning.txt so we can inspect the changes
                             f.write(f'{ratio}, {gm}, {original_player}, {api_player}\n') 
 
 
@@ -174,7 +174,6 @@ class RosterManager:
         positions_list = ["QB", "K", "D", "P"]
         for gm, roster in cleaned_rosters_dict.items():
             gm_roster_alphabetized_dict = {}
-            # roster_keys = list(roster.keys())
             for simple_pos in positions_list:
                 numbered_positions_list = []
                 player_name_list = []
@@ -185,12 +184,14 @@ class RosterManager:
                 player_name_list.sort() 
                 for numbered_pos2, player_name2 in zip(numbered_positions_list, player_name_list):
                     gm_roster_alphabetized_dict[numbered_pos2] = player_name2
+                
+                for numbered_pos3 in roster.keys():
+                    if numbered_pos3 not in gm_roster_alphabetized_dict.keys():
+                        gm_roster_alphabetized_dict[numbered_pos3] = roster.get(numbered_pos3)
             alphabetized_rosters_dict[gm] = gm_roster_alphabetized_dict
         print(alphabetized_rosters_dict)
         return alphabetized_rosters_dict
                     
-
-
 
     
 
@@ -209,13 +210,3 @@ if __name__ == '__main__':
 
     # create instance of the RosterManager class to do the managin! 
     rm = RosterManager(gsheet)
-    # write_team_names_to_json_file()
-    # print(f"full_rosters_dict {rm.cleaned_full_rosters_dict}")
-
-    # print("Deebos: ", fuzz.ratio("Deebo", "Deebo Samuel"))
-
-    # print("CeeDees: ", fuzz.ratio("CD", "CeeDee Lamb"))
-
-    # print("CeeDees2: ", fuzz.ratio("C.D.", "CeeDee Lamb"))
-
-    # print("CMC", fuzz.ratio("CMC", "Christian McCaffrey"))
