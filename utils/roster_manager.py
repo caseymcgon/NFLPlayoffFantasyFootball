@@ -143,7 +143,9 @@ class RosterManager:
                         ## and 2nd step converts team into Key
                         api_team_name, ratio = process.extractOne(original_player, api_teams_list)
                         if api_team_name == "San Francisco 49ers": ## b/c chose BAL over SF (why!?)
-                            api_team_key2, ratio = 'SF', 95
+                            api_team_key2, ratio = 'SF', 99
+                        if api_team_name == "Kansas City Chiefs": ## b/c chose PHI over KC (why!?)
+                             api_team_key2, ratio = 'KC', 99
                         else:    
                             ## Future consideration: maybe this second check should just be a mapping based on the API 'team' an 'Key' values
                             api_team_key2, ratio = process.extractOne(api_team_name, list(all_teams_dict.keys()))
