@@ -35,9 +35,9 @@ def show_rosters():
 
         # Path to the JSON file
         json_file = 'full_alphabetized_rosters.json' 
-        ## note: even though this file is in pages directory, 
-        ##this writes to the NFLPlayoffFantasyFootball (parent) directory 
-        ## (b/c the page is run via the Playoff_Fantasy_Overview.py page in that directory)
+        ## note: even though this Compare_Rosters.py file is in the pages directory, 
+        ## this looks in / writes to the NFLPlayoffFantasyFootball (parent) directory 
+        ## (b/c this page is run via the Playoff_Fantasy_Overview.py page in that directory)
        
         # Call Google sheets the first time. After that, just access the json file
         if not os.path.exists(json_file):
