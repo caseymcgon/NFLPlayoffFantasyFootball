@@ -133,12 +133,14 @@ class RosterManager:
             for gm, roster in full_rosters_dict.items():
                 cleaned_roster = {}
                 for pos, original_player in roster.items():
+                    original_player = original_player.strip()
                     if pos == 'SB Total Points': ## won't have matches in the api_player_names_list
                         cleaned_roster["pos"] = original_player
 
                     elif pos in ["D1", "D2", "SB Champ", "SB Runner Up"]:
-                        if original_player == "Niners": ## Deal w/ strange edge case where 'Niners' > 'BAL'
-                            original_player = "49ers"
+                        if original_player == "Niners" or  original_player == "49ers" or original_player == "San Francisco": ## Deal w/ strange edge case where 'Niners' > 'BAL'
+                            original_player = "SF"
+            
                         ## Need 2 steps here b/c first step cleans into either Key (SF) or team (San Francisco 49ers)
                         ## and 2nd step converts team into Key
                         api_team_name, ratio = process.extractOne(original_player, api_teams_list)
