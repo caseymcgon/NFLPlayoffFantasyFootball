@@ -2,6 +2,7 @@
 
 def show_rosters():
     import streamlit as st
+    import os
     import json
     import pandas as pd
 
@@ -31,44 +32,46 @@ def show_rosters():
     if before_deadline_bool:
         st.write("Coming soon...after Kickoff on Saturday")
     else: ## Show Roster DFs
+
+        # Path to the JSON file
+        json_file = 'full_alphabetized_rosters.json' 
+        ## note: even though this file is in pages directory, 
+        ##this writes to the NFLPlayoffFantasyFootball (parent) directory 
+        ## (b/c the page is run via the Playoff_Fantasy_Overview.py page in that directory)
        
-        ## Access Data in Rosters Google Sheet
-        gsheet = roster_manager.access_sheet_in_drive(roster_google_sheet_name)
+        # Call Google sheets the first time. After that, just access the json file
+        if not os.path.exists(json_file):
+            gsheet = roster_manager.access_sheet_in_drive(roster_google_sheet_name)
+            # create instance of the RosterManager class to do the managin! 
+            rm = roster_manager.RosterManager(gsheet)
+            full_rosters_dict = rm.alphabetized_full_rosters_dict
+            with open(json_file, 'w') as f:
+                json.dump(full_rosters_dict, f)
 
-        # create instance of the RosterManager class to do the managin! 
-        rm = roster_manager.RosterManager(gsheet)
-
-        full_rosters_dict = rm.alphabetized_full_rosters_dict
+        else:
+            # If the JSON file exists, set full_rosters_dict equal to the contents of the file
+            with open(json_file, 'r') as f:
+                full_rosters_dict = json.load(f)
 
         full_rosters_df = pd.DataFrame.from_dict(full_rosters_dict, orient = 'index')
 
         st.markdown("## All Submitted Rosters")
-        st.dataframe(full_rosters_df, use_container_width = False)
+        st.dataframe(full_rosters_df, use_container_width = False, height = len(full_rosters_dict)*37)
         tip_expander = st.expander("free tip")
         tip_expander.markdown(f"use the search button (🔍) in the top right (or click on the table & hit `⌘+F` or `Ctrl+F`) to quickly see which people drafted any player")   
         
         
-        st.markdown("""
-                    ---
-                    ### Compare Rosters
-                """)
-            ## TODO: Add 4 search fields
+        # st.markdown("""
+        #             ---
+        #             ### Compare Rosters
+        #         """)
+        #     ## TODO: Add 4 search fields
             
 
-        st.markdown("""
-                    ---
-                    ### Quick Stats    
-                """)
-
-
-
-
-
-
-
-
-    # else:
-
+        # st.markdown("""
+        #             ---
+        #             ### Quick Stats    
+        #         """)
 
 
 if __name__ == '__main__':
