@@ -143,25 +143,27 @@ class RosterManager:
             
                         ## Need 2 steps here b/c first step cleans into either Key (SF) or team (San Francisco 49ers)
                         ## and 2nd step converts team into Key
-                        api_team_name, ratio = process.extractOne(original_player, api_teams_list)
+                        api_team_name, ratio1 = process.extractOne(original_player, api_teams_list)
                         if api_team_name == "San Francisco 49ers": ## b/c chose BAL over SF (why!?)
-                            api_team_key2, ratio = 'SF', 99
-                        if api_team_name == "Kansas City Chiefs": ## b/c chose PHI over KC (why!?)
-                             api_team_key2, ratio = 'KC', 99
+                            api_team_key2, ratio2 = 'SF', 99
+                        elif api_team_name == "Kansas City Chiefs": ## b/c chose PHI over KC (why!?)
+                             api_team_key2, ratio2 = 'KC', 99
                         else:    
                             ## Future consideration: maybe this second check should just be a mapping based on the API 'team' an 'Key' values
-                            api_team_key2, ratio = process.extractOne(api_team_name, list(all_teams_dict.keys()))
+                            api_team_key2, ratio2 = process.extractOne(api_team_name, list(all_teams_dict.keys()))
                         cleaned_roster[pos] = api_team_key2
 
-                        if ratio < 100: ## Write to name_cleaning.txt so we can inspect the changes
-                            f.write(f'{ratio}, {gm}, {original_player}, {api_team_key2}\n')
+                        if ratio1 < 100:
+                            f.write(f'First Team swap: {ratio1}, {gm}, {pos}, {original_player}, {api_team_key2}\n')
+                        if ratio2 < 100: ## Write to name_cleaning.txt so we can inspect the changes
+                            f.write(f'Second Team swap: {ratio2}, {gm}, {pos}, {original_player}, {api_team_key2}\n')
 
                     else:
                         api_player, ratio = process.extractOne(original_player, api_player_names_list)
                         cleaned_roster[pos] = api_player
 
                         if ratio < 100: ## Write to name_cleaning.txt so we can inspect the changes
-                            f.write(f'{ratio}, {gm}, {original_player}, {api_player}\n') 
+                            f.write(f'Player swap: {ratio}, {gm}, {original_player}, {api_player}\n') 
 
 
                 cleaned_rosters_dict[gm] = cleaned_roster
