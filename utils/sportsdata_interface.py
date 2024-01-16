@@ -41,6 +41,38 @@ def get_all_teams_names(teams: List[str]):
     return team_name_dict
 
 
+def get_all_ScoreIDs_from_week(season_str, week_int):
+    """
+    season_str should be formatted like '2023POST'
+    week_int should be formatted like '1', '2', etc.
+    """
+    sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
+    scoring_by_week_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/{season_str}/{week_int}?key={sportsdata_api_key}')
+
+    scoreIDs = [score_dict.get("ScoreID") for score_dict in scoring_by_week_dict]
+    return scoreIDs
+
+
+def get_all_scoring_plays_by_week(season_str, week_int):
+
+    scoreIDs = get_all_ScoreIDs_from_week(season_str, week_int)
+
+    all_scoring_this_week = [get_all_scoring_plays_by_game(scoreID) for scoreID in scoreIDs]
+
+    return all_scoring_this_week
+
+
+def get_all_scoring_plays_by_game(scoreID):
+
+    sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
+    box_score_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/stats/json/BoxScoreByScoreIDV3/{scoreID}?key={sportsdata_api_key}')
+
+    scoring_plays_list = box_score_dict.get('ScoringPlays')
+    
+    return scoring_plays_list
+
+
+
 def access_sportsdata_api(endpoint):
 
     
