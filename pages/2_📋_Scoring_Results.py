@@ -11,12 +11,65 @@ def main():
     from lxml import html, etree
 
     # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
-    from utils import ui_utils
+    from utils import ui_utils, sportsdata_interface
     from utils import WC_scrape
 
 
-    st.write("Coming soon...after the first weekend's games take place")
+    def calculate_points(row):
+        if row['FG']:
+            return (row['Distance'] // 10) + max(0, row['Distance'] - 55)
+        elif row['TD']:
+            return 5 + (row['Distance'] // 10)
+        elif row['Safety']:
+            return 2
+        else:
+            return 0
+
+    # st.write("Coming soon...after the first weekend's games take place")
     # st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
+
+    st.markdown("""
+                ## WC Weekend
+                
+                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently)
+                """)
+    all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week('2023POST', '1')
+
+    # Regular expression pattern for a 1 or 2 digit integer
+    distance_pattern = r'(\b\d{1,2}\b)'
+
+    scoring_dfs = {}
+    
+    for game in all_scoring_plays_list:
+        awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
+        matchup = f"{awayteam}@{hometeam}"
+        st.markdown(f"""### {matchup}""")
+        raw_scoring_df = pd.DataFrame(game)
+        raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
+
+        # Extract the key values from the PlayDescription
+        raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
+        raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
+        raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
+        raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
+        raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
+
+        raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
+
+        raw_scoring_df = raw_scoring_df[["Team","PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
+
+        st.dataframe(raw_scoring_df)
+
+        scoring_dfs["matchup"] = raw_scoring_df
+
+
+
+    st.markdown("""
+                ---
+                ## Divisional Round
+                
+                coming soon
+                """)
 
 
     ###
