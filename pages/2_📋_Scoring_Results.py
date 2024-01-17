@@ -8,7 +8,11 @@ def main():
     import streamlit as st
     import requests
     import sys
+    import regex as re
+    import json
     from lxml import html, etree
+
+    from datetime import date
 
     # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
     from utils import ui_utils, sportsdata_interface
@@ -25,43 +29,149 @@ def main():
         else:
             return 0
 
-    # st.write("Coming soon...after the first weekend's games take place")
-    # st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
+    # Function to extract Player1
+    def extract_player1(row):
+        if row['Def TD'] or row['Safety']:
+            return row['Team'].strip()
+        else:
+            match = re.match(r'([A-Z][a-z\'.]*\s*(?:[A-Z][a-z\'.]*\s*)*)', row['PlayDescription'])
+            return match.group(1).strip() if match else ''
+        
+    # Function to extract Player2
+    def extract_player2(row):
+        match = re.search(r'passed to ([A-Z][a-z\'.]*\s*(?:[A-Z][a-z\'.]*\s*)*)', row['PlayDescription'])
+        return match.group(1).strip() if match else ''
+
+    def filter_out_missed_kicks(df):
+        condition = ~(
+            (~df['PlayDescription'].str.contains('touchdown', case=False)) &
+            (~df['PlayDescription'].str.contains('Safety', case=False)) &
+            (df['PlayDescription'].str.contains('missed|blocked', case=False))
+        )
+        return df[condition].reset_index(drop=True)
+    
+    today = date.today()
+    ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
+    @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
+    def create_game_scoring_dfs_by_week(season_str, week_int):
+        all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week('2023POST', '1')
+
+        # Regular expression pattern for a 1 or 2 digit integer
+        distance_pattern = r'(\b\d{1,2}\b)'
+
+        scoring_dfs = {}
+        
+        ## Create Tables of Scoring in Each Game & put them on streamlit
+        for game in all_scoring_plays_list:
+            awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
+            matchup = f"{awayteam}@{hometeam}"
+            # st.markdown(f"""### {matchup}""")
+            raw_scoring_df = pd.DataFrame(game)
+            raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
+
+            # Extract the key values from the PlayDescription
+            raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
+            raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
+            raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
+            raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
+            raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
+
+            raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
+
+            raw_scoring_df['Player1'] = raw_scoring_df.apply(extract_player1, axis=1)
+            raw_scoring_df['Player2'] = raw_scoring_df.apply(extract_player2, axis=1)
+
+            raw_scoring_df = filter_out_missed_kicks(raw_scoring_df)
+
+            raw_scoring_df = raw_scoring_df[["Team", "Player1", "Player2", "PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
+
+            # st.table(raw_scoring_df)
+
+            scoring_dfs[matchup] = raw_scoring_df
+
+        return scoring_dfs
+    
+    @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
+    def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}):
+        for matchup, scoring_df in scoring_dfs.items():
+            for index, row in scoring_df.iterrows():
+                player1 = row['Player1']
+                player2 = row['Player2']
+                points = row['Points']
+                total_scoring_dict[player1] = total_scoring_dict.get(player1, 0) + points
+                if player2 != '':
+                    total_scoring_dict[player2] = total_scoring_dict.get(player2, 0) + points
+
+        players_total_scoring_df = (pd.DataFrame.from_dict(total_scoring_dict, 
+                                                          orient = 'index')
+                                                          .reset_index(drop = False)
+                                                          .rename(columns = {'index': "Players", 0: "Points"})
+                                                          .sort_values(by = "Points", ascending = False)
+                                                          .reset_index(drop = True)
+                                                        )
+        return players_total_scoring_df, total_scoring_dict
+
+    wc_scoring_dfs = create_game_scoring_dfs_by_week('2023POST', '1')
+    players_total_scoring_df, players_total_scoring_dict = create_player_total_scoring_df(wc_scoring_dfs, {})
+
+    with open('total_scoring.json', 'w') as f:
+        json.dump(players_total_scoring_dict, f)
+
+    st.markdown(f"""
+
+                # Players Total Scoring
+
+                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently, due to issues with the API)
+
+                """)
+    st.table(players_total_scoring_df)
+
 
     st.markdown("""
+                ---
+
                 ## WC Weekend
                 
-                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently)
+                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently, due to issues with the API)
                 """)
-    all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week('2023POST', '1')
+    for matchup, scoring_df in wc_scoring_dfs.items():
+            st.markdown(f"""### {matchup}""")
+            st.table(scoring_df)
 
-    # Regular expression pattern for a 1 or 2 digit integer
-    distance_pattern = r'(\b\d{1,2}\b)'
+    # # Regular expression pattern for a 1 or 2 digit integer
+    # distance_pattern = r'(\b\d{1,2}\b)'
 
-    scoring_dfs = {}
+    # scoring_dfs = {}
     
-    for game in all_scoring_plays_list:
-        awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
-        matchup = f"{awayteam}@{hometeam}"
-        st.markdown(f"""### {matchup}""")
-        raw_scoring_df = pd.DataFrame(game)
-        raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
+    # ## Create Tables of Scoring in Each Game & put them on streamlit
+    # for game in all_scoring_plays_list:
+    #     awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
+    #     matchup = f"{awayteam}@{hometeam}"
+    #     st.markdown(f"""### {matchup}""")
+    #     raw_scoring_df = pd.DataFrame(game)
+    #     raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
 
-        # Extract the key values from the PlayDescription
-        raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
-        raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
-        raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
-        raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
-        raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
+    #     # Extract the key values from the PlayDescription
+    #     raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
+    #     raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
+    #     raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
+    #     raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
+    #     raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
 
-        raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
+    #     raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
 
-        raw_scoring_df = raw_scoring_df[["Team","PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
+    #     raw_scoring_df['Player1'] = raw_scoring_df.apply(extract_player1, axis=1)
+    #     raw_scoring_df['Player2'] = raw_scoring_df.apply(extract_player2, axis=1)
 
-        st.dataframe(raw_scoring_df)
+    #     raw_scoring_df = filter_out_missed_kicks(raw_scoring_df)
 
-        scoring_dfs["matchup"] = raw_scoring_df
+    #     raw_scoring_df = raw_scoring_df[["Team", "Player1", "Player2", "PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
 
+    #     st.table(raw_scoring_df)
+
+    #     scoring_dfs[{matchup}] = raw_scoring_df
+
+    ##
 
 
     st.markdown("""
