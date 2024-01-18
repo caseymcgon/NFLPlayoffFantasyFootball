@@ -7,11 +7,15 @@ This project's *original* purpose was just to automate scoring calculations and 
 
 To do that, I webscraped ESPN's scoring summaries of each playoff game to calculate fantasy scores for each player in those games. 
 
-That script also combined all players and points on a (fantasy) roster into 1 dataFrame so we could see which of our participants was leading at any given point in the playoffs.
+That script also combined all players and points on a (fantasy) roster into 1 dataFrame so we could see which of the participants in our league was leading at any given point in the playoffs.
 
 Ultimately, the original notebook exported the tables it created to Excel (in order to share the information in a familiar and legible format).
 
-In the ensuing years, the scope of the project has grown. I now have a web app (streamlit) that handles Storing user Rosters via the Google Sheets API, Updating Weekly Scoring via the sportsdata.io API, and sharing results with our friends involved in this years' competition.
+In the ensuing years, the scope of the project has grown in accordance with my own technical development. The project has been a source of introspection & learning as I  return to this project every 11 months, critique what I built in the past, and improve upon it. These days, the project is less concerned with 'webscraping & pandas'; I'm more focused on system design, data pipelining, and UI design.
+
+I now have a web app (via streamlit) that handles storing user Rosters via the Google Sheets API, updates Weekly Scoring & Standings via the sportsdata.io API, and provides an interface for sharing results with our friends involved in each years' competition. 
+
+
 
 
 # Reproduction
@@ -24,7 +28,7 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ## Progress by Year
 
-### 2020: First Year w/ Automated Scoring for our Leage
+### 2020: First Year w/ Automated Scoring for our League
 - Created a Jupyter Notebook w/ webscraping functions & pandas manipulation to tally the scoring each week
 - Automated the following work that was previously manual & error-prone: looking at box scores, tallying points, and assigning to each player
 
@@ -73,6 +77,8 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - create team_name_dict from API -- ie. {team_key : [fullName, city, mascot, nickname(?)]} --> get rid of issues with Niners, Ravens, etc.
 
+- add repo structure & 'data pipeline' diagram near the top of the README
+
 - Add very basic testing
 
 
@@ -92,6 +98,7 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ##### Yearly ToDos:
 
+- Read through the full README to understand the structure / refresh on changes I made last year
 - Update the selected_year in Playoff_Fantasy.py
 - Update the settings for the new selected_year in yearly_settings.py
 - Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
