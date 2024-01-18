@@ -18,6 +18,8 @@ def main():
     from utils import ui_utils, sportsdata_interface
     from utils import WC_scrape
 
+    today = date.today()
+
 
     def calculate_points(row):
         if row['FG']:
@@ -50,12 +52,44 @@ def main():
         )
         return df[condition].reset_index(drop=True)
     
-    today = date.today()
+    def add_pat_to_scoring_df(df, matchup_pats_dict):
+        new_rows = []  # List to store the new rows
+        for player, pat in matchup_pats_dict.items():
+            # Extract the number of PATs from the string
+            num_pats = int(pat.split()[0])
+            print(player, num_pats)
+            # Calculate the points based on the type of PAT
+            if '1pt' in pat:
+                points = num_pats * 1
+            elif '2pt' in pat:
+                points = num_pats * 2
+            else:
+                print(f"PAT Type not recognized for {player}")
+                continue  # Skip if the PAT type is not recognized
+
+            
+            # Create a new row and add it to the list
+            new_row = {'Player1': player, 'PlayDescription': pat, 'Points': points, 
+                       'Team': '', 'Player2': '', 'Distance': 0, 
+                       'TD': False, 'FG': False, 'Def TD': False, 'Safety': False}
+            new_rows.append(new_row)
+        
+        # Convert the list of new rows to a DataFrame and concatenate it with the existing DataFrame
+        new_rows_df = pd.DataFrame(new_rows)
+        df = pd.concat([df, new_rows_df], ignore_index=True)
+        
+        return df
+
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
     @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week('2023POST', '1')
 
+        # Temporary workaround for getting PAT data (manual) -- since the API doesnt provide it
+        with open('pats_temp.json', 'r') as f:
+            pat_data = json.load(f)
+
+        print(pat_data)
         # Regular expression pattern for a 1 or 2 digit integer
         distance_pattern = r'(\b\d{1,2}\b)'
 
@@ -83,12 +117,12 @@ def main():
 
             raw_scoring_df = filter_out_missed_kicks(raw_scoring_df)
 
+            matchup_pats_dict = pat_data.get(matchup, {})
+            raw_scoring_df = add_pat_to_scoring_df(raw_scoring_df, matchup_pats_dict)
+
             raw_scoring_df = raw_scoring_df[["Team", "Player1", "Player2", "PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
 
-            # st.table(raw_scoring_df)
-
             scoring_dfs[matchup] = raw_scoring_df
-
         return scoring_dfs
     
     @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
