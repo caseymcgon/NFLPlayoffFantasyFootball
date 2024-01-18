@@ -55,9 +55,9 @@ def compute_time_till_deadline(start_date_deadline_utc):
 
     # Check if the deadline has passed
     if diff.total_seconds() <= 0:
-        return diff, False
+        return diff, False ## past deadline
     else:
-        return diff, True
+        return diff, True ## True = before deadline
     
 def get_utc_datetime(start_date_deadline_str):
     # Convert the string to a datetime object
