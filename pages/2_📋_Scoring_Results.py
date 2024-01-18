@@ -155,8 +155,6 @@ def main():
 
                 # Players Total Scoring
 
-                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently, due to issues with the API)
-
                 """)
     st.table(players_total_scoring_df)
 
@@ -166,47 +164,10 @@ def main():
 
                 ## WC Weekend
                 
-                please note: scores not finalized yet (Both 2-point & 1 point PATs are ommitted currently, due to issues with the API)
                 """)
     for matchup, scoring_df in wc_scoring_dfs.items():
             st.markdown(f"""### {matchup}""")
             st.table(scoring_df)
-
-    # # Regular expression pattern for a 1 or 2 digit integer
-    # distance_pattern = r'(\b\d{1,2}\b)'
-
-    # scoring_dfs = {}
-    
-    # ## Create Tables of Scoring in Each Game & put them on streamlit
-    # for game in all_scoring_plays_list:
-    #     awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
-    #     matchup = f"{awayteam}@{hometeam}"
-    #     st.markdown(f"""### {matchup}""")
-    #     raw_scoring_df = pd.DataFrame(game)
-    #     raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
-
-    #     # Extract the key values from the PlayDescription
-    #     raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
-    #     raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
-    #     raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
-    #     raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
-    #     raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
-
-    #     raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
-
-    #     raw_scoring_df['Player1'] = raw_scoring_df.apply(extract_player1, axis=1)
-    #     raw_scoring_df['Player2'] = raw_scoring_df.apply(extract_player2, axis=1)
-
-    #     raw_scoring_df = filter_out_missed_kicks(raw_scoring_df)
-
-    #     raw_scoring_df = raw_scoring_df[["Team", "Player1", "Player2", "PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
-
-    #     st.table(raw_scoring_df)
-
-    #     scoring_dfs[{matchup}] = raw_scoring_df
-
-    ##
-
 
     st.markdown("""
                 ---
