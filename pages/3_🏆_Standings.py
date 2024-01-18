@@ -69,7 +69,6 @@ def main():
 
         st.markdown("""# Standings 
         
-                    please note: first round scoring is not accurate yet. Still need to get info on PATs, but this should give you a rough approximation of where you stand
                     """)
         standings_slot = st.empty()
 
@@ -78,7 +77,6 @@ def main():
                     
                     ### Scoring by Team 
         
-                    again, please note: first round scoring is not accurate yet. Still need to get info on PATs, but this should give you a rough approximation of where you stand
                     """)
         for gm, roster in scoring_by_roster_dict.items():
 
