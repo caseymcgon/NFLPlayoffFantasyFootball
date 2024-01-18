@@ -48,8 +48,9 @@ def show_league_info(selected_year):
 
             Thanks again for playing & see you next week. In the meantime, Go Niners!
 
-            Go Niners!
-            - Casey
+            Best,
+            
+            Casey
 
             ---
             """
