@@ -43,9 +43,11 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ### 2024: Back to Streamlit 
 - Created a multpage app to host all things for the project, as opposed to disconnected smaller web apps (new streamlit feature)
-- Changed from a .venv to conda (NFL_conda_environment.yml)
+- Switched from webscraping scoring plays to using a free-version of NFL API ([sportsdata.io](https://sportsdata.io/developers/data-dictionary/nfl)). This allows for ~ live-updating scoring & removes the hassle of dealing with ESPN changing their 'Gamecast' setup, but has some drawbacks (free version of the API is missing PATs)
+- Automated creation of rosters & cleaning of player names to match the API (via the roster_manager.py file)
+- Changed from a .venv to conda (NFL_conda_environment.yml) 
 - Added yearly_settings.json (config files), ui_utils.py (custom streamlit funcs), and scraping_utils.py (custom webscraping funcs) to make future Casey happy (aka: enhance maintainability)
-- 
+- Added time-based gates to the app (ie. show X information before kickoff and Y information after kickoff)
 
 
 
@@ -53,42 +55,38 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ###### TODO (This Year)
 
-- setup sportsdata.io API for scoring
+- figure out PATs longer term fix (for now: manual-input dictionary )
 
-- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?)
+- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) -- count # of alive & dead players on each roster & color players red if dead
 
-- differentiate WC_scrape.py from streamlit_results.py -- why both? Maybe have 1 be a file of functions, the other calls those functions
+- Add position & # of owners to "Players Total Scoring" 
 
-- L113 of streamlit_form.py: remove hard-coding (base it on dt v. deadline) -- see L42 of ui_utils
+- Modularize / configurable code for Scoring_Results.py & Standings.py to enable week-to-week updates to be easier / quicker (move toward: entirely automated)
+
+    - and add 'time last updated' (and the scoring play description) on the Scoring_Results.py & Standings pages
+
+- look through old code in WC_scrape.py & at the bottom of Scoring_Results.py -- check for features / tables / plots that I should carry over
+
+- reformat some streamlit views (ie. collapse around WC Scoring, Div Scoring, etc.)
+
+- create tables of players on each NFL roster who were picked & # of selections 
+
+- create team_name_dict from API -- ie. {team_key : [fullName, city, mascot, nickname(?)]} --> get rid of issues with Niners, Ravens, etc.
 
 - Add very basic testing
 
 
-###### Larger Projects / Improvements
+###### Larger Projects / Improvements (Offseason / Future Years)
 
-- Automate cleaning of player names (both on rosters/user input & on scoring play scraping from ESPN)
---> fuzzy_wuzzy.process
-
-- Live Updates to Results App: get a quickly updating API or scrape from somewhere that has an existing url before the game
-
-- Everything as 1 app:
-
---> Tab 0: Landing Page (w/ # of players, countdown to deadline (Days, Hours til NFL Playoffs Start / since ended), rules, etc. ) 
---> Tab 1: Roster input (available until Kickoff of Week 1)
---> Tab 2: Scoring / Results (available after Kickoff of Week 1)
---> Tab 3: Roster inspection / comparison (available after Kickoff of Week 1)
+--> Tab 3: improve Roster Comparison visualization / Filters, etc. & Allow people to toy with 'paths to victory'
 --> Tab 4 (todo in offseason): Historical Champions, Winning Rosters, & 'Optimal Team' (available at all times)
-
-- Add & Improve visualizations of standings & roster comparisons
-
-- Allow people to toy with 'paths to victory'
 
 - Create an ML Model that picks a team. trained on past years results. 
     --> inputs: Players' TDs during year, team's seeding, team's record, team's record (last 3 games), has bye, offense's total TDs during year
 
 - Analyze 'uniqueness' of teams
 
-- Add testing of webscraping functions & handling of odd names
+- Add testing of API functions & handling of odd names
 
 
 
@@ -101,10 +99,14 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 ###### TODO (Next Year)
 
-- Do cleaning & check for positions inputted correctly on user form 'submit' -- print out cleaned players for user to check
+- Tidyings of current code (but resist fully rewriting it. Small improvements this year)
 
-- Could turn Tiebreaker & D sections into dropdowns
+- Do cleaning & check for correct position on user form 'submit' (this is currently done on the backend / after input to Google Sheets then loading in via the Google sheets API. This proposal would be done before sending it to google sheets). Then print out cleaned players for user to see / check
+
+- Could turn Tiebreaker & D sections into dropdowns, potentially even match start of strings for player inputs
 
 - Create a script out of get_all_team_names() and get_all_players() so I just run that once next year w/ the year and it creates the right json files
+
+- Consider a different API that will have PAT info for cheap
 
 - More Testing
