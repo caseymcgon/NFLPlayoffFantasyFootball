@@ -31,6 +31,12 @@ def make_form():
 
     deadline = f"**Deadline: {start_date_deadline_str} PST**"
 
+    start_date_deadline_utc_top = ui_utils.get_utc_datetime(start_date_deadline_str)
+    diff, before_deadline_bool_top = ui_utils.compute_time_till_deadline(start_date_deadline_utc_top)
+
+    if not before_deadline_bool_top:
+        st.markdown(f"# :red[No longer Accepting Inputs ({Playoff_Fantasy_Overview.selected_year} Wild Card weekend has kicked off)]")
+
     google_sheet = roster_manager.access_sheet_in_drive(roster_google_sheet_name)
 
     sheet1 = google_sheet 
