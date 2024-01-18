@@ -57,7 +57,6 @@ def main():
         for player, pat in matchup_pats_dict.items():
             # Extract the number of PATs from the string
             num_pats = int(pat.split()[0])
-            print(player, num_pats)
             # Calculate the points based on the type of PAT
             if '1pt' in pat:
                 points = num_pats * 1
@@ -89,7 +88,6 @@ def main():
         with open('pats_temp.json', 'r') as f:
             pat_data = json.load(f)
 
-        print(pat_data)
         # Regular expression pattern for a 1 or 2 digit integer
         distance_pattern = r'(\b\d{1,2}\b)'
 
