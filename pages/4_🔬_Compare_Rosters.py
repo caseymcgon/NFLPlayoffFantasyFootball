@@ -25,7 +25,6 @@ def show_rosters():
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
     start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
-    print(start_date_deadline_utc)
     diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
 
 

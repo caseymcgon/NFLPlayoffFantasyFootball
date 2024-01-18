@@ -116,4 +116,8 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - Consider a different API that will have PAT info for cheap
 
+- Consider expanding info we have on each player (Team, position, etc.)
+
 - More Testing
+
+- Add logging
