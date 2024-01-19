@@ -11,12 +11,10 @@ def main():
     import os
     import json
 
-    # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
     import Playoff_Fantasy_Overview
     from utils import ui_utils, roster_manager
 
-
-     # Load the yearly_settings.json file
+    # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
 
