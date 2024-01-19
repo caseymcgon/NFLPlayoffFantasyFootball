@@ -127,3 +127,4 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - move jsons (except yearly_settings.json) into a json_storage directory
 
+- revisit all names (good opportunity to do this: when I'm making the 'data flow' section in the README)
