@@ -40,6 +40,16 @@ def get_all_teams_names(teams: List[str]):
 
     return team_name_dict
 
+def has_week_started(season_str, week_int):
+    """
+    season_str should be formatted like '2023POST'
+    week_int should be formatted like '1', '2', etc.
+    """
+    sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
+    scoring_by_week_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/{season_str}/{week_int}?key={sportsdata_api_key}')
+
+    has_started_values = [score_dict.get("HasStarted") for score_dict in scoring_by_week_dict]
+    return any(has_started_values)
 
 def get_all_ScoreIDs_from_week(season_str, week_int):
     """

@@ -15,6 +15,7 @@ def main():
     from datetime import date
 
     # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
+    import Playoff_Fantasy_Overview
     from utils import ui_utils, sportsdata_interface
     from utils import WC_scrape
 
@@ -98,12 +99,16 @@ def main():
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
     @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
     def create_game_scoring_dfs_by_week(season_str, week_int):
-        all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
-
+        ## If games haven't kicked off, there won't be any scoring to display
+        if not sportsdata_interface.has_week_started(season_str, week_int):
+            st.markdown(f"""### No games have started yet for Week {week_int}""")
+            return {}
+        
         # Regular expression pattern for a 1 or 2 digit integer
         distance_pattern = r'(\b\d{1,2}\b)'
         scoring_dfs = {}
         
+        all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
         ## Create Tables of Scoring in Each Game & put them on streamlit
         for game in all_scoring_plays_list:
             awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
@@ -161,37 +166,54 @@ def main():
     ####### GET SCORING FOR SPECIFIC WEEK ########
     ##############################################
 
-    wc_scoring_dfs = create_game_scoring_dfs_by_week('2023POST', '1')
-    players_total_scoring_df, players_total_scoring_dict = create_player_total_scoring_df(wc_scoring_dfs, {})
+    this_postseason_for_API = f'{int(Playoff_Fantasy_Overview.selected_year) - 1}POST' 
 
-    with open('total_scoring.json', 'w') as f:
-        json.dump(players_total_scoring_dict, f)
+    ## Save space on the UI for Total Scoring Table
+    total_scoring_placeholder = st.empty() 
 
-    st.markdown(f"""
-
-                # Players Total Scoring
-
-                """)
-    st.table(players_total_scoring_df)
-
-
+    ## WC Round
     st.markdown("""
                 ---
 
-                ## WC Weekend
-                
+                ## Wild Card Round
                 """)
+    wc_scoring_dfs = create_game_scoring_dfs_by_week(this_postseason_for_API, '1')
+    wc_expander = st.expander("Wild Card Scoring by Game", expanded = False)
     for matchup, scoring_df in wc_scoring_dfs.items():
-            st.markdown(f"""### {matchup}""")
-            st.table(scoring_df)
+            wc_expander.markdown(f"""### {matchup}""")
+            wc_expander.dataframe(scoring_df, use_container_width=True)
 
+    ## Divisional Round
     st.markdown("""
                 ---
                 ## Divisional Round
                 
-                coming soon
+                in-game updates (every 30 mins) are experimental during the Divisional Round. 
+                Please send Casey an email if you notice breaking changes. Thanks!
                 """)
+    div_scoring_dfs = create_game_scoring_dfs_by_week(this_postseason_for_API, '2')
+    div_expander = st.expander("Divisional Round Scoring by Game", expanded = True)
+    for matchup, scoring_df in div_scoring_dfs.items():
+        div_expander.markdown(f"""### {matchup}""")
+        div_expander.dataframe(scoring_df, use_container_width=True)
 
+    ## Save Scoring for each player 
+    players_total_scoring_df, players_total_scoring_dict = create_player_total_scoring_df(wc_scoring_dfs, {})
+    players_total_scoring_df, players_total_scoring_dict = create_player_total_scoring_df(div_scoring_dfs, players_total_scoring_dict)
+    with open('total_scoring.json', 'w') as f:
+        json.dump(players_total_scoring_dict, f)
+
+    ## Display Total Scoring Table at top of page
+    with total_scoring_placeholder.container():
+        st.markdown(f"""
+
+            # Players Total Scoring
+
+            """)
+        st.dataframe(players_total_scoring_df, 
+                     height = (1 + len(players_total_scoring_df)) * 13, 
+                     use_container_width=True
+                    )
 
 
 if __name__ == "__main__":
