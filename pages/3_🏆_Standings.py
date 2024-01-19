@@ -85,9 +85,7 @@ def main():
             scoring_df = pd.concat([scoring_df, new_row], ignore_index=True)
             
             standings_dict[gm] = total_points
-            st.write(f"{gm} - {total_points}")
-            st.dataframe(scoring_df, height = len(scoring_df)*38)
-
+            scoring_dfs_dict[gm] = scoring_df
 
         standings_df = (pd.DataFrame.from_dict(standings_dict, 
                                                     orient = 'index') 
@@ -96,8 +94,28 @@ def main():
                                                     .sort_values(by = "Points", ascending = False)
                                                     .reset_index(drop = True)
                                 )
-        standings_slot.dataframe(standings_df, height = len(standings_df)*38 )
-    # st.set_page_config(page_title="Results", layout="wide", page_icon="🏈")
+        
+        st.markdown("""# Standings 
+        
+                    """)
+        
+        st.dataframe(standings_df, 
+                     height = len(standings_df)*37, 
+                     width = len(standings_df.columns) * 150 
+                )
+
+        st.markdown("""
+                    ---
+                    
+                    ## Scoring by Team 
+        
+                    """)
+        for i, gm in enumerate(standings_df['GM'].tolist()):
+            if i % 3 == 0:
+                cols = st.columns(3)
+            cols[i % 3].markdown(f"""#### {gm}: {standings_dict[gm]} points""")
+            cols[i % 3].dataframe(scoring_dfs_dict[gm], height = len(scoring_dfs_dict[gm])*38)
+
 
 
 
