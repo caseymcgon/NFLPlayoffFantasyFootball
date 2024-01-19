@@ -121,3 +121,9 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 - More Testing
 
 - Add logging
+
+
+###### Tidyings 
+
+- move jsons (except yearly_settings.json) into a json_storage directory
+
