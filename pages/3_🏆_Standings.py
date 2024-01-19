@@ -35,23 +35,23 @@ def main():
     else:
 
         # Path to the JSON file
-        json_file = 'full_alphabetized_rosters.json' 
+        roster_json_file = 'full_alphabetized_rosters.json' 
         ## note: even though this Compare_Rosters.py file is in the pages directory, 
         ## this looks in / writes to the NFLPlayoffFantasyFootball (parent) directory 
         ## (b/c this page is run via the Playoff_Fantasy_Overview.py page in that directory)
        
         # Call Google sheets the first time. After that, just access the json file
-        if not os.path.exists(json_file):
+        if not os.path.exists(roster_json_file):
             gsheet = roster_manager.access_sheet_in_drive(roster_google_sheet_name)
             # create instance of the RosterManager class to do the managin! 
             rm = roster_manager.RosterManager(gsheet)
             full_rosters_dict = rm.alphabetized_full_rosters_dict
-            with open(json_file, 'w') as f:
+            with open(roster_json_file, 'w') as f:
                 json.dump(full_rosters_dict, f)
 
         else:
             # If the JSON file exists, set full_rosters_dict equal to the contents of the file
-            with open(json_file, 'r') as f:
+            with open(roster_json_file, 'r') as f:
                 full_rosters_dict = json.load(f)
         
         with open('total_scoring.json', 'r') as f:
