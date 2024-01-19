@@ -100,13 +100,8 @@ def main():
     def create_game_scoring_dfs_by_week(season_str, week_int):
         all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
 
-        # Temporary workaround for getting PAT data (manual) -- since the API doesnt provide it
-        with open('pats_temp.json', 'r') as f:
-            pat_data = json.load(f)
-
         # Regular expression pattern for a 1 or 2 digit integer
         distance_pattern = r'(\b\d{1,2}\b)'
-
         scoring_dfs = {}
         
         ## Create Tables of Scoring in Each Game & put them on streamlit
@@ -131,6 +126,9 @@ def main():
 
             raw_scoring_df = filter_out_missed_kicks(raw_scoring_df)
 
+            # Temporary workaround for getting PAT data (manual) -- since the API doesnt provide it
+            with open('pats_temp.json', 'r') as f:
+                pat_data = json.load(f)
             matchup_pats_dict = pat_data.get(matchup, {})
             raw_scoring_df = add_pat_to_scoring_df(raw_scoring_df, matchup_pats_dict)
 
