@@ -20,9 +20,9 @@ def main():
 
     today = date.today()
 
-    ###############################################
-    ##### DEFINE FUNCS TO SCRAPE SCORING DATA #####
-    ###############################################
+    #########################################################################
+    ##### DEFINE FUNCS TO EXTRACT FANTASY SCORING INFO FROM API RESULTS #####
+    #########################################################################
 
     def calculate_points(row):
         """
@@ -98,7 +98,7 @@ def main():
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
     @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
     def create_game_scoring_dfs_by_week(season_str, week_int):
-        all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week('2023POST', '1')
+        all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
 
         # Temporary workaround for getting PAT data (manual) -- since the API doesnt provide it
         with open('pats_temp.json', 'r') as f:
