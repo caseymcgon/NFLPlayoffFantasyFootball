@@ -20,8 +20,24 @@ def main():
 
     today = date.today()
 
+    ###############################################
+    ##### DEFINE FUNCS TO SCRAPE SCORING DATA #####
+    ###############################################
 
     def calculate_points(row):
+        """
+        Calculate the points based on the given row of data.
+        ----------
+        Params:
+        - row: A dictionary representing a row of data with the following keys:
+            - 'Distance': The distance of the play.
+            - 'FG': Boolean indicating if it is a field goal.
+            - 'TD': Boolean indicating if it is a touchdown.
+            - 'Safety': Boolean indicating if it is a safety.
+
+        Returns:
+        - Integer: The calculated points based on the given row of data.
+        """
         if row['FG']:
             return (row['Distance'] // 10) + max(0, row['Distance'] - 55)
         elif row['TD']:
@@ -142,6 +158,10 @@ def main():
                                                           .reset_index(drop = True)
                                                         )
         return players_total_scoring_df, total_scoring_dict
+    
+    ##############################################
+    ####### GET SCORING FOR SPECIFIC WEEK ########
+    ##############################################
 
     wc_scoring_dfs = create_game_scoring_dfs_by_week('2023POST', '1')
     players_total_scoring_df, players_total_scoring_dict = create_player_total_scoring_df(wc_scoring_dfs, {})
