@@ -57,7 +57,7 @@ def main():
         with open('total_scoring.json', 'r') as f:
             total_scoring_dict = json.load(f)
 
-        scoring_by_roster_dict = {}
+        scoring_by_roster_dict = {} ## structure: {GM: {player: points}}
         for gm, roster in full_rosters_dict.items():
             scoring_by_roster_dict[gm] = {}
             for position, player in roster.items():
@@ -65,19 +65,12 @@ def main():
                     continue
                 scoring_by_roster_dict[gm][player] = total_scoring_dict.get(player, 0)
 
-        standings_dict = {}
 
-        st.markdown("""# Standings 
-        
-                    """)
-        standings_slot = st.empty()
+        standings_dict = {} ## structure: {GM: total_points}
+        scoring_dfs_dict = {} ## structure: {GM: scoring_df}
 
-        st.markdown("""
-                    ---
-                    
-                    ### Scoring by Team 
-        
-                    """)
+        ## convert scoring_by_roster_dict to scoring_dfs & calculate total_points
+        ## then put scoring_dfs & total_points into their own dict
         for gm, roster in scoring_by_roster_dict.items():
 
             scoring_df =(pd.DataFrame.from_dict(roster, 
