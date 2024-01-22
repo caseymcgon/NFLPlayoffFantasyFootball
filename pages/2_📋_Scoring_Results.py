@@ -143,7 +143,7 @@ def main():
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
+    @st.cache_data(ttl=3600*24 if now_pst.weekday() < 5 else 3600/4)
     def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
