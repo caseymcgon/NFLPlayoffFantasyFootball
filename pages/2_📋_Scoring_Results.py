@@ -12,14 +12,15 @@ def main():
     import json
     from lxml import html, etree
 
-    from datetime import date
+    from datetime import datetime
+    import pytz
 
     # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
     import Playoff_Fantasy_Overview
     from utils import ui_utils, sportsdata_interface
     from utils import WC_scrape
 
-    today = date.today()
+    now_pst = datetime.now(pytz.timezone('US/Pacific'))
 
     #########################################################################
     ##### DEFINE FUNCS TO EXTRACT FANTASY SCORING INFO FROM API RESULTS #####
@@ -97,7 +98,7 @@ def main():
         return df
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    @st.cache_data(ttl=3600*24 if today.weekday() < 5 else 3600/4)
+    @st.cache_data(ttl=3600*24 if now_pst.weekday() < 5 else 3600/4)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
