@@ -1,23 +1,37 @@
 {
-    "CLE@HOU": {"Ka'imi Fairbairn": "6 1pt PAT" , 
+        "CLE@HOU": {"Ka'imi Fairbairn": "6 1pt PAT" , 
                 "Riley Patterson":  "2 1pt PAT"
-            },
-    "MIA@KC": {"Harrison Butker": "2 1pt PAT", 
-                "Jason Sanders": "1 1pt PAT"
-            },
-    "GB@DAL": {"Anders Carlson": "6 1pt PAT",
-                 "Brandon Aubrey": "1 1pt PAT", 
-                 "Rico Dowdle": "1 2pt PAT",
-                 "Dak Prescott": "1 2pt PAT"
-            },
-    "LAR@DET": {"Michael Badgley": "3 1pt PAT",
-                "Brett Maher": "2 1pt PAT"
-            },
-    "PIT@BUF": {"Tyler Bass": "4 1pt PAT",
-                "Chris Boswell": "2 1pt PAT"
-            },
-    "PHI@TB": {"Chase McLaughlin": "3 1pt PAT"
+        },
+        "MIA@KC": {"Harrison Butker": "2 1pt PAT", 
+                        "Jason Sanders": "1 1pt PAT"
+        },
+        "GB@DAL": {"Anders Carlson": "6 1pt PAT",
+                        "Brandon Aubrey": "1 1pt PAT", 
+                        "Rico Dowdle": "1 2pt PAT",
+                        "Dak Prescott": "1 2pt PAT"
+        },
+        "LAR@DET": {"Michael Badgley": "3 1pt PAT",
+                        "Brett Maher": "2 1pt PAT"
+        },
+        "PIT@BUF": {"Tyler Bass": "4 1pt PAT",
+                        "Chris Boswell": "2 1pt PAT"
+        },
+        "PHI@TB": {"Chase McLaughlin": "3 1pt PAT"
                 
-            }
+        },
+        "GB@SF": {"Jake Moody": "3 1pt PAT",
+                  "Anders Carlson": "1 1pt PAT",
+                  "Jordan Love": "1 2pt PAT",
+                  "Aaron Jones": "1 2pt PAT"
+        },
+        "HOU@BAL": {"Justin Tucker": "4 1pt PAT",
+                        "Ka'imi Fairbairn": "1 1pt PAT"
+        },
+        "KC@BUF": {"Tyler Bass": "3 1pt PAT",
+                   "Harrison Butker": "3 1pt PAT"
+        },
+        "TB@DET": {"Michael Badgley": "4 1pt PAT",
+                   "Chase McLaughlin": "2 1pt PAT"
+        }
         
 }
