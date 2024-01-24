@@ -1,4 +1,4 @@
-## streamlit_results.py
+## Standings.py
 
 def main():
 
@@ -112,9 +112,7 @@ def main():
             if i % 3 == 0:
                 cols = st.columns(3)
             cols[i % 3].markdown(f"""#### {gm}: {standings_dict[gm]} points""")
-            cols[i % 3].dataframe(scoring_dfs_dict[gm], height = len(scoring_dfs_dict[gm])*38)
-
-
+            cols[i % 3].dataframe(scoring_dfs_dict[gm], height = len(scoring_dfs_dict[gm])*38, hide_index=True)
 
 
 

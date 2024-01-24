@@ -21,6 +21,9 @@ def main():
     from utils import WC_scrape
 
     now_pst = datetime.now(pytz.timezone('US/Pacific'))
+    cache_ttl_logic = 3600*6 if now_pst.weekday() < 5 else 3600/4
+
+    player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
 
     #########################################################################
     ##### DEFINE FUNCS TO EXTRACT FANTASY SCORING INFO FROM API RESULTS #####
@@ -54,12 +57,12 @@ def main():
         if row['Def TD'] or row['Safety']:
             return row['Team'].strip()
         else:
-            match = re.match(r'([A-Z][a-z\'.]*\s*(?:[A-Z][a-z\'.]*\s*)*)', row['PlayDescription'])
+            match = re.match(fr'{player_name_regex}', row['PlayDescription'])
             return match.group(1).strip() if match else ''
         
     # Function to extract Player2
     def extract_player2(row):
-        match = re.search(r'passed to ([A-Z][a-z\'.]*\s*(?:[A-Z][a-z\'.]*\s*)*)', row['PlayDescription'])
+        match = re.search(fr'passed to {player_name_regex}', row['PlayDescription'])
         return match.group(1).strip() if match else ''
 
     def filter_out_missed_kicks(df):
@@ -98,7 +101,7 @@ def main():
         return df
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    @st.cache_data(ttl=3600*24 if now_pst.weekday() < 5 else 3600/4)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
@@ -138,12 +141,12 @@ def main():
             matchup_pats_dict = pat_data.get(matchup, {})
             raw_scoring_df = add_pat_to_scoring_df(raw_scoring_df, matchup_pats_dict)
 
-            raw_scoring_df = raw_scoring_df[["Team", "Player1", "Player2", "PlayDescription",  "Points", "Distance", "TD", "FG", "Def TD", "Safety"]]
+            raw_scoring_df = raw_scoring_df[["Points", "Player1", "Player2", "Team", "PlayDescription",  "Distance", "TD", "FG", "Def TD", "Safety"]]
 
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    @st.cache_data(ttl=3600*24 if now_pst.weekday() < 5 else 3600/4)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
