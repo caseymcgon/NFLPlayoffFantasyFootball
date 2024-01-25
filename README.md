@@ -103,6 +103,9 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 - Update the settings for the new selected_year in yearly_settings.py
 - Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
 
+##### Weekly ToDos (since the Free version of the sportsdata.io API hides/scrambles this info)
+- update yearly_settings.json's 'alive_AFC' and 'alive_NFC' fields
+- update temp_pats.json with total PAT scoring info per player
 
 ###### TODO (Next Year)
 
