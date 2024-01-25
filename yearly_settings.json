@@ -4,13 +4,17 @@
             "start_date_deadline_pst": "Jan 13, 2024 1:30 PM",
             "roster_google_sheet_name": "2024_Rosters",
             "buy_in": "$10",
-            "alive_NFC": ["SF", "DAL", "DET", "TB", "PHI", "LAR", "GB"],
-            "alive_AFC": ["BAL", "BUF", "KC", "HOU", "CLE", "MIA", "PIT"]
+            "starting_NFC": ["SF", "DAL", "DET", "TB", "PHI", "LAR", "GB"],
+            "starting_AFC": ["BAL", "BUF", "KC", "HOU", "CLE", "MIA", "PIT"],
+            "alive_NFC": ["SF", "DET"],
+            "alive_AFC": ["BAL", "KC"]
         },
         "2022": {
             "start_date_deadline_pst": "Jan 15, 2022 1:30 PM",
             "roster_google_sheet_name": "tester_sheet",
             "buy_in": "$10",
+            "starting_NFC": ["GB", "TB", "DAL", "LAR", "ARI", "SF", "PHI"],
+            "starting_AFC": ["TEN", "KC", "BUF", "CIN", "LV", "NE", "PIT"],
             "alive_NFC": ["LAR"],
             "alive_AFC": ["CIN"]
         }
