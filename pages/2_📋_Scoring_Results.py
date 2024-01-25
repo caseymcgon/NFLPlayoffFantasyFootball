@@ -148,7 +148,7 @@ def main():
 
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    @st.cache_data(ttl=cache_ttl_logic)
+    # @st.cache_data(ttl=cache_ttl_logic)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
@@ -156,7 +156,7 @@ def main():
             return {}
         
         # Regular expression pattern for a 1 or 2 digit integer
-        distance_pattern = r'(\b\d{1,2}\b)'
+        distance_pattern = r'(\d+)(?=\s*-?\s*yard(?!\s*s))' #'(\b\d{1,2}\b)'
         scoring_dfs = {}
         
         all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
@@ -172,7 +172,7 @@ def main():
             raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
             raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
             raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
-            raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|Kick off|Punt')
+            raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|kicked off|punted')
             raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
 
             raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
@@ -193,7 +193,7 @@ def main():
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    @st.cache_data(ttl=cache_ttl_logic)
+    # @st.cache_data(ttl=cache_ttl_logic)
     def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}, is_player_alive_helper = is_player_alive):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
