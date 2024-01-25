@@ -42,7 +42,7 @@ def get_all_teams_names(teams: List[str]):
 
 def has_week_started(season_str, week_int):
     """
-    season_str should be formatted like '2023POST'
+    season_str should be formatted like '2023POST' (can be acquired via: f'{int(Playoff_Fantasy_Overview.selected_year) - 1}POST')
     week_int should be formatted like '1', '2', etc.
     """
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
@@ -105,10 +105,10 @@ if __name__ == '__main__':
 
     if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
-        afc_alive_teams = year_settings.get("alive_AFC")
-        nfc_alive_teams = year_settings.get("alive_NFC")
+        afc_all_teams = year_settings.get("starting_AFC")
+        nfc_all_teams = year_settings.get("starting_NFC")
 
-        teams = afc_alive_teams + nfc_alive_teams
+        teams = afc_all_teams + nfc_all_teams
                                                                     
     ## write all playoff_players to a 
     all_players_dict = get_all_players(teams)

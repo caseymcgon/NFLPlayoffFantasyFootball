@@ -29,8 +29,8 @@ def show_league_info(selected_year):
     if selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][selected_year]
         start_date_deadline = year_settings.get('start_date_deadline_pst')
-        roster_google_file_path = year_settings.get('roster_google_file_path')
         buy_in = year_settings.get('buy_in')
+
         
         # ui_utils.display_start_date_countdown(start_date_deadline, selected_year)
         
