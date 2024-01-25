@@ -27,11 +27,11 @@ def main():
 
     #########################################################################
     ############## LOAD DATA FROM JSON FILES & APIs #########################
+    #########################################################################
     
     ## Load all playoff players metadata so we can track who's still alive
     with open('all_players.json', 'r') as f:
         all_players_meta_dict = json.load(f)
-
 
     ## Load in active teams from yearly_settings.json
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -43,6 +43,16 @@ def main():
         else:
             alive_teams_list = []
 
+    ## Load in all selected players
+    with open('full_alphabetized_rosters.json') as f:
+        alphabetized_rosters_dict = json.load(f)
+
+        ## remove tiebreaker keys that aren't actually player selections
+        for gm, roster_dict in alphabetized_rosters_dict.items():
+            roster_dict.pop("SB Champ", None)
+            roster_dict.pop("SB Runner Up", None)
+            roster_dict.pop("pos", None)
+            alphabetized_rosters_dict[gm] = roster_dict
 
 
     #########################################################################
@@ -131,6 +141,10 @@ def main():
            return True
         else:
             return False
+        
+    def count_num_owners(player_name, full_rosters_dict = alphabetized_rosters_dict):
+        ## full_rosters_dict should be formatted like {GM1: {posA: playerA, posB: playerB...}, GM2: {posA: playerA...}}
+        return sum(player_name in player for roster in full_rosters_dict.values() for player in roster.values())
 
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
@@ -198,7 +212,8 @@ def main():
                                                           .reset_index(drop = True)
                                                         )
        
-        players_total_scoring_df["alive?"] = players_total_scoring_df["Players"].apply(lambda x: "✅" if is_player_alive_helper(x) else "❌")
+        players_total_scoring_df["Alive?"] = players_total_scoring_df["Players"].apply(lambda x: "✅" if is_player_alive_helper(x) else "❌")
+        players_total_scoring_df['# Owners'] = players_total_scoring_df['Players'].apply(count_num_owners)
         return players_total_scoring_df, total_scoring_dict
     
     ##############################################
