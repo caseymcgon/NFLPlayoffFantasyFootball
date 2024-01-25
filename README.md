@@ -115,11 +115,11 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - Could turn Tiebreaker & D sections into dropdowns, potentially even match start of strings for player inputs
 
-- Create a script out of get_all_team_names() and get_all_players() so I just run that once next year w/ the year and it creates the right json files
+- Create a script out of get_all_team_names() and get_all_players() so I just run that once next year w/ the year and it creates the right json files 
 
-- Consider a different API that will have PAT info for cheap
+    --> sportsdata_interface.get_all_team_names() should yield city, mascot, FullName, abbreviation etc. (not just FullName)
 
-- Consider expanding info we have on each player (Team, position, etc.)
+- Consider a different API that will have PAT info & winner info for cheap
 
 - More Testing
 
