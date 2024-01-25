@@ -44,10 +44,10 @@ def write_all_players_to_json_file():
 
     if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
-        afc_alive_teams = year_settings.get("alive_AFC")
-        nfc_alive_teams = year_settings.get("alive_NFC")
+        afc_all_teams = year_settings.get("starting_AFC")
+        nfc_all_teams = year_settings.get("starting_NFC")
 
-        teams = afc_alive_teams + nfc_alive_teams
+        teams = afc_all_teams + nfc_all_teams
                                                                     
     ## write all playoff_players to a 
     all_players_dict = sportsdata_interface.get_all_players(teams)
@@ -63,10 +63,10 @@ def write_team_names_to_json_file():
 
     if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
-        afc_alive_teams = year_settings.get("alive_AFC")
-        nfc_alive_teams = year_settings.get("alive_NFC")
+        afc_all_teams = year_settings.get("starting_AFC")
+        nfc_all_teams = year_settings.get("starting_NFC")
 
-        teams = afc_alive_teams + nfc_alive_teams
+        teams = afc_all_teams + nfc_all_teams
                                                                     
     ## write all playoff_players to a  json file
     all_teams_dict = sportsdata_interface.get_all_teams_names(teams)
