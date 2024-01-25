@@ -26,6 +26,26 @@ def main():
     player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
 
     #########################################################################
+    ############## LOAD DATA FROM JSON FILES & APIs #########################
+    
+    ## Load all playoff players metadata so we can track who's still alive
+    with open('all_players.json', 'r') as f:
+        all_players_meta_dict = json.load(f)
+
+
+    ## Load in active teams from yearly_settings.json
+    with open('yearly_settings.json', 'r') as yearly_settings:
+        config_data = json.load(yearly_settings)
+
+        if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
+            year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+            alive_teams_list = year_settings.get("alive_AFC") + year_settings.get("alive_NFC")
+        else:
+            alive_teams_list = []
+
+
+
+    #########################################################################
     ##### DEFINE FUNCS TO EXTRACT FANTASY SCORING INFO FROM API RESULTS #####
     #########################################################################
 
@@ -99,9 +119,22 @@ def main():
         df = pd.concat([df, new_rows_df], ignore_index=True)
         
         return df
+    
+    def is_player_alive(player_name, all_players_dict = all_players_meta_dict, alive_team_list = alive_teams_list):
+       ## look for defenses first
+        if player_name not in all_players_dict.keys():
+            if player_name in alive_team_list:
+                return True
+            else:
+                return False
+        elif all_players_dict.get(player_name).get("Team") in alive_team_list:
+           return True
+        else:
+            return False
+
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    @st.cache_data(ttl=cache_ttl_logic)
+    # @st.cache_data(ttl=cache_ttl_logic)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
@@ -117,7 +150,7 @@ def main():
         for game in all_scoring_plays_list:
             awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
             matchup = f"{awayteam}@{hometeam}"
-            # st.markdown(f"""### {matchup}""")
+
             raw_scoring_df = pd.DataFrame(game)
             raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
 
@@ -146,8 +179,8 @@ def main():
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    @st.cache_data(ttl=cache_ttl_logic)
-    def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}):
+    # @st.cache_data(ttl=cache_ttl_logic)
+    def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}, is_player_alive_helper = is_player_alive):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
                 player1 = row['Player1']
@@ -164,6 +197,8 @@ def main():
                                                           .sort_values(by = "Points", ascending = False)
                                                           .reset_index(drop = True)
                                                         )
+       
+        players_total_scoring_df["alive?"] = players_total_scoring_df["Players"].apply(lambda x: "✅" if is_player_alive_helper(x) else "❌")
         return players_total_scoring_df, total_scoring_dict
     
     ##############################################
