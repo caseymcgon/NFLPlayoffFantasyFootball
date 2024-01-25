@@ -24,9 +24,28 @@ def main():
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
+        alive_teams_list = year_settings.get("alive_AFC") + year_settings.get("alive_NFC") 
+
     start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
     diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
 
+     ## Load all playoff players metadata so we can track who's still alive
+    with open('all_players.json', 'r') as f:
+        all_players_meta_dict = json.load(f)
+
+
+    ## TODO: This should be moved to ui_utils or another utility file (and removed from Scoring_Results.py too)
+    def is_player_alive(player_name, all_players_dict = all_players_meta_dict, alive_team_list = alive_teams_list):
+       ## look for defenses first
+        if player_name not in all_players_dict.keys():
+            if player_name in alive_team_list:
+                return True
+            else:
+                return False
+        elif all_players_dict.get(player_name).get("Team") in alive_team_list:
+           return True
+        else:
+            return False
 
     if before_deadline_bool:
         st.write("Coming soon...after the first weekend's games take place")
@@ -64,7 +83,7 @@ def main():
                 scoring_by_roster_dict[gm][player] = total_scoring_dict.get(player, 0)
 
 
-        standings_dict = {} ## structure: {GM: total_points}
+        standings_dict = {} ## structure: {GM: {"Points": total_points, "# Alive": total_alive}}
         scoring_dfs_dict = {} ## structure: {GM: scoring_df}
 
         ## convert scoring_by_roster_dict to scoring_dfs & calculate total_points
@@ -78,12 +97,17 @@ def main():
                                                 .sort_values(by = "Points", ascending = False)
                                                 .reset_index(drop = True)
                                                 )
+            scoring_df['Alive?'] = scoring_df['Players'].apply(lambda x: "✅" if is_player_alive(x) else "❌")
+            total_alive = scoring_df['Alive?'].value_counts().get("✅", 0)
             total_points = scoring_df['Points'].sum()
-            new_row = pd.DataFrame([{'Players': 'TOTAL', 'Points': total_points}])
+            new_row = pd.DataFrame([{'Players': 'TOTAL', 'Points': total_points, 'Alive?': total_alive}])
             scoring_df = pd.concat([scoring_df, new_row], ignore_index=True)
-            
-            standings_dict[gm] = total_points
+
             scoring_dfs_dict[gm] = scoring_df
+            
+            standings_dict[gm] = {}
+            standings_dict[gm]["Points"] = total_points
+            standings_dict[gm]["# Alive"] = total_alive
 
         standings_df = (pd.DataFrame.from_dict(standings_dict, 
                                                     orient = 'index') 
@@ -111,7 +135,7 @@ def main():
         for i, gm in enumerate(standings_df['GM'].tolist()):
             if i % 3 == 0:
                 cols = st.columns(3)
-            cols[i % 3].markdown(f"""#### {gm}: {standings_dict[gm]} points""")
+            cols[i % 3].markdown(f"""#### {gm}: {standings_dict[gm].get('Points', 0)} pts""")
             cols[i % 3].dataframe(scoring_dfs_dict[gm], height = len(scoring_dfs_dict[gm])*38, hide_index=True)
 
 
