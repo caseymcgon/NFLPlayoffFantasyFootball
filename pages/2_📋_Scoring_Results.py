@@ -43,7 +43,7 @@ def main():
         else:
             alive_teams_list = []
 
-    ## Load in all selected players
+    ## Load in all selected players so we can count how many owners each player has
     with open('full_alphabetized_rosters.json') as f:
         alphabetized_rosters_dict = json.load(f)
 
@@ -148,7 +148,7 @@ def main():
 
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    # @st.cache_data(ttl=cache_ttl_logic)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
@@ -193,7 +193,7 @@ def main():
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    # @st.cache_data(ttl=cache_ttl_logic)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}, is_player_alive_helper = is_player_alive):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
