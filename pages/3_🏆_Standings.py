@@ -107,10 +107,11 @@ def main():
         st.markdown("""# Standings 
         
                     """)
+        standings_expander = st.expander("Standings to Date", expanded = True)
         
-        st.dataframe(standings_df, 
-                     height = len(standings_df)*37, 
-                     width = len(standings_df.columns) * 150 
+        standings_expander.dataframe(standings_df, 
+                                height = len(standings_df)*37, 
+                                width = len(standings_df.columns) * 150 
                 )
 
         st.markdown("""
