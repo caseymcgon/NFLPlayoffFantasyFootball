@@ -79,6 +79,8 @@ def check_day_of_week(start_date_deadline):
     return day_of_week
 
 
+
+
 # def display_start_date_countdown(start_date_deadline_str, year):
 #        ## Useful if counting down seconds til kickoff of first game
 
@@ -124,10 +126,6 @@ def check_day_of_week(start_date_deadline):
 # start_date_deadline_str = "Jan 15, 2024 1:30 PM PST"
 # day_of_week = check_day_of_week(start_date_deadline_str)
 # print(day_of_week)
-
-def function2():
-    # Function 2 implementation
-    pass
 
 # if __name__ == "__main__":
 #     # Code to execute when the module is run as a standalone script

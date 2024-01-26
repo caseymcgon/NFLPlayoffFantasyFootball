@@ -1,5 +1,8 @@
 ## Compare_Rosters.py, a page in the Playoff_Fantasy.py app
 
+from utils import datetime_utils
+
+
 def show_rosters():
     import streamlit as st
     import os
@@ -7,7 +10,7 @@ def show_rosters():
     import pandas as pd
 
     import Playoff_Fantasy_Overview
-    from utils import ui_utils, roster_manager
+    from utils import roster_manager
 
     st.set_page_config(
             page_title=" Roster Comparison", 
@@ -24,8 +27,8 @@ def show_rosters():
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
-    start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
-    diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
+    start_date_deadline_utc = datetime_utils.get_utc_datetime(start_date_deadline_str)
+    diff, before_deadline_bool = datetime_utils.compute_time_till_deadline(start_date_deadline_utc)
 
 
     if before_deadline_bool:

@@ -1,24 +1,23 @@
 ## Scoring_Results.py, a page in the Playoff_Fantasy.py app
 
+from utils import datetime_utils
+
+
 def main():
 
     import altair as alt
     import numpy as np
     import pandas as pd
     import streamlit as st
-    import requests
-    import sys
     import regex as re
     import json
-    from lxml import html, etree
 
     from datetime import datetime
     import pytz
 
     # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
     import Playoff_Fantasy_Overview
-    from utils import ui_utils, sportsdata_interface
-    from utils import WC_scrape
+    from utils import sportsdata_interface
 
     now_pst = datetime.now(pytz.timezone('US/Pacific'))
     cache_ttl_logic = 3600*6 if now_pst.weekday() < 5 else 3600/4
@@ -148,7 +147,7 @@ def main():
 
 
     ## re-load data once daily if on weekday. If on weekends, reload every 15 mins
-    # @st.cache_data(ttl=cache_ttl_logic)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_game_scoring_dfs_by_week(season_str, week_int):
         ## If games haven't kicked off, there won't be any scoring to display
         if not sportsdata_interface.has_week_started(season_str, week_int):
@@ -193,7 +192,7 @@ def main():
             scoring_dfs[matchup] = raw_scoring_df
         return scoring_dfs
     
-    # @st.cache_data(ttl=cache_ttl_logic)
+    @st.cache_data(ttl=cache_ttl_logic)
     def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}, is_player_alive_helper = is_player_alive):
         for matchup, scoring_df in scoring_dfs.items():
             for index, row in scoring_df.iterrows():
@@ -242,8 +241,6 @@ def main():
                 ---
                 ## Divisional Round
                 
-                in-game updates (every 30 mins) are experimental during the Divisional Round. 
-                Please send Casey an email if you notice breaking changes. Thanks!
                 """)
     div_scoring_dfs = create_game_scoring_dfs_by_week(this_postseason_for_API, '2')
     div_expander = st.expander("Divisional Round Scoring by Game", expanded = True)

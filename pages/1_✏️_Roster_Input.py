@@ -1,5 +1,8 @@
 ## Roster_Input.py, a page in the Playoff_Fantasy.py app
 
+from utils import datetime_utils
+
+
 def make_form():
     import streamlit as st
     from datetime import datetime
@@ -11,9 +14,8 @@ def make_form():
     from google.oauth2.service_account import Credentials
     import gspread
 
-    # from utils import ui_utils
     import Playoff_Fantasy_Overview
-    from utils import ui_utils, roster_manager
+    from utils import roster_manager
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -31,8 +33,8 @@ def make_form():
 
     deadline = f"**Deadline: {start_date_deadline_str} PST**"
 
-    start_date_deadline_utc_top = ui_utils.get_utc_datetime(start_date_deadline_str)
-    diff, before_deadline_bool_top = ui_utils.compute_time_till_deadline(start_date_deadline_utc_top)
+    start_date_deadline_utc_top = datetime_utils.get_utc_datetime(start_date_deadline_str)
+    diff, before_deadline_bool_top = datetime_utils.compute_time_till_deadline(start_date_deadline_utc_top)
 
     if not before_deadline_bool_top:
         st.markdown(f"# :red[No longer Accepting Inputs ({Playoff_Fantasy_Overview.selected_year} Wild Card weekend has kicked off)]")
@@ -93,8 +95,8 @@ def make_form():
     if submit:
 
         # Convert the string to UTC datetime object 
-        start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
-        diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
+        start_date_deadline_utc = datetime_utils.get_utc_datetime(start_date_deadline_str)
+        diff, before_deadline_bool = datetime_utils.compute_time_till_deadline(start_date_deadline_utc)
 
         pst_timezone = pytz.timezone('US/Pacific')
         now =  datetime.now().astimezone(pst_timezone)

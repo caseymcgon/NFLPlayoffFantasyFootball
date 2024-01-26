@@ -1,5 +1,8 @@
 ## Standings.py
 
+from utils import datetime_utils
+
+
 def main():
 
     import altair as alt
@@ -12,7 +15,7 @@ def main():
     import json
 
     import Playoff_Fantasy_Overview
-    from utils import ui_utils, roster_manager
+    from utils import roster_manager
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -26,8 +29,8 @@ def main():
 
         alive_teams_list = year_settings.get("alive_AFC") + year_settings.get("alive_NFC") 
 
-    start_date_deadline_utc = ui_utils.get_utc_datetime(start_date_deadline_str)
-    diff, before_deadline_bool = ui_utils.compute_time_till_deadline(start_date_deadline_utc)
+    start_date_deadline_utc = datetime_utils.get_utc_datetime(start_date_deadline_str)
+    diff, before_deadline_bool = datetime_utils.compute_time_till_deadline(start_date_deadline_utc)
 
      ## Load all playoff players metadata so we can track who's still alive
     with open('all_players.json', 'r') as f:
