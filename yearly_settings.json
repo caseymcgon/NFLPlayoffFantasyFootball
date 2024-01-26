@@ -13,8 +13,7 @@
                         "Conference": {"week_num": 3, "start_date": "Jan 28, 2024"},
                         "Super Bowl": {"week_num": 4, "start_date": "Feb 11, 2024"}
                     }
-            }
-        },
+            },
         "2022": {
             "start_date_deadline_pst": "Jan 15, 2022 1:30 PM",
             "roster_google_sheet_name": "tester_sheet",
