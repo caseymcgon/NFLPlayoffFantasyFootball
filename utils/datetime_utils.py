@@ -59,9 +59,9 @@ def compute_time_till_deadline(start_date_deadline_utc):
     else:
         return diff, True ## True = before deadline
     
-def get_utc_datetime(start_date_deadline_str):
+def get_utc_datetime(start_date_deadline_str, strp_format = '%b %d, %Y %I:%M %p'):
     # Convert the string to a datetime object
-    start_date_deadline = datetime.strptime(start_date_deadline_str, '%b %d, %Y %I:%M %p')
+    start_date_deadline = datetime.strptime(start_date_deadline_str, strp_format)
     
     ## localize the timezone-naive object to PST then cast to UTC
     pst_timezone = pytz.timezone('US/Pacific')
@@ -79,54 +79,3 @@ def check_day_of_week(start_date_deadline):
     return day_of_week
 
 
-
-
-# def display_start_date_countdown(start_date_deadline_str, year):
-#        ## Useful if counting down seconds til kickoff of first game
-
-#         # Convert the string to UTC datetime object 
-#         start_date_deadline = get_utc_datetime(start_date_deadline_str)
-
-#         diff, before_deadline_bool = time_till_deadline(start_date_deadline)
-
-#         # Convert the difference to days and hours
-#         days = diff.days
-#         hours = diff.seconds // 3600
-#         minutes = (diff.seconds // 60) % 60
-#         seconds = diff.seconds % 60
-
-#         # Display the result
-#         if before_deadline_bool:
-#             day_of_week = check_day_of_week(start_date_deadline_str)
-#             st.write(f"""# {days} days {hours} hours, {minutes} mins til the {year} NFL Playoffs Kick Off: {start_date_deadline_str}, {day_of_week} """)
-#         else:
-#             st.write(f"""{-days} days, {hours} hours, {minutes} mins since the {year} NFL Playoffs Kicked Off ({start_date_deadline_str})""")
-
-
-        ## If you wanted to make live updating time (seconds, it'd look something like this)
-        # # Streamlit app loop
-        # while True:
-        #     now =  datetime.now(pytz.UTC)
-            
-        #     countdown_time = start_date_deadline - now
-
-        #     # # Check if the deadline has passed
-        #     # if countdown_time.total_seconds() <= 0:
-        #     #     st.write("The deadline has passed!")
-        #     #     break
-
-        #     # Display the countdown
-        #     st.write(f"Time remaining: {countdown_time}")
-
-        #     # Refresh every second
-        #     time.sleep(1)
-        #     st.rerun()
-
-
-# start_date_deadline_str = "Jan 15, 2024 1:30 PM PST"
-# day_of_week = check_day_of_week(start_date_deadline_str)
-# print(day_of_week)
-
-# if __name__ == "__main__":
-#     # Code to execute when the module is run as a standalone script
-#     pass
