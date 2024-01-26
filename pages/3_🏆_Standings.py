@@ -9,13 +9,11 @@ def main():
     import numpy as np
     import pandas as pd
     import streamlit as st
-    import requests
-    import sys
     import os
     import json
 
     import Playoff_Fantasy_Overview
-    from utils import roster_manager
+    from utils import roster_manager, scoring_utils
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -35,20 +33,6 @@ def main():
      ## Load all playoff players metadata so we can track who's still alive
     with open('all_players.json', 'r') as f:
         all_players_meta_dict = json.load(f)
-
-
-    ## TODO: This should be moved to ui_utils or another utility file (and removed from Scoring_Results.py too)
-    def is_player_alive(player_name, all_players_dict = all_players_meta_dict, alive_team_list = alive_teams_list):
-       ## look for defenses first
-        if player_name not in all_players_dict.keys():
-            if player_name in alive_team_list:
-                return True
-            else:
-                return False
-        elif all_players_dict.get(player_name).get("Team") in alive_team_list:
-           return True
-        else:
-            return False
 
     if before_deadline_bool:
         st.write("Coming soon...after the first weekend's games take place")
@@ -100,7 +84,7 @@ def main():
                                                 .sort_values(by = "Points", ascending = False)
                                                 .reset_index(drop = True)
                                                 )
-            scoring_df['Alive?'] = scoring_df['Players'].apply(lambda x: "✅" if is_player_alive(x) else "❌")
+            scoring_df['Alive?'] = scoring_df['Players'].apply(lambda x: "✅" if scoring_utils.is_player_alive(x) else "❌")
             total_alive = scoring_df['Alive?'].value_counts().get("✅", 0)
             total_points = scoring_df['Points'].sum()
             new_row = pd.DataFrame([{'Players': 'TOTAL', 'Points': total_points, 'Alive?': total_alive}])
