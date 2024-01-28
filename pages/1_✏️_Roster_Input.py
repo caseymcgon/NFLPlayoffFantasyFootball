@@ -1,21 +1,13 @@
 ## Roster_Input.py, a page in the Playoff_Fantasy.py app
 
-from utils import datetime_utils
-
-
 def make_form():
     import streamlit as st
     from datetime import datetime
     import pytz
-    import requests
     import json
-    import sys
-
-    from google.oauth2.service_account import Credentials
-    import gspread
 
     import Playoff_Fantasy_Overview
-    from utils import roster_manager
+    from utils import roster_manager, datetime_utils
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -140,10 +132,7 @@ def make_form():
         
         return 
 
-        st.write("**Submitted @**: ", entryTime, "pst")
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     make_form()
 
