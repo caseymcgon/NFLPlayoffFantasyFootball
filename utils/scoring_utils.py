@@ -159,13 +159,17 @@ def create_game_scoring_dfs_by_week(playoff_round_name_str, season_str = this_po
         st.markdown(f"""### No games have started yet for Week {week_int}""")
         return {}
     
-    # Regular expression pattern for a 1 or 2 digit integer
-    distance_pattern = r'(\d+)(?=\s*-?\s*yard(?!\s*s))' #'(\b\d{1,2}\b)'
+    # Regular expression pattern for a 1 or 2 digit integer with ' yard' or '-yard' after it
+    distance_pattern = r'(\d+)(?=\s*-?\s*yard(?!\s*s))' 
     scoring_dfs = {}
     
+    ## all_scoring_plays list is of lists of dicts (each dict is 1 scoring play -- thus, the inner list is 1 game's-worth of scoring plays)
     all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
+
     ## Create Tables of Scoring in Each Game & put them on streamlit
     for game in all_scoring_plays_list:
+        if len(game) == 0:
+            continue
         awayteam, hometeam = game[0].get("AwayTeam"), game[0].get("HomeTeam")
         matchup = f"{awayteam}@{hometeam}"
 
