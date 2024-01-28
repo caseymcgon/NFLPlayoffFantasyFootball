@@ -161,7 +161,6 @@ def create_game_scoring_dfs_by_week(playoff_round_name_str, season_str = this_po
     week_int = week_info_dict.get(playoff_round_name_str, '').get("week_num")
     ## all_scoring_plays list is of lists of dicts (each dict is 1 scoring play -- thus, the inner list is 1 game's-worth of scoring plays)
     all_scoring_plays_list = sportsdata_interface.get_all_scoring_plays_by_week(season_str, week_int)
-    print('L164', all_scoring_plays_list, '\n')
     if len(all_scoring_plays_list) == 0:
         st.markdown(f"""### No scoring yet in the {playoff_round_name_str} Round""")
         return {}

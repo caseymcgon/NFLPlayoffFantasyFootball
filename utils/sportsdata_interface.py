@@ -107,5 +107,3 @@ if __name__ == '__main__':
 
     with open('all_players.json', 'w') as f:
         json.dump(all_players_dict, f)
-
-    # [print(p_dict, '\n') for p_dict in all_players_dict.items()]
