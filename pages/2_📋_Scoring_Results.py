@@ -20,7 +20,8 @@ def main():
         ## Skip weeks that haven't started yet
         start_date_str = scoring_utils.week_info_dict.get(week_str).get("start_date")
         utc_date = datetime_utils.get_utc_datetime(start_date_str, strp_format = "%b %d, %Y")
-        if datetime_utils.compute_time_till_deadline(utc_date)[1]:
+        time_till_week_starts, before_week_started_bool = datetime_utils.compute_time_till_deadline(utc_date)
+        if before_week_started_bool:
             continue
 
         st.markdown(f"""
