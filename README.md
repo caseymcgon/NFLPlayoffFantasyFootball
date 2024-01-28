@@ -61,7 +61,9 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - figure out PATs longer term fix (for now: manual-input dictionary )
 
-- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) -- count # of alive & dead players on each roster & color players red if dead
+- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) 
+
+- color players red if dead throughout
 
 - Add position & # of owners to "Players Total Scoring" 
 
@@ -119,7 +121,9 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
     --> sportsdata_interface.get_all_team_names() should yield city, mascot, FullName, abbreviation etc. (not just FullName)
 
-- Consider a different API that will have PAT info & winner info for cheap
+- Workarounds that limit API calls (storing all scoring data after the weekend, etc.)
+
+- Consider a different API that will have PAT info & winner info for cheap (in order to fully automate the app)
 
 - More Testing
 
@@ -130,4 +134,4 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - move jsons (except yearly_settings.json) into a json_storage directory
 
-- revisit all names (good opportunity to do this: when I'm making the 'data flow' section in the README)
+- revisit all variable names (good opportunity to do this: when I'm making the 'data flow' section in the README)

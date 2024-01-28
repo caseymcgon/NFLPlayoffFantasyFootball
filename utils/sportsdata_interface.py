@@ -10,6 +10,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import Playoff_Fantasy_Overview
 
+############################################################
+### FUNCS THAT SHOULD ONLY GET CALLED 1x PER POSTSEASON ####
+############################################################
+
 def get_all_players(teams: List[str]):
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
 
@@ -40,11 +44,37 @@ def get_all_teams_names(teams: List[str]):
 
     return team_name_dict
 
+############################################################
+###### FUNCS THAT GET CALLED MULTIPLE TIMES EACH WEEK ######
+############################################################
+
+def get_all_scoring_plays_by_week(season_str, week_int):
+    """
+    Calls the following 2 functions to get a list of all scoring plays for all games in the given week
+    Parameters:
+        season_str should be formatted like '2023POST'
+        week_int should be formatted like '1', '2', etc.
+    Returns:
+        a list of lists of dicts of scoring plays 
+            1st level is a list of games that week
+            2nd level is a list of dicts (scoring plays in that game)
+            3rd level is a dict with info on each scoring play
+    """
+    scoreIDs = get_all_started_ScoreIDs_from_week(season_str, week_int)
+
+    all_scoring_this_week = [get_all_scoring_plays_by_game(scoreID) for scoreID in scoreIDs]
+
+    return all_scoring_this_week
+
+
 
 def get_all_started_ScoreIDs_from_week(season_str, week_int):
     """
-    season_str should be formatted like '2023POST'
-    week_int should be formatted like '1', '2', etc.
+    Parameters:
+        season_str should be formatted like '2023POST'
+        week_int should be formatted like '1', '2', etc.
+    Returns:
+        a list of ScoreIDs for all games in the given week that have kicked off 
     """
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
     scoring_by_week_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/{season_str}/{week_int}?key={sportsdata_api_key}')
@@ -57,16 +87,14 @@ def get_all_started_ScoreIDs_from_week(season_str, week_int):
     return active_or_complete_scoreIDs
 
 
-def get_all_scoring_plays_by_week(season_str, week_int):
-
-    scoreIDs = get_all_started_ScoreIDs_from_week(season_str, week_int)
-
-    all_scoring_this_week = [get_all_scoring_plays_by_game(scoreID) for scoreID in scoreIDs]
-
-    return all_scoring_this_week
-
-
 def get_all_scoring_plays_by_game(scoreID):
+    """
+    Parameters:
+        scorID should be formatted like '16610'
+    Returns:
+        a list of dicts of scoring play info for 1 game
+            each dict is 1 scoring play
+    """
 
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
     box_score_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/stats/json/BoxScoreByScoreIDV3/{scoreID}?key={sportsdata_api_key}')
