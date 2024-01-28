@@ -40,16 +40,6 @@ def get_all_teams_names(teams: List[str]):
 
     return team_name_dict
 
-def has_week_started(season_str, week_int):
-    """
-    season_str should be formatted like '2023POST' (can be acquired via: f'{int(Playoff_Fantasy_Overview.selected_year) - 1}POST')
-    week_int should be formatted like '1', '2', etc.
-    """
-    sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
-    scoring_by_week_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/{season_str}/{week_int}?key={sportsdata_api_key}')
-
-    has_started_values = [score_dict.get("HasStarted") for score_dict in scoring_by_week_dict]
-    return any(has_started_values)
 
 def get_all_started_ScoreIDs_from_week(season_str, week_int):
     """
@@ -63,6 +53,7 @@ def get_all_started_ScoreIDs_from_week(season_str, week_int):
     for score_dict in scoring_by_week_dict:
         if score_dict.get("HasStarted"):
             active_or_complete_scoreIDs.append(score_dict.get("ScoreID"))
+
     return active_or_complete_scoreIDs
 
 
@@ -88,16 +79,14 @@ def get_all_scoring_plays_by_game(scoreID):
 
 def access_sportsdata_api(endpoint):
 
-    
-    # headers = {
-    #     'Ocp-Apim-Subscription-Key:': api_key
-    # }
-
-
-    response = requests.get(endpoint)#, headers)
+    response = requests.get(endpoint)
 
     data = response.json()
 
+    if not isinstance(data, dict): ## probably ran out of API calls
+        print(data)
+    else:
+        print('API call successful')
     return data
 
 if __name__ == '__main__':
