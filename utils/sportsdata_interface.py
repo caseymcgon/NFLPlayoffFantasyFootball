@@ -111,11 +111,13 @@ def access_sportsdata_api(endpoint):
 
     data = response.json()
 
-    if not isinstance(data, dict): ## probably ran out of API calls
-        print(data)
+    if isinstance(data, dict) and 'statusCode' in data.keys(): 
+        print(data) ## probably ran out of API calls
     else:
-        print('API call successful')
+        print(f'sportsdata API call successful: {endpoint.split("key=", 1)[0]}')
     return data
+
+
 
 if __name__ == '__main__':
 
