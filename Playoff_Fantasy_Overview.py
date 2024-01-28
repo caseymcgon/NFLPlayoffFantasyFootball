@@ -6,7 +6,6 @@ def show_league_info(selected_year):
     import streamlit as st
     import json
     import datetime as dt
-    import time
 
     from utils import datetime_utils
 
