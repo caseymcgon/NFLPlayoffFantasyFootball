@@ -1,8 +1,5 @@
 ## Compare_Rosters.py, a page in the Playoff_Fantasy.py app
 
-from utils import datetime_utils
-
-
 def show_rosters():
     import streamlit as st
     import os
@@ -10,7 +7,7 @@ def show_rosters():
     import pandas as pd
 
     import Playoff_Fantasy_Overview
-    from utils import roster_manager
+    from utils import roster_manager, datetime_utils
 
     st.set_page_config(
             page_title=" Roster Comparison", 

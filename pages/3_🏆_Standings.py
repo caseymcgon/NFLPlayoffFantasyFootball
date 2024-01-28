@@ -1,19 +1,14 @@
 ## Standings.py
 
-from utils import datetime_utils
-
-
 def main():
 
-    import altair as alt
-    import numpy as np
     import pandas as pd
     import streamlit as st
     import os
     import json
 
     import Playoff_Fantasy_Overview
-    from utils import roster_manager, scoring_utils
+    from utils import roster_manager, scoring_utils, datetime_utils
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:

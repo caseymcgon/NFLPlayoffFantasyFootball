@@ -1,25 +1,12 @@
 ## Scoring_Results.py, a page in the Playoff_Fantasy.py app
 
-from utils import datetime_utils
-
-
 def main():
 
-    import altair as alt
-    import numpy as np
-    import pandas as pd
     import streamlit as st
-    import regex as re
     import json
 
-    from datetime import datetime
-    import pytz
+    from utils import  scoring_utils, datetime_utils
 
-    # sys.path.insert(0, '../utils/')  # Add the directory to the Python path
-    import Playoff_Fantasy_Overview
-    from utils import sportsdata_interface, scoring_utils, datetime_utils
-
-    
     ##########################################################################
     ####### GET SCORING FOR EACH WEEK & POST RESULTS TO STREAMLIT ########
     ##########################################################################
@@ -29,7 +16,6 @@ def main():
 
     all_weeks_scoring_dfs_dict = {}
     for week_str in ['Wild Card', 'Divisional', 'Conference', 'Super Bowl']:
-        print(week_str)
 
         ## Skip weeks that haven't started yet
         start_date_str = scoring_utils.week_info_dict.get(week_str).get("start_date")
