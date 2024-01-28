@@ -51,7 +51,7 @@ def has_week_started(season_str, week_int):
     has_started_values = [score_dict.get("HasStarted") for score_dict in scoring_by_week_dict]
     return any(has_started_values)
 
-def get_all_ScoreIDs_from_week(season_str, week_int):
+def get_all_started_ScoreIDs_from_week(season_str, week_int):
     """
     season_str should be formatted like '2023POST'
     week_int should be formatted like '1', '2', etc.
@@ -59,13 +59,16 @@ def get_all_ScoreIDs_from_week(season_str, week_int):
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
     scoring_by_week_dict = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/{season_str}/{week_int}?key={sportsdata_api_key}')
 
-    scoreIDs = [score_dict.get("ScoreID") for score_dict in scoring_by_week_dict]
-    return scoreIDs
+    active_or_complete_scoreIDs = []
+    for score_dict in scoring_by_week_dict:
+        if score_dict.get("HasStarted"):
+            active_or_complete_scoreIDs.append(score_dict.get("ScoreID"))
+    return active_or_complete_scoreIDs
 
 
 def get_all_scoring_plays_by_week(season_str, week_int):
 
-    scoreIDs = get_all_ScoreIDs_from_week(season_str, week_int)
+    scoreIDs = get_all_started_ScoreIDs_from_week(season_str, week_int)
 
     all_scoring_this_week = [get_all_scoring_plays_by_game(scoreID) for scoreID in scoreIDs]
 
