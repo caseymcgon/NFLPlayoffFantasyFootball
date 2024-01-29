@@ -18,7 +18,7 @@ from utils import sportsdata_interface, datetime_utils
 
 now_pst = datetime.now(pytz.timezone('US/Pacific'))
 this_postseason_for_API = f'{int(Playoff_Fantasy_Overview.selected_year) - 1}POST' 
-cache_ttl_logic = 3600*6 if now_pst.weekday() < 5 else 3600/4
+cache_ttl_logic = 3600*24 if now_pst.weekday() < 5 else 3600/4
 
 player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
 
