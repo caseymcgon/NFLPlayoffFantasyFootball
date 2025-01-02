@@ -1,6 +1,6 @@
 ## Playoff_Fantasy.py -- the main / landing page for the app
 
-selected_year = '2024' ## key to access values from yearly_settings.json
+selected_year = '2025' ## key to access values from yearly_settings.json
 
 def show_league_info(selected_year):
     import streamlit as st
@@ -17,7 +17,7 @@ def show_league_info(selected_year):
 
     # load configs & rules stored in external files
     with open('yearly_settings.json', 'r') as yearly_settings:
-        config_data = json.load(yearly_settings)
+        settings = json.load(yearly_settings)
 
     with open('rules.md', 'r') as file:
         rules = file.read()
@@ -25,8 +25,8 @@ def show_league_info(selected_year):
     st.write(f"# **{selected_year} McGonigle Playoff Fantasy Football**")
 
     # Access the selected year's settings
-    if selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][selected_year]
+    if selected_year in settings.get('settings', {}):
+        year_settings = settings['settings'][selected_year]
         start_date_deadline = year_settings.get('start_date_deadline_pst')
         buy_in = year_settings.get('buy_in')
 
@@ -50,7 +50,9 @@ def show_league_info(selected_year):
                 Please venmo Casey **@cmcgo** or arrange with John McGonigle before the deadline
 
                 ---
-                As a reminder, the [NFL Playoff Picture can be found here](https://www.nfl.com/standings/playoff-picture)
+                ###### As a reminder, the [NFL Playoff Picture can be found here](https://www.nfl.com/standings/playoff-picture)
+
+            
                 """
         )
 

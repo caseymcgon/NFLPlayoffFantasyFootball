@@ -1,5 +1,19 @@
 {
     "settings": {
+        "2025": {
+            "start_date_deadline_pst": "Jan 11, 2025 1:30 PM",
+            "roster_google_sheet_name": "2025_Rosters",
+            "buy_in": "$10",
+            "starting_NFC": ["DET", "PHI", "LAR", "TB", "MIN", "GB", "WAS"],
+            "starting_AFC": ["KC", "BUF", "BAL", "HOU", "PIT", "LAC", "?"],
+            "alive_NFC": ["DET", "PHI", "LAR", "TB", "MIN", "GB", "WAS"],
+            "alive_AFC":["KC", "BUF", "BAL", "HOU", "PIT", "LAC", "?"],
+            "week_info": {"Wild Card": {"week_num": 1, "start_date": "Jan 11, 2025"},
+                        "Divisional": {"week_num": 2, "start_date": "Jan 18, 2025"},
+                        "Conference": {"week_num": 3, "start_date": "Jan 26, 2025"},
+                        "Super Bowl": {"week_num": 4, "start_date": "Feb 9, 2025"}
+                    }
+            },
         "2024": {
             "start_date_deadline_pst": "Jan 13, 2024 1:30 PM",
             "roster_google_sheet_name": "2024_Rosters",
