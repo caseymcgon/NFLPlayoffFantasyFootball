@@ -11,14 +11,14 @@ def make_form():
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
-        config_data = json.load(yearly_settings)
+        settings = json.load(yearly_settings)
 
     with open('rules.md', 'r') as file:
         rules = file.read()
         
     # Access the selected year's settings
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.selected_year in settings.get('settings', {}):
+        year_settings = settings['settings'][Playoff_Fantasy_Overview.selected_year]
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get('roster_google_sheet_name')
         buy_in = year_settings.get('buy_in')

@@ -21,7 +21,17 @@ def main():
         start_date_str = scoring_utils.week_info_dict.get(week_str).get("start_date")
         utc_date = datetime_utils.get_utc_datetime(start_date_str, strp_format = "%b %d, %Y")
         time_till_week_starts, before_week_started_bool = datetime_utils.compute_time_till_deadline(utc_date)
-        if before_week_started_bool:
+        if week_str == 'Wild Card' and before_week_started_bool:
+
+            # Extract days, hours, and minutes from time_till_week_starts
+            # total_seconds = int(time_till_week_starts.total_seconds())
+            # days, remainder = divmod(total_seconds, 86400)  # Seconds in a day
+            # hours, remainder = divmod(remainder, 3600)      # Seconds in an hour
+            # minutes = remainder // 60     
+            st.write(f""" Coming soon...after Kickoff on Saturday {start_date_str}
+                    """)
+            return
+        elif before_week_started_bool:
             continue
 
         st.markdown(f"""
@@ -36,11 +46,12 @@ def main():
                 week_expander.dataframe(scoring_df, use_container_width=True)   
 
         all_weeks_scoring_dfs_dict[week_str] = week_scoring_dfs
-
+        print("week_str")
         if week_str == 'Wild Card':
             players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), {})
         else:
             players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), players_total_scoring_dict)
+    
     
     # players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict, players_total_scoring_dict)
     with open('total_scoring.json', 'w') as f:
