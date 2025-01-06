@@ -13,7 +13,7 @@
 The roster you input before the first week will be your roster throughout the playoffs. 
 In other words, when a player's team loses, they become a 'dead' spot in your roster in all following weeks.
 
-Players may only be replacd if their team wins and they are injured seriously enough to be placed on IR. In that case, they may be replaced with a player from the same NFL team the following week. Please reach out to Casey, John, or Kelly directly to instigate a replacement for an IR'd player before the first game the following weekend.
+Players may only be replaced if their team wins and they are injured seriously enough to be placed on IR. In that case, they may be replaced with a player from the same NFL team the following week. Please reach out to Casey, John, or Kelly directly to instigate a replacement for an IR'd player before the first game the following weekend.
 
 ---
 ##### 🧮 Scoring
