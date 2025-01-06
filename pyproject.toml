@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "nflplayofffantasyfootball"
+version = "0.1.0"
+description = ""
+authors = ["Casey McGonigle <cmcgon@berkeley.edu>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+streamlit = "^1.41.0"
+numpy = "^2.2.1"
+pandas = "^2.2.3"
+gspread = "^6.1.4"
+google-auth = "^2.37.0"
+google-auth-oauthlib = "^1.2.1"
+pytz = "^2024.2"
+protobuf = "^5.29.2"
+watchdog = "^6.0.0"
+urllib3 = "^2.3.0"
+beautifulsoup4 = "^4.12.3"
+lxml = "^5.3.0"
+thefuzz = "^0.22.1"
+regex = "^2024.11.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
