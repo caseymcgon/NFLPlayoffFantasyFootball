@@ -97,7 +97,7 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 - Add testing of API functions & handling of odd names
 
 ### How To Run using Poetry
-`source /Users/cmcgonigle/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-glvj0-X_-py3.10/bin/activate`
+`source /Users/caseymcgon/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-9F4Bylxz-py3.13/bin/activate`
 `streamlit run Playoff_Fantasy_Overview.py`
 
 ### How to Deploy using Poetry
