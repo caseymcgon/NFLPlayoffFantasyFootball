@@ -53,7 +53,7 @@ def write_all_players_to_json_file():
     all_players_dict = sportsdata_interface.get_all_players(teams)
 
     with open('all_players.json', 'w') as f:
-        json.dump(all_players_dict, f)
+        json.dump(all_players_dict, f, indent=4)
 
 
 def write_team_names_to_json_file():
@@ -72,7 +72,7 @@ def write_team_names_to_json_file():
     all_teams_dict = sportsdata_interface.get_all_teams_names(teams)
 
     with open('all_playoff_teams.json', 'w') as f:
-        json.dump(all_teams_dict, f)
+        json.dump(all_teams_dict, f, indent=4)
 
 
 class RosterManager:
@@ -82,6 +82,13 @@ class RosterManager:
         self.full_rosters_dict = self.create_full_rosters_dict(google_sheet)
         self.cleaned_full_rosters_dict = self.clean_player_names(self.full_rosters_dict)
         self.alphabetized_full_rosters_dict = self.alphabetize_players_by_position(self.cleaned_full_rosters_dict)
+        print(f"Here's the self version: {self.alphabetized_full_rosters_dict}")
+        try:
+            with open("full_alphabetized_rosters.json", "w") as file:
+                json.dump(self.alphabetized_full_rosters_dict, file, indent=4)
+            print("Successfully wrote JSON file.")
+        except Exception as e:
+            print(f"Error writing JSON: {e}")
         pass
 
     def create_full_rosters_dict(self, google_sheet):
@@ -195,7 +202,8 @@ class RosterManager:
                     if numbered_pos3 not in gm_roster_alphabetized_dict.keys():
                         gm_roster_alphabetized_dict[numbered_pos3] = roster.get(numbered_pos3)
             alphabetized_rosters_dict[gm] = gm_roster_alphabetized_dict
-        print(alphabetized_rosters_dict)
+        # print(alphabetized_rosters_dict)
+        print(f"len(alphabetized_rosters_dict), {len(alphabetized_rosters_dict)}")
         return alphabetized_rosters_dict
                     
 
@@ -211,8 +219,17 @@ if __name__ == '__main__':
         year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
+    ## Rewrite the all_players file for this year
+    print("Getting all teams this playoffs from API based on yearly_settings.json")
+    write_team_names_to_json_file()
+    print("Getting all players this playoffs based on the teams from above")
+    write_all_players_to_json_file()
+
+
     ## Access Data in Rosters Google Sheet
+    print("Accessing our league Rosters from GDrive")
     gsheet = access_sheet_in_drive(roster_google_sheet_name)
 
     # create instance of the RosterManager class to do the managin! 
+    print("Cleaning up the rosters!")
     rm = RosterManager(gsheet)

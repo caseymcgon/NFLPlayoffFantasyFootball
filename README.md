@@ -20,9 +20,7 @@ I now have a web app (via streamlit) that handles storing user Rosters via the G
 
 # Reproduction
 
-I use conda to manage my environment (NFL_conda_environment.yml) when running locally. However, 'deploying' a streamlit app requires requirements.txt. To generate that: run the conda_to_requirements.py script.
-
-Likewise, to deploy in streamlit (not just on your local server), the secrets must be shared with the streamlit cloud version of the app as well (via their web UI -- 3 dots > Settings > Secrets)
+In 2025, I switched to poetry to manage my environment. See pyproject.toml & poetry.lock files & "How To Run using Poetry" section below.
 
 I also use yearly_settings.json to store key dates & info for each year. Those will need updates each january to make the app function again.
 
@@ -61,11 +59,11 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - figure out PATs longer term fix (for now: manual-input dictionary )
 
-- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) 
+- Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) & remove the losers from the "still alive" teams"
 
 - color players red if dead throughout
 
-- Add position & # of owners to "Players Total Scoring" 
+- Add position & hover to see the owners (idk if that's possible)
 
 - Modularize / configurable code for Scoring_Results.py & Standings.py to enable week-to-week updates to be easier / quicker (move toward: entirely automated)
 
@@ -110,6 +108,10 @@ streamlit prefers a requirements.txt so run `poetry export -f requirements.txt -
 - Update the selected_year in Playoff_Fantasy.py
 - Update the settings for the new selected_year in yearly_settings.py
 - Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
+- Flip Roster Input page & Compare roster page (just swap the 1 and the 4 preceding their names in the pages directory)
+- (once games start) Run `python3 utils/roster_manager.py` to set up the cleaned rosters (once games start)
+    --> Make sure to check for any incorrect cleanings in the `name_cleaning.txt` file
+
 
 ##### Weekly ToDos (since the Free version of the sportsdata.io API hides/scrambles this info)
 - update yearly_settings.json's 'alive_AFC' and 'alive_NFC' fields
