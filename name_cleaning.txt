@@ -1,0 +1,228 @@
+First Team swap: 90, John McGon, D1, Baltimore, BAL
+First Team swap: 90, John McGon, D2, Detroit, DET
+First Team swap: 90, John McGon, SB Champ, Baltimore, BAL
+First Team swap: 90, John McGon, SB Runner Up, Detroit, DET
+First Team swap: 90, Micah Solit, D1, Bills, BUF
+Second Team swap: 90, Micah Solit, D1, Bills, BUF
+First Team swap: 90, Micah Solit, D2, Lions, DET
+Second Team swap: 90, Micah Solit, D2, Lions, DET
+First Team swap: 90, Micah Solit, SB Champ, Bills, BUF
+Second Team swap: 90, Micah Solit, SB Champ, Bills, BUF
+First Team swap: 90, Micah Solit, SB Runner Up, Lions, DET
+Second Team swap: 90, Micah Solit, SB Runner Up, Lions, DET
+Player swap: 94, Brent Bamberger, Will Lutz, Wil Lutz
+First Team swap: 90, Brent Bamberger, D1, Vikings, MIN
+Second Team swap: 90, Brent Bamberger, D1, Vikings, MIN
+First Team swap: 90, Brent Bamberger, D2, Ravens, BAL
+Second Team swap: 90, Brent Bamberger, D2, Ravens, BAL
+Player swap: 96, Brent Bamberger, Derick Henry, Derrick Henry
+First Team swap: 90, Brent Bamberger, SB Champ, Lions, DET
+Second Team swap: 90, Brent Bamberger, SB Champ, Lions, DET
+First Team swap: 90, Brent Bamberger, SB Runner Up, Bills, BUF
+Second Team swap: 90, Brent Bamberger, SB Runner Up, Bills, BUF
+First Team swap: 90, Miles Centrella, D1, chiefs, KC
+Second Team swap: 99, Miles Centrella, D1, chiefs, KC
+First Team swap: 90, Miles Centrella, D2, eagles, PHI
+Second Team swap: 90, Miles Centrella, D2, eagles, PHI
+Player swap: 92, Miles Centrella, jamhyr Gibbs, Jahmyr Gibbs
+First Team swap: 90, Miles Centrella, SB Champ, chiefs, KC
+Second Team swap: 99, Miles Centrella, SB Champ, chiefs, KC
+First Team swap: 90, Miles Centrella, SB Runner Up, vikings, MIN
+Second Team swap: 90, Miles Centrella, SB Runner Up, vikings, MIN
+First Team swap: 90, Ben Wemer, D1, Chiefs, KC
+Second Team swap: 99, Ben Wemer, D1, Chiefs, KC
+First Team swap: 90, Ben Wemer, D2, Eagles, PHI
+Second Team swap: 90, Ben Wemer, D2, Eagles, PHI
+Player swap: 97, Ben Wemer, Amon Ra St Brown, Amon-Ra St. Brown
+Player swap: 89, Ben Wemer, AJ Brown, A.J. Brown
+First Team swap: 90, Ben Wemer, SB Champ, Bills, BUF
+Second Team swap: 90, Ben Wemer, SB Champ, Bills, BUF
+First Team swap: 90, Ben Wemer, SB Runner Up, Eagles, PHI
+Second Team swap: 90, Ben Wemer, SB Runner Up, Eagles, PHI
+Player swap: 96, Tim Tague, Jake Elliot, Jake Elliott
+Player swap: 89, Tim Tague, AJ Brown, A.J. Brown
+First Team swap: 90, Tim Tague, SB Champ, Eagles, PHI
+Second Team swap: 90, Tim Tague, SB Champ, Eagles, PHI
+First Team swap: 90, Tim Tague, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Tim Tague, SB Runner Up, Ravens, BAL
+Player swap: 96, Kelly McGonigle, Jake Elliot, Jake Elliott
+Player swap: 89, Kelly McGonigle, AJ Brown, A.J. Brown
+First Team swap: 90, Cole Bamberger, D1, Lions, DET
+Second Team swap: 90, Cole Bamberger, D1, Lions, DET
+First Team swap: 90, Cole Bamberger, D2, Eagles, PHI
+Second Team swap: 90, Cole Bamberger, D2, Eagles, PHI
+First Team swap: 90, Cole Bamberger, SB Champ, Lions, DET
+Second Team swap: 90, Cole Bamberger, SB Champ, Lions, DET
+First Team swap: 90, Cole Bamberger, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Cole Bamberger, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Kyle Dickey, D1, Baltimore Ravens, BAL
+Second Team swap: 90, Kyle Dickey, D2, Minnesota Vikings, MIN
+Player swap: 91, Kyle Dickey, JK Dobbins, J.K. Dobbins
+Second Team swap: 90, Kyle Dickey, SB Champ, Baltimore Ravens, BAL
+Second Team swap: 90, Kyle Dickey, SB Runner Up, Detroit Lions, DET
+Player swap: 97, Maggie Petersen, Amon-ra St.Brown, Amon-Ra St. Brown
+First Team swap: 90, Maggie Petersen, SB Runner Up, Lions, DET
+Second Team swap: 90, Maggie Petersen, SB Runner Up, Lions, DET
+First Team swap: 90, Dino Ambrosi, D1, Lions, DET
+Second Team swap: 90, Dino Ambrosi, D1, Lions, DET
+First Team swap: 90, Dino Ambrosi, D2, Ravens, BAL
+Second Team swap: 90, Dino Ambrosi, D2, Ravens, BAL
+Player swap: 97, Dino Ambrosi, Amon Ra St Brown, Amon-Ra St. Brown
+First Team swap: 90, Dino Ambrosi, SB Champ, Lions, DET
+Second Team swap: 90, Dino Ambrosi, SB Champ, Lions, DET
+First Team swap: 90, Dino Ambrosi, SB Runner Up, Chiefs, KC
+Second Team swap: 99, Dino Ambrosi, SB Runner Up, Chiefs, KC
+Second Team swap: 99, Michael Bellas, D1, Kansas City Chiefs, KC
+Second Team swap: 90, Michael Bellas, D2, Detroit Lions, DET
+Second Team swap: 99, Michael Bellas, SB Champ, Kansas City Chiefs, KC
+Second Team swap: 90, Michael Bellas, SB Runner Up, Detroit Lions, DET
+Player swap: 89, Casey McGonigle, AJ Brown, A.J. Brown
+First Team swap: 90, Casey McGonigle, SB Champ, Ravens, BAL
+Second Team swap: 90, Casey McGonigle, SB Champ, Ravens, BAL
+First Team swap: 90, Casey McGonigle, SB Runner Up, Eagles, PHI
+Second Team swap: 90, Casey McGonigle, SB Runner Up, Eagles, PHI
+First Team swap: 90, Kaitlin Shawhan, D1, Eagles, PHI
+Second Team swap: 90, Kaitlin Shawhan, D1, Eagles, PHI
+First Team swap: 90, Kaitlin Shawhan, D2, Ravens, BAL
+Second Team swap: 90, Kaitlin Shawhan, D2, Ravens, BAL
+First Team swap: 90, Kaitlin Shawhan, SB Champ, Lions, DET
+Second Team swap: 90, Kaitlin Shawhan, SB Champ, Lions, DET
+First Team swap: 90, Kaitlin Shawhan, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Kaitlin Shawhan, SB Runner Up, Ravens, BAL
+First Team swap: 90, Mike Caballero, D1, Vikings, MIN
+Second Team swap: 90, Mike Caballero, D1, Vikings, MIN
+First Team swap: 90, Mike Caballero, D2, Chiefs, KC
+Second Team swap: 99, Mike Caballero, D2, Chiefs, KC
+First Team swap: 90, Mike Caballero, SB Champ, Chiefs, KC
+Second Team swap: 99, Mike Caballero, SB Champ, Chiefs, KC
+First Team swap: 90, Mike Caballero, SB Runner Up, Lions, DET
+Second Team swap: 90, Mike Caballero, SB Runner Up, Lions, DET
+First Team swap: 90, Sandra McGonigle, D1, Buffalo, BUF
+First Team swap: 90, Sandra McGonigle, D2, Lions, DET
+Second Team swap: 90, Sandra McGonigle, D2, Lions, DET
+Player swap: 96, Sandra McGonigle, Jamyr Gibbs, Jahmyr Gibbs
+Player swap: 93, Sandra McGonigle, Saquan Barkley, Saquon Barkley
+First Team swap: 90, Sandra McGonigle, SB Champ, Bills, BUF
+Second Team swap: 90, Sandra McGonigle, SB Champ, Bills, BUF
+First Team swap: 90, Sandra McGonigle, SB Runner Up, Lions, DET
+Second Team swap: 90, Sandra McGonigle, SB Runner Up, Lions, DET
+First Team swap: 90, Vinay Ayyala, D1, Philadelphia, PHI
+First Team swap: 90, Vinay Ayyala, D2, Baltimore, BAL
+Player swap: 89, Vinay Ayyala, AJ Brown, A.J. Brown
+Player swap: 92, Vinay Ayyala, Jamhyr Gibbs, Jahmyr Gibbs
+First Team swap: 90, Vinay Ayyala, SB Champ, Philadelphia, PHI
+First Team swap: 90, Vinay Ayyala, SB Runner Up, Baltimore, BAL
+Player swap: 96, Patrick Mcgonigle, Jake Elliot, Jake Elliott
+First Team swap: 90, Patrick Mcgonigle, D1, Kansas City, KC
+Second Team swap: 99, Patrick Mcgonigle, D1, Kansas City, KC
+First Team swap: 90, Patrick Mcgonigle, D2, Philadelphia, PHI
+Player swap: 93, Patrick Mcgonigle, Saquan barkley, Saquon Barkley
+Player swap: 83, Patrick Mcgonigle, Derek Henry, Derrick Henry
+Player swap: 96, Patrick Mcgonigle, Jamyr Gibbs, Jahmyr Gibbs
+Player swap: 97, Patrick Mcgonigle, Amon ra st brown, Amon-Ra St. Brown
+Second Team swap: 90, Patrick Mcgonigle, SB Champ, Buffalo bills, BUF
+First Team swap: 92, Patrick Mcgonigle, SB Runner Up, Detriot lions, DET
+Second Team swap: 90, Patrick Mcgonigle, SB Runner Up, Detriot lions, DET
+First Team swap: 90, Steve Wile, D1, Bills, BUF
+Second Team swap: 90, Steve Wile, D1, Bills, BUF
+First Team swap: 90, Steve Wile, D2, Lions, DET
+Second Team swap: 90, Steve Wile, D2, Lions, DET
+Player swap: 91, Steve Wile, Aman-Ra St Brown, Amon-Ra St. Brown
+Player swap: 93, Steve Wile, Saquan Barkley, Saquon Barkley
+First Team swap: 90, Steve Wile, SB Champ, Lions, DET
+Second Team swap: 90, Steve Wile, SB Champ, Lions, DET
+First Team swap: 90, Steve Wile, SB Runner Up, Bills, BUF
+Second Team swap: 90, Steve Wile, SB Runner Up, Bills, BUF
+First Team swap: 90, Andy Duncan, D1, Chargers, LAR
+Second Team swap: 60, Andy Duncan, D1, Chargers, LAR
+First Team swap: 90, Andy Duncan, D2, Baltimore, BAL
+Player swap: 83, Andy Duncan, Jahmyr Giffs, Jahmyr Gibbs
+First Team swap: 90, Andy Duncan, SB Champ, Baltimore, BAL
+First Team swap: 90, Andy Duncan, SB Runner Up, Tampa Bay, BAL
+Second Team swap: 68, Andy Duncan, SB Runner Up, Tampa Bay, BAL
+First Team swap: 90, Charles Hocking, D1, Kansas City, KC
+Second Team swap: 99, Charles Hocking, D1, Kansas City, KC
+First Team swap: 90, Charles Hocking, D2, Buffalo, BUF
+Player swap: 97, Charles Hocking, Amon-ra St Brown, Amon-Ra St. Brown
+Player swap: 89, Charles Hocking, AJ Brown, A.J. Brown
+First Team swap: 90, Charles Hocking, SB Champ, Bills, BUF
+Second Team swap: 90, Charles Hocking, SB Champ, Bills, BUF
+First Team swap: 90, Charles Hocking, SB Runner Up, Lions, DET
+Second Team swap: 90, Charles Hocking, SB Runner Up, Lions, DET
+First Team swap: 90, Ethan Contreras , D1, Philadelphia, PHI
+First Team swap: 90, Ethan Contreras , D2, Baltimore, BAL
+Player swap: 96, Ethan Contreras , Jamyr Gibbs, Jahmyr Gibbs
+Player swap: 94, Ethan Contreras , Amonra St Brown, Amon-Ra St. Brown
+Player swap: 89, Ethan Contreras , AJ Brown, A.J. Brown
+Second Team swap: 90, Ethan Contreras , SB Champ, Detroit Lions, DET
+Second Team swap: 90, Ethan Contreras , SB Runner Up, Baltimore Ravens, BAL
+First Team swap: 90, Jared Jensen, D1, Bills, BUF
+Second Team swap: 90, Jared Jensen, D1, Bills, BUF
+First Team swap: 90, Jared Jensen, D2, Eagles, PHI
+Second Team swap: 90, Jared Jensen, D2, Eagles, PHI
+Player swap: 89, Jared Jensen, AJ Brown, A.J. Brown
+First Team swap: 90, Jared Jensen, SB Champ, Bills, BUF
+Second Team swap: 90, Jared Jensen, SB Champ, Bills, BUF
+First Team swap: 90, Jared Jensen, SB Runner Up, Lions, DET
+Second Team swap: 90, Jared Jensen, SB Runner Up, Lions, DET
+First Team swap: 90, Brad Jensen, D1, Ravens, BAL
+Second Team swap: 90, Brad Jensen, D1, Ravens, BAL
+First Team swap: 90, Brad Jensen, D2, Lions, DET
+Second Team swap: 90, Brad Jensen, D2, Lions, DET
+First Team swap: 90, Brad Jensen, SB Champ, Lions, DET
+Second Team swap: 90, Brad Jensen, SB Champ, Lions, DET
+First Team swap: 90, Brad Jensen, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Brad Jensen, SB Runner Up, Ravens, BAL
+Player swap: 96, William Grant, Jake Elliot, Jake Elliott
+First Team swap: 67, William Grant, D1, Eagles D / ST, PHI
+Second Team swap: 90, William Grant, D1, Eagles D / ST, PHI
+First Team swap: 72, William Grant, D2, Chargers D / ST, LAR
+Second Team swap: 60, William Grant, D2, Chargers D / ST, LAR
+Second Team swap: 90, William Grant, SB Champ, Philadelphia Eagles, PHI
+Second Team swap: 90, William Grant, SB Runner Up, Baltimore Ravens, BAL
+First Team swap: 90, Jack Pietrykowski, D1, Ravens, BAL
+Second Team swap: 90, Jack Pietrykowski, D1, Ravens, BAL
+First Team swap: 90, Jack Pietrykowski, D2, Eagles, PHI
+Second Team swap: 90, Jack Pietrykowski, D2, Eagles, PHI
+First Team swap: 90, Jack Pietrykowski, SB Champ, Lions, DET
+Second Team swap: 90, Jack Pietrykowski, SB Champ, Lions, DET
+First Team swap: 90, Jack Pietrykowski, SB Runner Up, Ravens, BAL
+Second Team swap: 90, Jack Pietrykowski, SB Runner Up, Ravens, BAL
+First Team swap: 90, Mark Presten, D1, Detroit, DET
+First Team swap: 90, Mark Presten, D2, Bills, BUF
+Second Team swap: 90, Mark Presten, D2, Bills, BUF
+Player swap: 90, Mark Presten, Saquon, Saquon Barkley
+Player swap: 90, Mark Presten, Jahmyr, Jahmyr Gibbs
+Player swap: 90, Mark Presten, Amon-ra, Amon-Ra St. Brown
+Player swap: 89, Mark Presten, AJ Brown, A.J. Brown
+Player swap: 90, Mark Presten, LaPorta, Sam LaPorta
+First Team swap: 90, Mark Presten, SB Champ, Detroit, DET
+First Team swap: 90, Mark Presten, SB Runner Up, Bills, BUF
+Second Team swap: 90, Mark Presten, SB Runner Up, Bills, BUF
+Second Team swap: 90, Julius' Team, D1, Buffalo Bills, BUF
+Second Team swap: 90, Julius' Team, D2, Philadelphia Eagles, PHI
+Player swap: 90, Julius' Team, Amon-Ra, Amon-Ra St. Brown
+First Team swap: 90, Julius' Team, SB Champ, Lions, DET
+Second Team swap: 90, Julius' Team, SB Champ, Lions, DET
+First Team swap: 90, Julius' Team, SB Runner Up, Bills, BUF
+Second Team swap: 90, Julius' Team, SB Runner Up, Bills, BUF
+First Team swap: 95, Edward Yevdayev, D1, Philadelphia Eagles Defense, PHI
+Second Team swap: 90, Edward Yevdayev, D1, Philadelphia Eagles Defense, PHI
+First Team swap: 90, Edward Yevdayev, D2, Baltimore Ravens Defense, BAL
+Second Team swap: 90, Edward Yevdayev, D2, Baltimore Ravens Defense, BAL
+Second Team swap: 99, Edward Yevdayev, SB Champ, Kansas City Chiefs, KC
+Second Team swap: 90, Edward Yevdayev, SB Runner Up, Detroit Lions, DET
+First Team swap: 90, Troy nadel, D1, Lions, DET
+Second Team swap: 90, Troy nadel, D1, Lions, DET
+First Team swap: 90, Troy nadel, D2, Bills, BUF
+Second Team swap: 90, Troy nadel, D2, Bills, BUF
+First Team swap: 90, Troy nadel, SB Champ, Lions, DET
+Second Team swap: 90, Troy nadel, SB Champ, Lions, DET
+First Team swap: 90, Troy nadel, SB Runner Up, Bills, BUF
+Second Team swap: 90, Troy nadel, SB Runner Up, Bills, BUF
+Second Team swap: 90, James Daugherty, D1, Buffalo Bills, BUF
+Second Team swap: 90, James Daugherty, D2, Baltimore Ravens, BAL
+First Team swap: 90, James Daugherty, SB Champ, Bills, BUF
+Second Team swap: 90, James Daugherty, SB Champ, Bills, BUF
+First Team swap: 90, James Daugherty, SB Runner Up, Lions, DET
+Second Team swap: 90, James Daugherty, SB Runner Up, Lions, DET
