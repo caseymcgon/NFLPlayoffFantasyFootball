@@ -16,27 +16,27 @@ from lxml import etree
 # Part 2 - Create Webscraping Functions
 
 # A
-def get_scoring_data(input_url):
-    """This function returns all the scoring plays from a given game as a list of strings"""
-    """this format is for the ESPN Gamecast version of games"""
+# def get_scoring_data(input_url):
+#     """This function returns all the scoring plays from a given game as a list of strings"""
+#     """this format is for the ESPN Gamecast version of games"""
 
-    assert type(input_url) == str, "input_url must be a string -- try putting it in quotes!"
+#     assert type(input_url) == str, "input_url must be a string -- try putting it in quotes!"
 
-    url = input_url
-    res = requests.get(url)
-    tree = html.fromstring(res.content)
-    # get the info on scoring players, yardage, playtype, etc.
-    scoring = tree.xpath('//div[@class="headline"]/text()')
-    # get updated home and away scores
-    homescore = list(map(int, tree.xpath('//td[@class="home-score"]/text()')))
-    awayscore = list(map(int, tree.xpath('//td[@class="away-score"]/text()')))
+#     url = input_url
+#     res = requests.get(url)
+#     tree = html.fromstring(res.content)
+#     # get the info on scoring players, yardage, playtype, etc.
+#     scoring = tree.xpath('//div[@class="headline"]/text()')
+#     # get updated home and away scores
+#     homescore = list(map(int, tree.xpath('//td[@class="home-score"]/text()')))
+#     awayscore = list(map(int, tree.xpath('//td[@class="away-score"]/text()')))
 
-    c = tuple(zip(awayscore, homescore))
+#     c = tuple(zip(awayscore, homescore))
 
-    print(c)
-    as_string = [str(i) for i in scoring]
-    with_score = tuple(zip(as_string, c))
-    return with_score
+#     print(c)
+#     as_string = [str(i) for i in scoring]
+#     with_score = tuple(zip(as_string, c))
+#     return with_score
     
 
 

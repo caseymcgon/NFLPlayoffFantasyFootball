@@ -73,10 +73,10 @@ def calculate_points(row):
     - Integer: The calculated points based on the given row of data.
     """
     if row['FG']:
-        return (row['Distance'] // 10) + max(0, row['Distance'] - 55)
-    elif row['TD']:
+        return (row['Distance'] // 10) + max(0, ((row['Distance'] - 55) // 2))
+    elif row['TD'] or row['Def TD']:
         return 5 + (row['Distance'] // 10)
-    elif row['Safety']:
+    elif row['Safety'] or row['Def PAT return']:
         return 2
     else:
         return 0
@@ -173,14 +173,22 @@ def create_game_scoring_dfs_by_week(playoff_round_name_str, season_str = this_po
         matchup = f"{awayteam}@{hometeam}"
 
         raw_scoring_df = pd.DataFrame(game)
+        print(f"COLUMNS: {raw_scoring_df.columns}")
         raw_scoring_df = raw_scoring_df[["Team", "PlayDescription"]]
 
         # Extract the key values from the PlayDescription
-        raw_scoring_df['Distance'] = raw_scoring_df['PlayDescription'].str.extract(distance_pattern, expand=False).astype(int)
+        print(f"PlayDescription: {raw_scoring_df['PlayDescription'].values}")
+        raw_scoring_df['Distance'] = (raw_scoring_df['PlayDescription']
+                                        .str.extract(distance_pattern, expand=True)  # Extract numbers
+                                        .bfill(axis=1)[0]  # Backfill to handle two possible capture groups
+                                        .fillna(0)  # Replace NaN with -1 for missing distances
+                                        .astype(int)  # Convert to integer
+                                    )
         raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
         raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
         raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|kicked off|punted')
         raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
+        raw_scoring_df['Def PAT return'] = raw_scoring_df['PlayDescription'].str.contains('returned PAT')
 
         raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
 
@@ -195,7 +203,7 @@ def create_game_scoring_dfs_by_week(playoff_round_name_str, season_str = this_po
         matchup_pats_dict = pat_data.get(matchup, {})
         raw_scoring_df = add_pat_to_scoring_df(raw_scoring_df, matchup_pats_dict)
 
-        raw_scoring_df = raw_scoring_df[["Points", "Player1", "Player2", "Team", "PlayDescription",  "Distance", "TD", "FG", "Def TD", "Safety"]]
+        raw_scoring_df = raw_scoring_df[["Points", "Player1", "Player2", "Team", "PlayDescription",  "Distance", "TD", "FG", "Def TD", 'Def PAT return', "Safety"]]
 
         scoring_dfs[matchup] = raw_scoring_df
     return scoring_dfs

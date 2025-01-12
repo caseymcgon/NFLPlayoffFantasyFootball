@@ -1,1 +1,16 @@
-{"BAL": "Baltimore Ravens", "BUF": "Buffalo Bills", "CLE": "Cleveland Browns", "DAL": "Dallas Cowboys", "DET": "Detroit Lions", "GB": "Green Bay Packers", "HOU": "Houston Texans", "KC": "Kansas City Chiefs", "LAR": "Los Angeles Rams", "MIA": "Miami Dolphins", "PHI": "Philadelphia Eagles", "PIT": "Pittsburgh Steelers", "SF": "San Francisco 49ers", "TB": "Tampa Bay Buccaneers"}
+{
+    "BAL": "Baltimore Ravens",
+    "BUF": "Buffalo Bills",
+    "DEN": "Denver Broncos",
+    "DET": "Detroit Lions",
+    "GB": "Green Bay Packers",
+    "HOU": "Houston Texans",
+    "KC": "Kansas City Chiefs",
+    "LAC": "Los Angeles Chargers",
+    "LAR": "Los Angeles Rams",
+    "MIN": "Minnesota Vikings",
+    "PHI": "Philadelphia Eagles",
+    "PIT": "Pittsburgh Steelers",
+    "TB": "Tampa Bay Buccaneers",
+    "WAS": "Washington Commanders"
+}

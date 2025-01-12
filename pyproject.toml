@@ -6,7 +6,7 @@ authors = ["Casey McGonigle <cmcgon@berkeley.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.10,>=3.13"
 streamlit = "^1.41.0"
 numpy = "^2.2.1"
 pandas = "^2.2.3"
