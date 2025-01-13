@@ -6,7 +6,7 @@ authors = ["Casey McGonigle <cmcgon@berkeley.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10,>=3.13"
+python = ">=3.10,<=3.12"
 streamlit = "^1.41.0"
 numpy = "^2.2.1"
 pandas = "^2.2.3"
@@ -21,8 +21,10 @@ beautifulsoup4 = "^4.12.3"
 lxml = "^5.3.0"
 thefuzz = "^0.22.1"
 regex = "^2024.11.6"
+poetry = "^2.0.1"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+package-mode = false
