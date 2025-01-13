@@ -95,7 +95,11 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 - Add testing of API functions & handling of odd names
 
 ### How To Run using Poetry
-`source /Users/caseymcgon/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-9F4Bylxz-py3.13/bin/activate`
+
+1. Set up a pyenv using python 3.12 (as of Jan 13, 2025, streamlit doesn't accept python > 3.12)'
+2. run `pyenv local 3.12.0` so that pyenv is using 3.12 in this directory
+3. 1=`poetry env use /Users/caseymcgon/.pyenv/versions/3.12.0/bin/python` where that path is the output of pyenv which python
+`source /Users/caseymcgon/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-9F4Bylxz-py3.12/bin/activate`
 `streamlit run Playoff_Fantasy_Overview.py`
 
 ### How to Deploy using Poetry
