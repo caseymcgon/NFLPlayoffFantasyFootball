@@ -6,7 +6,7 @@
             "buy_in": "$10",
             "starting_NFC": ["DET", "PHI", "LAR", "TB", "MIN", "WAS", "GB"],
             "starting_AFC": ["KC", "BUF", "BAL", "HOU", "PIT", "LAC", "DEN"],
-            "alive_NFC": ["DET", "PHI", "LAR", "TB", "MIN", "WAS", "GB"],
+            "alive_NFC": ["DET", "PHI", "LAR", "MIN", "WAS"],
             "alive_AFC": ["KC", "BUF", "BAL", "HOU"],
             "week_info": {"Wild Card": {"week_num": 1, "start_date": "Jan 11, 2025"},
                         "Divisional": {"week_num": 2, "start_date": "Jan 18, 2025"},
