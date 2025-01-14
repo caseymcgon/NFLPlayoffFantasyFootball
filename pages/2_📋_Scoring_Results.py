@@ -59,7 +59,7 @@ def main():
 
     ## Display Total Scoring Table at top of page
     with total_scoring_placeholder.container():
-        st.write("Please note: PATs should be input by EOD Monday")
+        st.write("PATs from Wild Card Weekend are updated")
         st.markdown(f"""
 
             # Players Total Scoring

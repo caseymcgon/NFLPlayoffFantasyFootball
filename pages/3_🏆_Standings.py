@@ -98,7 +98,7 @@ def main():
                                                     .sort_values(by = "Points", ascending = False)
                                                     .reset_index(drop = True)
                                 )
-        st.write("Please note: PATs should be input by EOD Monday")
+        st.write("PATs from Wild Card weekend are updated")
         st.markdown("""# Standings 
         
                     """)
