@@ -36,6 +36,7 @@ with open('yearly_settings.json', 'r') as yearly_settings:
 
     if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
         year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+        all_teams_list = year_settings.get("starting_NFC") + year_settings.get("starting_AFC")
         alive_teams_list = year_settings.get("alive_AFC") + year_settings.get("alive_NFC")
         week_info_dict = year_settings.get("week_info", "No week info found")
     else:
@@ -141,10 +142,25 @@ def is_player_alive(player_name, all_players_dict = all_players_meta_dict, alive
     else:
         return False
     
+def get_player_team(player_name, all_players_dict = all_players_meta_dict, all_teams_list = all_teams_list):
+    if player_name not in all_players_dict.keys():
+        if player_name in all_teams_list:  
+            return player_name
+        else:
+            return "NA"
+    return all_players_dict.get(player_name).get("Team")
+    
 def count_num_owners(player_name, full_rosters_dict = alphabetized_rosters_dict):
     ## full_rosters_dict should be formatted like {GM1: {posA: playerA, posB: playerB...}, GM2: {posA: playerA...}}
     return sum(player_name in player for roster in full_rosters_dict.values() for player in roster.values())
 
+def get_all_owned_players(full_rosters_dict = alphabetized_rosters_dict):
+    all_players_list = []
+    for team_dict in full_rosters_dict.values():
+        for pos, player in team_dict.items():
+            if "QB" in pos or "K" in pos or "D" in pos or "P" in pos:
+                all_players_list.append(player)
+    return list(set(all_players_list))
 
 #########################################################################
 ######### CREATE SCORING DATAFRAMES FOR EACH WEEK FROM API ##############
@@ -227,10 +243,16 @@ def create_player_total_scoring_df(scoring_dfs, total_scoring_dict = {}, is_play
                                                         orient = 'index')
                                                         .reset_index(drop = False)
                                                         .rename(columns = {'index': "Players", 0: "Points"})
-                                                        .sort_values(by = "Points", ascending = False)
-                                                        .reset_index(drop = True)
                                                     )
     
+    all_owned_players = get_all_owned_players()
+    for owned_player in all_owned_players:
+        if owned_player not in players_total_scoring_df['Players'].values:
+            players_total_scoring_df = pd.concat([players_total_scoring_df, pd.DataFrame([{'Players': owned_player, 'Points': 0}])], ignore_index=True)
+    
+    players_total_scoring_df = players_total_scoring_df.sort_values(by = "Points", ascending = False).reset_index(drop = True)
+
+    players_total_scoring_df["Team"] = players_total_scoring_df["Players"].apply(get_player_team)
     players_total_scoring_df["Alive?"] = players_total_scoring_df["Players"].apply(lambda x: "✅" if is_player_alive_helper(x) else "❌")
     players_total_scoring_df['# Owners'] = players_total_scoring_df['Players'].apply(count_num_owners)
     return players_total_scoring_df, total_scoring_dict
