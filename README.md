@@ -61,6 +61,8 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 - Q: How to split teams that won from those that lost, automatically, each week (maybe also using sportsdata.io?) & remove the losers from the "still alive" teams"
 
+    - add-on: make the alive / not alive update automatically without needing to reboot the app
+
 - color players red if dead throughout
 
 - Add position & hover to see the owners (idk if that's possible)

@@ -11,7 +11,7 @@
                 "Wil Lutz": "1 1pt PAT",
                 "Tyler Bass": "2 1pt PAT", 
                 "Josh Allen": "1 2pt PAT",
-                " Keon Coleman": "1 2pt PAT"
+                "Keon Coleman": "1 2pt PAT"
         },
         "GB@PHI": {
                 "Jake Elliott": "1 1pt PAT",
@@ -23,5 +23,22 @@
         },
         "MIN@LAR": {
                 "Joshua Karty": "3 1pt PAT"
+        },
+        "HOU@KC": {
+               "Harrison Butker": "2 1pt PAT" 
+        },
+        "WAS@DET": {
+                "Jake Bates": "4 1pt PAT",
+                "Zane Gonzalez": "6 1pt PAT"
+        },
+        "LAR@PHI":
+        {
+                "Jake Elliott": "1 1pt PAT",
+                "Joshua Karty": "2 1pt PAT"
+        },
+        "BAL@BUF":
+        {
+                "Tyler Bass": "3 1pt PAT",
+                "Justin Tucker": "1 1pt PAT"
         }
 }

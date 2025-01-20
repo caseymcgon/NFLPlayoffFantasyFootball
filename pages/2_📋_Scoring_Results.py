@@ -59,7 +59,7 @@ def main():
 
     ## Display Total Scoring Table at top of page
     with total_scoring_placeholder.container():
-        st.write("PATs from Wild Card Weekend are updated")
+        st.write("PATs from Divisional Round are updated")
         st.markdown(f"""
 
             # Players Total Scoring
