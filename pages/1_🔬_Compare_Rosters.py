@@ -2,12 +2,14 @@
 
 def show_rosters():
     import streamlit as st
+    from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode
     import os
     import json
     import pandas as pd
+    from collections import Counter
 
     import Playoff_Fantasy_Overview
-    from utils import roster_manager, datetime_utils
+    from utils import roster_manager, datetime_utils, scoring_utils
 
     st.set_page_config(
             page_title=" Roster Comparison", 
@@ -52,13 +54,46 @@ def show_rosters():
             with open(json_file, 'r') as f:
                 full_rosters_dict = json.load(f)
 
+
         full_rosters_df = pd.DataFrame.from_dict(full_rosters_dict, orient = 'index')\
                                         .rename(columns = {"pos": "SB Total Points"})
 
+        ## get count of each player
+        all_players_list = []
+        for team_dict in full_rosters_dict.values():
+            for pos, player in team_dict.items():
+                if "QB" in pos or "K" in pos or "D" in pos or "P" in pos:
+                    all_players_list.append(player)
+        # print(Counter(all_players_list))
+        player_counts = Counter(all_players_list)
+        player_counts_df = pd.DataFrame(player_counts.items(), columns=['Player', '# Owners'])\
+                                .sort_values(by = '# Owners', ascending = False)\
+                                .reset_index(drop = True)
+        player_counts_df["Team"] = player_counts_df["Player"].apply(scoring_utils.get_player_team)
+        player_counts_df["Alive?"] = player_counts_df["Player"].apply(lambda x: "✅" if scoring_utils.is_player_alive(x) else "❌")
+        st.markdown("## Player Counts")
+        
+        # Create GridOptionsBuilder to customize grid options
+        gob = GridOptionsBuilder.from_dataframe(player_counts_df)
+        for column in player_counts_df.columns:
+            gob.configure_column(column, filter=True)
+        gridOptions = gob.build()
+        AgGrid(player_counts_df, gridOptions=gridOptions, update_mode=GridUpdateMode.MODEL_CHANGED)
+
         st.markdown("## All Submitted Rosters")
-        st.dataframe(full_rosters_df, use_container_width = False, height = len(full_rosters_dict)*37)
+        full_rosters_df = full_rosters_df.reset_index(drop = False).rename(columns = {"index": "GM"})
+        # Create GridOptionsBuilder to customize grid options
+        gob = GridOptionsBuilder.from_dataframe(full_rosters_df)
+        for column in full_rosters_df.columns:
+            gob.configure_column(column, filter=True)
+        gridOptions = gob.build()
+        AgGrid(full_rosters_df, gridOptions=gridOptions, update_mode=GridUpdateMode.MODEL_CHANGED)
+
+        # st.dataframe(full_rosters_df, use_container_width = False, height = len(full_rosters_dict)*37)
         tip_expander = st.expander("free tip")
-        tip_expander.markdown(f"use the search button (🔍) in the top right (or click on the table & hit `⌘+F` or `Ctrl+F`) to quickly see which people drafted any player")   
+        tip_expander.markdown(f"use the search button (🔍) in the top right (or click on the table & hit `⌘+F` or `Ctrl+F`) to quickly see which people drafted any player")  
+
+
         
         
         # st.markdown("""
