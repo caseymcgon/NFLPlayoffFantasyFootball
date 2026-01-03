@@ -18,8 +18,9 @@ def get_all_players(teams: List[str]):
     sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
 
     all_fantasy_players = {}
+
     for team in teams:
-        team_roster = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/Players/{team}?key={sportsdata_api_key}')
+        team_roster = get_team_roster(team)
 
         for player in team_roster:
             if player.get("Position") in ["QB", "WR", "RB", "RB", "FB", "TE", "K"]:
@@ -30,6 +31,13 @@ def get_all_players(teams: List[str]):
                         "PlayerID": player.get("PlayerID")
                 }
     return all_fantasy_players
+
+def get_team_roster(team: str):
+    sportsdata_api_key = st.secrets["sportsdata"]["api_key"]
+
+    team_roster = access_sportsdata_api(f'https://api.sportsdata.io/v3/nfl/scores/json/Players/{team}?key={sportsdata_api_key}')
+
+    return team_roster
 
 def get_all_teams_names(teams: List[str]):
 
@@ -125,8 +133,8 @@ if __name__ == '__main__':
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
 
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         afc_all_teams = year_settings.get("starting_AFC")
         nfc_all_teams = year_settings.get("starting_NFC")
 

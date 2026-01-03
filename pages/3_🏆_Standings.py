@@ -15,8 +15,8 @@ def main():
         settings = json.load(yearly_settings)
 
     # Access the selected year's settings
-    if Playoff_Fantasy_Overview.selected_year in settings.get('settings', {}):
-        year_settings = settings['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in settings.get('settings', {}):
+        year_settings = settings['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 

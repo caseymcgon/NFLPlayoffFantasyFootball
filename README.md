@@ -100,21 +100,41 @@ I also use yearly_settings.json to store key dates & info for each year. Those w
 
 1. Set up a pyenv using python 3.12 (as of Jan 13, 2025, streamlit doesn't accept python > 3.12)'
 2. run `pyenv local 3.12.0` so that pyenv is using 3.12 in this directory
-3. 1=`poetry env use /Users/caseymcgon/.pyenv/versions/3.12.0/bin/python` where that path is the output of pyenv which python
-`source /Users/caseymcgon/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-9F4Bylxz-py3.12/bin/activate`
-`streamlit run Playoff_Fantasy_Overview.py`
+3. `poetry env use /Users/caseymcgon/.pyenv/versions/3.12.0/bin/python` where that path is the output of `pyenv which python`
+
+    `source /Users/caseymcgon/Library/Caches/pypoetry/virtualenvs/nflplayofffantasyfootball-9F4Bylxz-py3.12/bin/activate`
+
+    `streamlit run Playoff_Fantasy_Overview.py`
 
 ### How to Deploy using Poetry
 streamlit prefers a requirements.txt so run `poetry export -f requirements.txt --output requirements.txt`
 
 
-##### Yearly ToDos:
+#### Yearly ToDos:
 
-- Read through the full README to understand the structure / refresh on changes I made last year
-- Update the selected_year in Playoff_Fantasy.py
-- Update the settings for the new selected_year in yearly_settings.py
-- Copy last year's roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
-- Flip Roster Input page & Compare roster page (just swap the 1 and the 4 preceding their names in the pages directory)
+1. Read through the full README to understand the structure / refresh on changes I made last year
+2. Update the SELECTED_YEAR in Playoff_Fantasy_Overview.py
+3. Update the settings for the new SELECTED_YEAR in yearly_settings.py
+4. Copy last year's Google sheet roster over to a new google sheet (using my 11 email). Clear the team info & share it with the Google Service account associated w/ my 11 email
+5. Flip Roster Input page & Compare roster page (just swap the 1 and the 4 preceding their names in the pages directory)
+6. Set up the sportsdata.io API key again... (https://sportsdata.io/free-trial). You want to have access to each of the Competition, Events & Player Feeds
+    - Put this API key in .streamlit/secrets.toml
+##### Once The Playoffs are Set
+6. update `all_playoff_teams.json` to this year's Playoff Field
+7. the following files should be cleaned up to just be {}
+    - `all_players.json`
+    - `full_alphabetized_rosters.json`
+    - `pats_temp.json`
+    - `total_scoring.json`
+8. the following file should be cleaned up to be fully empty
+    - name_cleaning.txt
+9. Run `python3 -m utils.sportsdata_interface` to set up the NFL roster info. This will populate
+    - `all_players.json`
+    
+
+
+
+- (once the playoff matchups are set) Run `python3 -m utils.sportsdata_interface` to set up the NFL roster info
 - (once games start) Run `python3 utils/roster_manager.py` to set up the cleaned rosters (once games start)
     --> Make sure to check for any incorrect cleanings in the `name_cleaning.txt` file
 
@@ -149,3 +169,26 @@ streamlit prefers a requirements.txt so run `poetry export -f requirements.txt -
 - move jsons (except yearly_settings.json) into a json_storage directory
 
 - revisit all variable names (good opportunity to do this: when I'm making the 'data flow' section in the README)
+
+
+##### 2026 Notes
+
+- started update at 11:45am 1/3/26
+
+- Can clean up 'how to use poetry' section + 
+
+- should document how to handle streamlit secrets
+
+- should document how to set up free trail with sportsdata.io (https://sportsdata.io/free-trial)
+
+- In the future, I may want to consider using (https://github.com/nflverse/nflreadpy), which has updates 3x per day on gamedays
+
+- I `st.write("PATs from Super Bowl are updated")` in 2 places. I should clean this up / not hard-code this word
+
+#### Challenges
+Running into the following error:
+File "/Users/caseymcgon/code/NFLPlayoffFantasyFootball/utils/sportsdata_interface.py", line 84, in get_all_started_ScoreIDs_from_week
+    if score_dict.get("HasStarted"):
+       ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+

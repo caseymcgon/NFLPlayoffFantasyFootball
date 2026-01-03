@@ -1,14 +1,14 @@
 ## WC_scrape.py
 # from pages.scoring_results import *
 
-import pandas as pd
-import streamlit as st
-import re
-import math
+# import pandas as pd
+# import streamlit as st
+# import re
+# import math
 
-import requests
-from lxml import html
-from lxml import etree
+# import requests
+# from lxml import html
+# from lxml import etree
 
 
 

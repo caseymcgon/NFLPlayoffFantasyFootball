@@ -21,7 +21,7 @@ import sportsdata_interface
 
 def access_sheet_in_drive(roster_google_sheet_name, worksheet_number = 0):
     """Connect to Google sheets & get access to the sheet with name matching 
-            yearly_setting[Playoff_Fantasy_Overview.selected_year][roster_google_sheet_name]"""
+            yearly_setting[Playoff_Fantasy_Overview.SELECTED_YEAR][roster_google_sheet_name]"""
 
     # CONNECT TO GOOGLE SHEETS (where I store the roster info)
     # credit: https://www.codeforests.com/2020/11/22/gspread-read-write-google-sheet/
@@ -42,8 +42,8 @@ def write_all_players_to_json_file():
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
 
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         afc_all_teams = year_settings.get("starting_AFC")
         nfc_all_teams = year_settings.get("starting_NFC")
 
@@ -61,8 +61,8 @@ def write_team_names_to_json_file():
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
 
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         afc_all_teams = year_settings.get("starting_AFC")
         nfc_all_teams = year_settings.get("starting_NFC")
 
@@ -215,8 +215,8 @@ if __name__ == '__main__':
     with open('yearly_settings.json', 'r') as yearly_settings:
         config_data = json.load(yearly_settings)
 
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
     ## Rewrite the all_players file for this year

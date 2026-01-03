@@ -17,8 +17,8 @@ def make_form():
         rules = file.read()
         
     # Access the selected year's settings
-    if Playoff_Fantasy_Overview.selected_year in settings.get('settings', {}):
-        year_settings = settings['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in settings.get('settings', {}):
+        year_settings = settings['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get('roster_google_sheet_name')
         buy_in = year_settings.get('buy_in')
@@ -29,7 +29,7 @@ def make_form():
     diff, before_deadline_bool_top = datetime_utils.compute_time_till_deadline(start_date_deadline_utc_top)
 
     if not before_deadline_bool_top:
-        st.markdown(f"# :red[No longer Accepting Inputs ({Playoff_Fantasy_Overview.selected_year} Wild Card weekend has kicked off)]")
+        st.markdown(f"# :red[No longer Accepting Inputs ({Playoff_Fantasy_Overview.SELECTED_YEAR} Wild Card weekend has kicked off)]")
 
     else:
 

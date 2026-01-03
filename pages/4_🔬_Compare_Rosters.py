@@ -21,8 +21,8 @@ def show_rosters():
         settings = json.load(yearly_settings)
 
     # Access the selected year's settings
-    if Playoff_Fantasy_Overview.selected_year in settings.get('settings', {}):
-        year_settings = settings['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in settings.get('settings', {}):
+        year_settings = settings['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         start_date_deadline_str = year_settings.get('start_date_deadline_pst')
         roster_google_sheet_name = year_settings.get("roster_google_sheet_name")
 
@@ -31,7 +31,7 @@ def show_rosters():
 
 
     if before_deadline_bool:
-        st.write("Coming soon...after Kickoff on Saturday")
+        st.write(f"Coming soon...after Kickoff on Saturday -- {diff}")
     else: ## Show Roster DFs
 
         # Path to the JSON file
