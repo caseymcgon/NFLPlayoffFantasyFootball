@@ -130,7 +130,7 @@ streamlit prefers a requirements.txt so run `poetry export -f requirements.txt -
     - name_cleaning.txt
 9. Run `python3 -m utils.sportsdata_interface` to set up the NFL roster info. This will populate
     - `all_players.json`
-    
+
 
 
 
@@ -173,13 +173,9 @@ streamlit prefers a requirements.txt so run `poetry export -f requirements.txt -
 
 ##### 2026 Notes
 
-- started update at 11:45am 1/3/26
+- started update at 11:45am 1/3/26 -- ready to go by 3pm. And I was going kinda slow on the plane. So expect 2-3 hours needed to spin up each year from now on
 
 - Can clean up 'how to use poetry' section + 
-
-- should document how to handle streamlit secrets
-
-- should document how to set up free trail with sportsdata.io (https://sportsdata.io/free-trial)
 
 - In the future, I may want to consider using (https://github.com/nflverse/nflreadpy), which has updates 3x per day on gamedays
 

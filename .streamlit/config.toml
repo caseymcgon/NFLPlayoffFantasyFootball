@@ -2,8 +2,8 @@
 gatherUsageStats = false
 
 [theme]
-
-backgroundColor = "#f5cccb"           # blushy off-white
-secondaryBackgroundColor = "#f2a4a2"  # cards
-textColor = "#1F2937"                 # charcoal
+primaryColor = "#F05654"
+backgroundColor = "#0F172A"
+secondaryBackgroundColor = "#111827"
+textColor = "#F8FAFC"
 font = "sans serif"
