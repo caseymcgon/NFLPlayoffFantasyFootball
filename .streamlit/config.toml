@@ -1,3 +1,5 @@
+## See this page for options: https://docs.streamlit.io/develop/api-reference/configuration/config.toml#theme
+
 [browser]
 gatherUsageStats = false
 
@@ -14,3 +16,4 @@ dataframeHeaderBackgroundColor = "18233d" ## Borders
 
 font = "sans serif"
 linkColor = "#f25783"
+
