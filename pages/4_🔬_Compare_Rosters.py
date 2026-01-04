@@ -80,6 +80,8 @@ def show_rosters():
         gridOptions = gob.build()
         AgGrid(player_counts_df, gridOptions=gridOptions, update_mode=GridUpdateMode.MODEL_CHANGED)
 
+        "---"
+
         st.markdown("## All Submitted Rosters")
         full_rosters_df = full_rosters_df.reset_index(drop = False).rename(columns = {"index": "GM"})
         # Create GridOptionsBuilder to customize grid options

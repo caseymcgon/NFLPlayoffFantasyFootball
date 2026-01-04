@@ -108,6 +108,8 @@ def main():
                                 height = len(standings_df)*37, 
                                 width = len(standings_df.columns) * 150 
                 )
+        standings_expander.markdown("""## \n \n """)
+        
 
         st.markdown("""
                     ---
