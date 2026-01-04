@@ -1,8 +1,8 @@
 ## Playoff_Fantasy.py -- the main / landing page for the app
 
-selected_year = '2025' ## key to access values from yearly_settings.json
+SELECTED_YEAR = '2026' ## key to access values from yearly_settings.json
 
-def show_league_info(selected_year):
+def show_league_info(current_year):
     import streamlit as st
     import json
     import datetime as dt
@@ -22,11 +22,11 @@ def show_league_info(selected_year):
     with open('rules.md', 'r') as file:
         rules = file.read()
 
-    st.write(f"# **{selected_year} McGonigle Playoff Fantasy Football**")
+    st.write(f"# **{current_year} McGonigle Playoff Fantasy Football**")
 
     # Access the selected year's settings
-    if selected_year in settings.get('settings', {}):
-        year_settings = settings['settings'][selected_year]
+    if current_year in settings.get('settings', {}):
+        year_settings = settings['settings'][current_year]
         start_date_deadline = year_settings.get('start_date_deadline_pst')
         buy_in = year_settings.get('buy_in')
 
@@ -41,7 +41,7 @@ def show_league_info(selected_year):
 
         st.markdown(rules, unsafe_allow_html=True)
 
-        datetime_utils.display_deadline_message(start_date_deadline, selected_year)
+        datetime_utils.display_deadline_message(start_date_deadline, current_year)
 
         st.markdown(
             f"""
@@ -62,4 +62,4 @@ def show_league_info(selected_year):
 
 
 if __name__ == "__main__":
-    show_league_info(selected_year)
+    show_league_info(SELECTED_YEAR)

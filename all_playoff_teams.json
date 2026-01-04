@@ -1,16 +1,16 @@
 {
     "BAL": "Baltimore Ravens",
     "BUF": "Buffalo Bills",
+    "CAR": "Carolina Panthers",
+    "CHI": "Chicago Bears",
     "DEN": "Denver Broncos",
-    "DET": "Detroit Lions",
     "GB": "Green Bay Packers",
     "HOU": "Houston Texans",
-    "KC": "Kansas City Chiefs",
+    "JAX": "Jacksonville Jaguars",
     "LAC": "Los Angeles Chargers",
     "LAR": "Los Angeles Rams",
-    "MIN": "Minnesota Vikings",
+    "NE": "New England Patriots",
     "PHI": "Philadelphia Eagles",
-    "PIT": "Pittsburgh Steelers",
-    "TB": "Tampa Bay Buccaneers",
-    "WAS": "Washington Commanders"
+    "SEA": "Seattle Seahawks",
+    "SF": "San Francisco 49ers"
 }

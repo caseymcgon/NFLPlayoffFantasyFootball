@@ -22,7 +22,8 @@ def main():
         utc_date = datetime_utils.get_utc_datetime(start_date_str, strp_format = "%b %d, %Y")
         time_till_week_starts, before_week_started_bool = datetime_utils.compute_time_till_deadline(utc_date)
         if week_str == 'Wild Card' and before_week_started_bool:
-
+            print(f"start date: {start_date_str}")
+            print(f"utc_date: {utc_date}")
             # Extract days, hours, and minutes from time_till_week_starts
             # total_seconds = int(time_till_week_starts.total_seconds())
             # days, remainder = divmod(total_seconds, 86400)  # Seconds in a day

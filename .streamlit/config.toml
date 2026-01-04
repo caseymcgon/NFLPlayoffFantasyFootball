@@ -1,2 +1,19 @@
+## See this page for options: https://docs.streamlit.io/develop/api-reference/configuration/config.toml#theme
+
 [browser]
 gatherUsageStats = false
+
+[theme]
+primaryColor = "#F05654" ## only used on buttons
+backgroundColor = "#0F172A" ## Page Background
+secondaryBackgroundColor = "#18233d" ## Side bar / Text Boxes
+textColor = "#F8FAFC" ## Text
+borderColor = "#f25783" ## Borders
+showWidgetBorder = false
+sidebar.backgroundColor = "#18233d" ## Side bar / Text Boxes
+dataframeBorderColor = "#0F172A" ## Page Background
+dataframeHeaderBackgroundColor = "18233d" ## Borders
+
+font = "sans serif"
+linkColor = "#f25783"
+

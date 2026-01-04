@@ -1,5 +1,19 @@
 {
     "settings": {
+        "2026": {
+            "start_date_deadline_pst": "Jan 10, 2026 1:30 PM",
+            "roster_google_sheet_name": "2026_Rosters",
+            "buy_in": "$10",
+            "starting_NFC": ["SF", "CHI", "PHI", "CAR", "SEA", "LAR", "GB"],
+            "starting_AFC": ["DEN", "NE", "JAX", "BAL", "HOU", "BUF", "LAC"],
+            "alive_NFC": ["SF", "CHI", "PHI", "CAR", "SEA", "LAR", "GB"],
+            "alive_AFC": ["DEN", "NE", "JAX", "BAL", "HOU", "BUF", "LAC"],
+            "week_info": {"Wild Card": {"week_num": 1, "start_date": "Jan 10, 2026"},
+                        "Divisional": {"week_num": 2, "start_date": "Jan 17, 2026"},
+                        "Conference": {"week_num": 3, "start_date": "Jan 25, 2026"},
+                        "Super Bowl": {"week_num": 4, "start_date": "Feb 8, 2026"}
+                    }
+            },
         "2025": {
             "start_date_deadline_pst": "Jan 11, 2025 1:30 PM",
             "roster_google_sheet_name": "2025_Rosters",

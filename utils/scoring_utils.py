@@ -17,7 +17,7 @@ from utils import sportsdata_interface, datetime_utils
 
 
 now_pst = datetime.now(pytz.timezone('US/Pacific'))
-this_postseason_for_API = f'{int(Playoff_Fantasy_Overview.selected_year) - 1}POST' 
+this_postseason_for_API = f'{int(Playoff_Fantasy_Overview.SELECTED_YEAR) - 1}POST' 
 cache_ttl_logic = 3600*24 if now_pst.weekday() < 5 else 3600/4
 
 player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
@@ -34,8 +34,8 @@ with open('all_players.json', 'r') as f:
 with open('yearly_settings.json', 'r') as yearly_settings:
     config_data = json.load(yearly_settings)
 
-    if Playoff_Fantasy_Overview.selected_year in config_data.get('settings', {}):
-        year_settings = config_data['settings'][Playoff_Fantasy_Overview.selected_year]
+    if Playoff_Fantasy_Overview.SELECTED_YEAR in config_data.get('settings', {}):
+        year_settings = config_data['settings'][Playoff_Fantasy_Overview.SELECTED_YEAR]
         all_teams_list = year_settings.get("starting_NFC") + year_settings.get("starting_AFC")
         alive_teams_list = year_settings.get("alive_AFC") + year_settings.get("alive_NFC")
         week_info_dict = year_settings.get("week_info", "No week info found")
