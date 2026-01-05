@@ -409,125 +409,140 @@
         "Team": "JAX",
         "PlayerID": 26463
     },
-    "Zay Flowers": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 23120
+    "Donald Parham Jr.": {
+        "Position": "TE",
+        "Team": "PIT",
+        "PlayerID": 20905
     },
-    "Tyler Huntley": {
+    "Jaheim Bell": {
+        "Position": "TE",
+        "Team": "PIT",
+        "PlayerID": 25104
+    },
+    "Mason Rudolph": {
         "Position": "QB",
-        "Team": "BAL",
-        "PlayerID": 21810
+        "Team": "PIT",
+        "PlayerID": 19850
     },
-    "Rashod Bateman": {
+    "DK Metcalf": {
         "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 22623
+        "Team": "PIT",
+        "PlayerID": 20875
     },
-    "Lamar Jackson": {
+    "Aaron Rodgers": {
         "Position": "QB",
-        "Team": "BAL",
-        "PlayerID": 19781
+        "Team": "PIT",
+        "PlayerID": 2593
     },
-    "DeAndre Hopkins": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 14986
-    },
-    "Cooper Rush": {
-        "Position": "QB",
-        "Team": "BAL",
-        "PlayerID": 19461
-    },
-    "Tylan Wallace": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 22604
-    },
-    "Keith Kirkwood": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 20071
-    },
-    "Derrick Henry": {
-        "Position": "RB",
-        "Team": "BAL",
-        "PlayerID": 17959
-    },
-    "Rasheen Ali": {
-        "Position": "RB",
-        "Team": "BAL",
-        "PlayerID": 25045
-    },
-    "Jonathan Ward": {
-        "Position": "RB",
-        "Team": "BAL",
-        "PlayerID": 21782
-    },
-    "Tyler Loop": {
+    "Chris Boswell": {
         "Position": "K",
-        "Team": "BAL",
-        "PlayerID": 26109
+        "Team": "PIT",
+        "PlayerID": 16191
     },
-    "Keaton Mitchell": {
+    "Roman Wilson": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 25039
+    },
+    "Marquez Valdes-Scantling": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 19976
+    },
+    "Scotty Miller": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 21138
+    },
+    "Kenneth Gainwell": {
         "Position": "RB",
-        "Team": "BAL",
-        "PlayerID": 24214
+        "Team": "PIT",
+        "PlayerID": 22562
     },
-    "Patrick Ricard": {
-        "Position": "FB",
-        "Team": "BAL",
-        "PlayerID": 19209
+    "Ben Skowronek": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 22590
     },
-    "Justice Hill": {
+    "Adam Thielen": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 15534
+    },
+    "Skylar Thompson": {
+        "Position": "QB",
+        "Team": "PIT",
+        "PlayerID": 23477
+    },
+    "Will Howard": {
+        "Position": "QB",
+        "Team": "PIT",
+        "PlayerID": 25884
+    },
+    "Calvin Austin III": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 22566
+    },
+    "Kaleb Johnson": {
         "Position": "RB",
-        "Team": "BAL",
-        "PlayerID": 20802
+        "Team": "PIT",
+        "PlayerID": 26040
     },
-    "Lucas Scott": {
-        "Position": "FB",
-        "Team": "BAL",
-        "PlayerID": 26691
+    "Jaylen Warren": {
+        "Position": "RB",
+        "Team": "PIT",
+        "PlayerID": 23479
     },
-    "Isaiah Likely": {
+    "Lew Nichols": {
+        "Position": "RB",
+        "Team": "PIT",
+        "PlayerID": 24215
+    },
+    "Trey Sermon": {
+        "Position": "RB",
+        "Team": "PIT",
+        "PlayerID": 21801
+    },
+    "Darnell Washington": {
         "Position": "TE",
-        "Team": "BAL",
-        "PlayerID": 23256
+        "Team": "PIT",
+        "PlayerID": 23136
     },
-    "Devontez Walker": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 24978
-    },
-    "Dayton Wade": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 25455
-    },
-    "LaJohntay Wester": {
-        "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 26104
-    },
-    "Scotty Washington": {
+    "Jonnu Smith": {
         "Position": "TE",
-        "Team": "BAL",
-        "PlayerID": 22238
+        "Team": "PIT",
+        "PlayerID": 18990
     },
-    "Cornelius Johnson": {
+    "John Rhys Plumlee": {
         "Position": "WR",
-        "Team": "BAL",
-        "PlayerID": 23146
+        "Team": "PIT",
+        "PlayerID": 25311
     },
-    "Charlie Kolar": {
+    "Connor Heyward": {
         "Position": "TE",
-        "Team": "BAL",
-        "PlayerID": 23135
+        "Team": "PIT",
+        "PlayerID": 23487
     },
-    "Mark Andrews": {
+    "Max Hurleman": {
+        "Position": "RB",
+        "Team": "PIT",
+        "PlayerID": 26679
+    },
+    "Matt Sokol": {
         "Position": "TE",
-        "Team": "BAL",
-        "PlayerID": 19803
+        "Team": "PIT",
+        "PlayerID": 21158
+    },
+    "Pat Freiermuth": {
+        "Position": "TE",
+        "Team": "PIT",
+        "PlayerID": 22507
+    },
+    "Brandon Johnson": {
+        "Position": "WR",
+        "Team": "PIT",
+        "PlayerID": 23763
     },
     "Tank Dell": {
         "Position": "WR",
