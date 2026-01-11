@@ -1,4 +1,9 @@
 {
+    "Marcedes Lewis": {
+        "Position": "TE",
+        "Team": "DEN",
+        "PlayerID": 3061
+    },
     "Evan Engram": {
         "Position": "TE",
         "Team": "DEN",
@@ -133,11 +138,6 @@
         "Position": "WR",
         "Team": "DEN",
         "PlayerID": 24349
-    },
-    "Marcedes Lewis": {
-        "Position": "TE",
-        "Team": "DEN",
-        "PlayerID": 3061
     },
     "Craig Reynolds": {
         "Position": "RB",
@@ -709,6 +709,11 @@
         "Team": "BUF",
         "PlayerID": 22613
     },
+    "Shane Buechele": {
+        "Position": "QB",
+        "Team": "BUF",
+        "PlayerID": 21818
+    },
     "Khalil Shakir": {
         "Position": "WR",
         "Team": "BUF",
@@ -764,6 +769,11 @@
         "Team": "BUF",
         "PlayerID": 20837
     },
+    "Matthew Wright": {
+        "Position": "K",
+        "Team": "BUF",
+        "PlayerID": 21203
+    },
     "Reggie Gilliam": {
         "Position": "FB",
         "Team": "BUF",
@@ -799,10 +809,10 @@
         "Team": "LAC",
         "PlayerID": 19823
     },
-    "Tanner McLachlan": {
-        "Position": "TE",
+    "Luke Grimm": {
+        "Position": "WR",
         "Team": "LAC",
-        "PlayerID": 25014
+        "PlayerID": 26354
     },
     "Quentin Johnston": {
         "Position": "WR",
@@ -1329,11 +1339,6 @@
         "Team": "CAR",
         "PlayerID": 26108
     },
-    "Hunter Renfrow": {
-        "Position": "WR",
-        "Team": "CAR",
-        "PlayerID": 20924
-    },
     "Andy Dalton": {
         "Position": "QB",
         "Team": "CAR",
@@ -1343,11 +1348,6 @@
         "Position": "WR",
         "Team": "CAR",
         "PlayerID": 25982
-    },
-    "Mike White": {
-        "Position": "QB",
-        "Team": "CAR",
-        "PlayerID": 19972
     },
     "Xavier Legette": {
         "Position": "WR",
@@ -1374,31 +1374,6 @@
         "Team": "CAR",
         "PlayerID": 21691
     },
-    "Anthony Tyus III": {
-        "Position": "RB",
-        "Team": "CAR",
-        "PlayerID": 26528
-    },
-    "Montrell Johnson Jr.": {
-        "Position": "RB",
-        "Team": "CAR",
-        "PlayerID": 26088
-    },
-    "Bryce Pierre": {
-        "Position": "TE",
-        "Team": "CAR",
-        "PlayerID": 26475
-    },
-    "Ainias Smith": {
-        "Position": "WR",
-        "Team": "CAR",
-        "PlayerID": 23144
-    },
-    "Ross Dwelley": {
-        "Position": "TE",
-        "Team": "CAR",
-        "PlayerID": 20361
-    },
     "Tommy Tremble": {
         "Position": "TE",
         "Team": "CAR",
@@ -1419,20 +1394,10 @@
         "Team": "CAR",
         "PlayerID": 22524
     },
-    "Ja'Seem Reed": {
-        "Position": "WR",
-        "Team": "CAR",
-        "PlayerID": 26664
-    },
     "Brycen Tremayne": {
         "Position": "WR",
         "Team": "CAR",
         "PlayerID": 24296
-    },
-    "Dan Chisena": {
-        "Position": "WR",
-        "Team": "CAR",
-        "PlayerID": 22345
     },
     "Montorie Foster Jr.": {
         "Position": "WR",
@@ -1689,6 +1654,21 @@
         "Team": "LAR",
         "PlayerID": 25119
     },
+    "Messiah Swinson": {
+        "Position": "TE",
+        "Team": "GB",
+        "PlayerID": 25567
+    },
+    "Julian Hicks": {
+        "Position": "WR",
+        "Team": "GB",
+        "PlayerID": 25652
+    },
+    "Kisean Johnson": {
+        "Position": "WR",
+        "Team": "GB",
+        "PlayerID": 26547
+    },
     "Matthew Golden": {
         "Position": "WR",
         "Team": "GB",
@@ -1698,11 +1678,6 @@
         "Position": "QB",
         "Team": "GB",
         "PlayerID": 23118
-    },
-    "Clayton Tune": {
-        "Position": "QB",
-        "Team": "GB",
-        "PlayerID": 24170
     },
     "Josh Jacobs": {
         "Position": "RB",

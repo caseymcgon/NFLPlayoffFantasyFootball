@@ -1,6 +1,184 @@
-Player swap: 75, Dummy, Robbie Gould, Robbie Ouzts
-Player swap: 97, Dummy, Kaimi Fairbairn, Ka'imi Fairbairn
-Player swap: 72, Dummy, CMC, McCallan Castles
-Player swap: 97, Dummy, Jauaun Jennings, Jauan Jennings
-Player swap: 44, Dummy, Bucky Irving, Ricky White III
-Player swap: 97, Dummy, Treyveyon Henderson, TreVeyon Henderson
+Player swap: 61, Miles Centrella, Dicker the Kicker, Cameron Dicker
+First Team swap: 90, Miles Centrella, D1, Jaguars, JAX
+Second Team swap: 72, Miles Centrella, D1, Jaguars, JAX
+First Team swap: 90, Miles Centrella, D2, Eagles, PHI
+Second Team swap: 90, Miles Centrella, D2, Eagles, PHI
+First Team swap: 90, Miles Centrella, SB Champ, Bills, BUF
+Second Team swap: 90, Miles Centrella, SB Champ, Bills, BUF
+First Team swap: 90, Miles Centrella, SB Runner Up, Rams, SEA
+Second Team swap: 60, Miles Centrella, SB Runner Up, Rams, SEA
+Player swap: 88, Michael Bellas, Andres Borregales, Andy Borregales
+First Team swap: 90, Michael Bellas, D1, Patriots, DEN
+Second Team swap: 68, Michael Bellas, D1, Patriots, DEN
+First Team swap: 90, Michael Bellas, D2, Texans, HOU
+Second Team swap: 90, Michael Bellas, D2, Texans, HOU
+Player swap: 95, Michael Bellas, Travis Etienne, Travis Etienne Jr.
+Player swap: 93, Michael Bellas, Saquan Barkley, Saquon Barkley
+First Team swap: 90, Michael Bellas, SB Champ, Patriots, DEN
+Second Team swap: 68, Michael Bellas, SB Champ, Patriots, DEN
+First Team swap: 90, Michael Bellas, SB Runner Up, Rams, SEA
+Second Team swap: 60, Michael Bellas, SB Runner Up, Rams, SEA
+Player swap: 88, Cole Bamberger, Andres Borregales, Andy Borregales
+Second Team swap: 90, Cole Bamberger, D1, Chicago Bears, CHI
+Second Team swap: 90, Cole Bamberger, D2, Houston Texans, HOU
+Second Team swap: 60, Cole Bamberger, SB Champ, Los Angeles Rams, SEA
+Second Team swap: 90, Cole Bamberger, SB Runner Up, Denver Broncos, DEN
+First Team swap: 90, John McGonigle, D1, Rams, SEA
+Second Team swap: 60, John McGonigle, D1, Rams, SEA
+First Team swap: 90, John McGonigle, D2, Patriots, DEN
+Second Team swap: 68, John McGonigle, D2, Patriots, DEN
+Player swap: 90, John McGonigle, Cody Parkinson, Colby Parkinson
+Player swap: 89, John McGonigle, Trayveon Henderson, TreVeyon Henderson
+First Team swap: 90, John McGonigle, SB Champ, Rams, SEA
+Second Team swap: 60, John McGonigle, SB Champ, Rams, SEA
+First Team swap: 90, John McGonigle, SB Runner Up, Patriots, DEN
+Second Team swap: 68, John McGonigle, SB Runner Up, Patriots, DEN
+Player swap: 90, Skip Tague, CJ Stroud, C.J. Stroud
+First Team swap: 90, Skip Tague, D1, Eagles, PHI
+Second Team swap: 90, Skip Tague, D1, Eagles, PHI
+First Team swap: 90, Skip Tague, D2, Texans, HOU
+Second Team swap: 90, Skip Tague, D2, Texans, HOU
+First Team swap: 90, Skip Tague, SB Champ, Rams, SEA
+Second Team swap: 60, Skip Tague, SB Champ, Rams, SEA
+First Team swap: 90, Skip Tague, SB Runner Up, Texans, HOU
+Second Team swap: 90, Skip Tague, SB Runner Up, Texans, HOU
+Second Team swap: 90, Michael Walker, D1, Seattle Seahawks, SEA
+Second Team swap: 90, Michael Walker, D2, Denver Broncos, DEN
+Player swap: 90, Michael Walker, Puka Nakua, Puka Nacua
+Player swap: 85, Michael Walker, Stephon Driggs, Stefon Diggs
+Player swap: 95, Michael Walker, James Cook III, James Cook
+Player swap: 92, Michael Walker, Davonte Adams, Davante Adams
+Second Team swap: 90, Michael Walker, SB Champ, Seattle Seahawks, SEA
+Second Team swap: 90, Michael Walker, SB Runner Up, Buffalo Bills, BUF
+Player swap: 96, Ben Wemer, Jason Meyers, Jason Myers
+First Team swap: 90, Ben Wemer, D1, Texans, HOU
+Second Team swap: 90, Ben Wemer, D1, Texans, HOU
+First Team swap: 90, Ben Wemer, D2, Seahawks, SEA
+First Team swap: 90, Ben Wemer, SB Champ, Seattle, SEA
+First Team swap: 90, Ben Wemer, SB Runner Up, Broncos, DEN
+Second Team swap: 90, Ben Wemer, SB Runner Up, Broncos, DEN
+Player swap: 96, Charlie Hocking, Matt  Prater, Matt Prater
+First Team swap: 90, Charlie Hocking, D1, Rams, SEA
+Second Team swap: 60, Charlie Hocking, D1, Rams, SEA
+First Team swap: 90, Charlie Hocking, D2, Bills, BUF
+Second Team swap: 90, Charlie Hocking, D2, Bills, BUF
+Player swap: 93, Charlie Hocking, Davantae  Adams, Davante Adams
+Player swap: 90, Charlie Hocking, Puka Nucua, Puka Nacua
+First Team swap: 90, Charlie Hocking, SB Champ, Rams, SEA
+Second Team swap: 60, Charlie Hocking, SB Champ, Rams, SEA
+First Team swap: 90, Charlie Hocking, SB Runner Up, Bills, BUF
+Second Team swap: 90, Charlie Hocking, SB Runner Up, Bills, BUF
+First Team swap: 90, Kaitlin Shawhan, D1, Broncos, DEN
+Second Team swap: 90, Kaitlin Shawhan, D1, Broncos, DEN
+First Team swap: 90, Kaitlin Shawhan, D2, Seahawks, SEA
+Player swap: 95, Kaitlin Shawhan, James Cook III, James Cook
+First Team swap: 90, Kaitlin Shawhan, SB Champ, Patriots, DEN
+Second Team swap: 68, Kaitlin Shawhan, SB Champ, Patriots, DEN
+First Team swap: 90, Kaitlin Shawhan, SB Runner Up, Seahawks, SEA
+First Team swap: 90, Mike Caballero, D1, Seahawks, SEA
+First Team swap: 90, Mike Caballero, D2, Broncos, DEN
+Second Team swap: 90, Mike Caballero, D2, Broncos, DEN
+Player swap: 95, Mike Caballero, James Cook III, James Cook
+First Team swap: 90, Mike Caballero, SB Champ, Rams, SEA
+Second Team swap: 60, Mike Caballero, SB Champ, Rams, SEA
+First Team swap: 90, Mike Caballero, SB Runner Up, Broncos, DEN
+Second Team swap: 90, Mike Caballero, SB Runner Up, Broncos, DEN
+Player swap: 90, Micah Solit, Matt Stafford, Matthew Stafford
+Player swap: 94, Micah Solit, Will Lutz, Wil Lutz
+First Team swap: 90, Micah Solit, D1, Seahawks, SEA
+First Team swap: 90, Micah Solit, D2, Texans, HOU
+Second Team swap: 90, Micah Solit, D2, Texans, HOU
+First Team swap: 90, Micah Solit, SB Champ, Rams, SEA
+Second Team swap: 60, Micah Solit, SB Champ, Rams, SEA
+First Team swap: 90, Micah Solit, SB Runner Up, Bills, BUF
+Second Team swap: 90, Micah Solit, SB Runner Up, Bills, BUF
+First Team swap: 90, Maggie Petersen, D1, Rams, SEA
+Second Team swap: 60, Maggie Petersen, D1, Rams, SEA
+First Team swap: 90, Maggie Petersen, D2, Broncos, DEN
+Second Team swap: 90, Maggie Petersen, D2, Broncos, DEN
+First Team swap: 90, Maggie Petersen, SB Champ, Rams, SEA
+Second Team swap: 60, Maggie Petersen, SB Champ, Rams, SEA
+Player swap: 95, Kelly McGon, Eddy Piñero, Eddy Piñeiro
+Player swap: 90, Kelly McGon, Puka Nakua, Puka Nacua
+First Team swap: 90, Kelly McGon, SB Champ, Patriots, DEN
+Second Team swap: 68, Kelly McGon, SB Champ, Patriots, DEN
+First Team swap: 90, Alison Mayes, D1, Broncos, DEN
+Second Team swap: 90, Alison Mayes, D1, Broncos, DEN
+First Team swap: 90, Alison Mayes, D2, Seattle, SEA
+Player swap: 82, Alison Mayes, AJBrown, A.J. Brown
+Player swap: 90, Alison Mayes, Pika Nacua, Puka Nacua
+First Team swap: 90, Alison Mayes, SB Champ, Seahawks, SEA
+First Team swap: 90, Alison Mayes, SB Runner Up, Buffalo, BUF
+Player swap: 90, Vinay Ayyala, Matt Stafford, Matthew Stafford
+First Team swap: 90, Vinay Ayyala, D1, Philadelphia, PHI
+Second Team swap: 60, Vinay Ayyala, D2, Los Angeles Rams, SEA
+Player swap: 89, Vinay Ayyala, AJ brown, A.J. Brown
+First Team swap: 90, Vinay Ayyala, SB Champ, Philadelphia, PHI
+First Team swap: 90, Vinay Ayyala, SB Runner Up, Denver, DEN
+Player swap: 88, Julius Miller, Andres Borregales, Andy Borregales
+Player swap: 93, Julius Miller, Saqoun Barkley, Saquon Barkley
+First Team swap: 90, Julius Miller, SB Champ, Rams, SEA
+Second Team swap: 60, Julius Miller, SB Champ, Rams, SEA
+First Team swap: 90, Julius Miller, SB Runner Up, Buffalo, BUF
+Player swap: 89, Tim Tague, AJ Brown, A.J. Brown
+Player swap: 86, Andy Duncan, H Mevis, Harrison Mevis
+First Team swap: 90, Andy Duncan, D1, Seattle, SEA
+First Team swap: 86, Andy Duncan, D2, LA Rams, SEA
+Second Team swap: 60, Andy Duncan, D2, LA Rams, SEA
+Player swap: 95, Andy Duncan, Travis Etienne, Travis Etienne Jr.
+Player swap: 92, Andy Duncan, Devante Adams, Davante Adams
+First Team swap: 86, Andy Duncan, SB Champ, L A Rams, SEA
+Second Team swap: 60, Andy Duncan, SB Champ, L A Rams, SEA
+First Team swap: 90, Andy Duncan, SB Runner Up, Jacksonville, JAX
+Second Team swap: 72, Andy Duncan, SB Runner Up, Jacksonville, JAX
+First Team swap: 90, Anna Petersen, D1, Broncos, DEN
+Second Team swap: 90, Anna Petersen, D1, Broncos, DEN
+First Team swap: 90, Anna Petersen, D2, Patriots, DEN
+Second Team swap: 68, Anna Petersen, D2, Patriots, DEN
+First Team swap: 90, Anna Petersen, SB Champ, Broncos, DEN
+Second Team swap: 90, Anna Petersen, SB Champ, Broncos, DEN
+First Team swap: 90, Anna Petersen, SB Runner Up, Seahawks, SEA
+Player swap: 90, Casey McGonigle, Matt Stafford, Matthew Stafford
+Player swap: 90, Casey McGonigle, CJ Stroud, C.J. Stroud
+First Team swap: 90, Casey McGonigle, SB Champ, Rams, SEA
+Second Team swap: 60, Casey McGonigle, SB Champ, Rams, SEA
+First Team swap: 90, Casey McGonigle, SB Runner Up, Texans, HOU
+Second Team swap: 90, Casey McGonigle, SB Runner Up, Texans, HOU
+First Team swap: 90, Caleb Hedin, D1, Broncos, DEN
+Second Team swap: 90, Caleb Hedin, D1, Broncos, DEN
+First Team swap: 90, Caleb Hedin, D2, Seahawks, SEA
+First Team swap: 90, Caleb Hedin, SB Champ, Seahawks, SEA
+First Team swap: 90, Caleb Hedin, SB Runner Up, Rams, SEA
+Second Team swap: 60, Caleb Hedin, SB Runner Up, Rams, SEA
+Player swap: 86, Rick , J Hurts, J.K. Dobbins
+Player swap: 86, Rick , D Mayes, D'Ernest Johnson
+Player swap: 64, Rick , H Butker, Hunter Henry
+Player swap: 86, Rick , J Tucker, J.K. Dobbins
+First Team swap: 90, Rick , D1, Broncos, DEN
+Second Team swap: 90, Rick , D1, Broncos, DEN
+First Team swap: 90, Rick , D2, Seahawks, SEA
+Player swap: 60, Rick , $ Jeffries, Jeremiah Webb
+Player swap: 77, Rick , Kyran W, Kyren Williams
+Player swap: 86, Rick , G Kittle, George Kittle
+Player swap: 82, Rick , P Nacua, Puka Nacua
+Player swap: 86, Rick , N Collins, Nico Collins
+Player swap: 86, Rick , J Cook, J.K. Dobbins
+Player swap: 95, Rick , A Brown, A.J. Brown
+First Team swap: 90, Rick , SB Champ, Seahawks, SEA
+First Team swap: 68, Rick , SB Runner Up, Rama, SEA
+Second Team swap: 60, Rick , SB Runner Up, Rama, SEA
+Player swap: 96, David Griffin, Jake Elliot, Jake Elliott
+Player swap: 57, David Griffin, Borgaeles (pats kicker), Tim Patrick
+First Team swap: 72, David Griffin, D1, Texans Defense, SEA
+First Team swap: 72, David Griffin, D2, Eagles Defense, SEA
+Player swap: 89, David Griffin, AJ Brown, A.J. Brown
+Player swap: 95, David Griffin, Travis Etienne, Travis Etienne Jr.
+First Team swap: 90, David Griffin, SB Champ, Patriots, DEN
+Second Team swap: 68, David Griffin, SB Champ, Patriots, DEN
+First Team swap: 90, David Griffin, SB Runner Up, Eagles, PHI
+Second Team swap: 90, David Griffin, SB Runner Up, Eagles, PHI
+Player swap: 92, Hannah Buchband, Deandre Swift, D'Andre Swift
+First Team swap: 90, Hannah Buchband, SB Champ, Bears, CHI
+Second Team swap: 90, Hannah Buchband, SB Champ, Bears, CHI
+First Team swap: 90, Hannah Buchband, SB Runner Up, Bills, BUF
+Second Team swap: 90, Hannah Buchband, SB Runner Up, Bills, BUF
