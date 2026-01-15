@@ -1,1 +1,27 @@
-{}
+{
+    "LAR@CAR": {
+            "Harrison Mevis": "4 1pt PAT" , 
+            "Ryan Fitzgerald":  "4 1pt PAT"
+    },
+    "GB@CHI": {
+            "Brandon McManus": "3 1pt PAT", 
+            "Cairo Santos": "2 1pt PAT",
+            "Caleb Williams": "1 2pt PAT",
+            "Colston Loveland": "1 2pt PAT"
+    },
+    "SF@PHI": {
+            "Jake Elliott": "1 1pt PAT",
+            "Eddie Pineiro": "2 1pt PAT"
+    },
+    "BUF@JAX": {
+            "Matt Prater": "3 1pt PAT",
+            "Cam Little": "3 1pt PAT"
+    },
+    "LAC@NE": {
+            "Andy Borregales": "1 1pt PAT"
+
+    },
+    "HOU@PIT": {
+            "Ka'imi Fairbairn": "3 1pt PAT"
+    }
+}
