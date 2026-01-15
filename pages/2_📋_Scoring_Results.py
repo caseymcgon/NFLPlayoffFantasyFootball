@@ -7,6 +7,8 @@ def main():
 
     from utils import  scoring_utils, datetime_utils
 
+    import Playoff_Fantasy_Overview
+
     ##########################################################################
     ####### GET SCORING FOR EACH WEEK & POST RESULTS TO STREAMLIT ########
     ##########################################################################
@@ -60,7 +62,7 @@ def main():
 
     ## Display Total Scoring Table at top of page
     with total_scoring_placeholder.container():
-        st.write("PATs from Super Bowl are updated")
+        st.write(Playoff_Fantasy_Overview.PAT_UPDATE_NOTE)
         st.markdown(f"""
 
             # Players Total Scoring

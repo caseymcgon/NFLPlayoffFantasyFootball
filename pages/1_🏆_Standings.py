@@ -98,7 +98,7 @@ def main():
                                                     .sort_values(by = "Points", ascending = False)
                                                     .reset_index(drop = True)
                                 )
-        st.write("PATs from Super Bowl are updated")
+        st.write(Playoff_Fantasy_Overview.PAT_UPDATE_NOTE)
         st.markdown("""# Standings 
         
                     """)
