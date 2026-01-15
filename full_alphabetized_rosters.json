@@ -430,5 +430,23 @@
         "SB Champ": "CHI",
         "SB Runner Up": "BUF",
         "pos": "63"
+    },
+    "John Reich": {
+        "QB1": "Josh Allen",
+        "QB2": "Matthew Stafford",
+        "K1": "Ka'imi Fairbairn",
+        "K2": "Jason Myers",
+        "D1": "HOU",
+        "D2": "SEA",
+        "P1": "Puka Nacua",
+        "P2": "Davante Adams",
+        "P3": "James Cook",
+        "P4": "Dawson Knox",
+        "P5": "Dalton Kincaid",
+        "P6": "Kyren Williams",
+        "P7": "Colby Parkinson",
+        "SB Champ": "BUF",
+        "SB Runner Up": "LAR",
+        "pos": "63"
     }
 }
