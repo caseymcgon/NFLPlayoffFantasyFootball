@@ -17,6 +17,7 @@ def main():
     total_scoring_placeholder = st.empty() 
 
     all_weeks_scoring_dfs_dict = {}
+    scoring_by_week_dict = {}
     for week_str in ['Wild Card', 'Divisional', 'Conference', 'Super Bowl']:
 
         ## Skip weeks that haven't started yet
@@ -49,13 +50,28 @@ def main():
                 week_expander.dataframe(scoring_df, use_container_width=True)   
 
         all_weeks_scoring_dfs_dict[week_str] = week_scoring_dfs
-        print("week_str")
+        print(f"week_str: {week_str}")
+        players_scoring_this_week_df, players_scoring_this_week_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), {})
+        scoring_by_week_dict[week_str] = players_scoring_this_week_dict
         if week_str == 'Wild Card':
-            players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), {})
+            players_total_scoring_df, players_total_scoring_dict =  players_scoring_this_week_df, players_scoring_this_week_dict
         else:
             players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), players_total_scoring_dict)
+            
     
+        
+        # weekly_serializable_dict = {
+        #     week: df.to_dict(orient="records")
+        #     for week, df in all_weeks_scoring_dfs_dict.items()
+        # }
+
+        # with open("scoring_results.json", "w") as f:
+        #     json.dump(weekly_serializable_dict, f, indent=2)
     
+    print(scoring_by_week_dict)
+
+    with open('all_weeks_scoring_dfs.json', 'w') as f:
+        json.dump(scoring_by_week_dict, f)
     # players_total_scoring_df, players_total_scoring_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict, players_total_scoring_dict)
     with open('total_scoring.json', 'w') as f:
         json.dump(players_total_scoring_dict, f)

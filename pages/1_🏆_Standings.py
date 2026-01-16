@@ -9,6 +9,7 @@ def main():
 
     import Playoff_Fantasy_Overview
     from utils import roster_manager, scoring_utils, datetime_utils
+    from json_stores import player_swaps
 
     # Load the yearly_settings.json file
     with open('yearly_settings.json', 'r') as yearly_settings:
@@ -56,6 +57,9 @@ def main():
         with open('total_scoring.json', 'r') as f:
             total_scoring_dict = json.load(f)
 
+        with open('all_weeks_scoring_dfs.json', 'r') as f:
+            all_weeks_scorings_dict = json.load(f)
+
         scoring_by_roster_dict = {} ## structure: {GM: {player: points}}
         for gm, roster in full_rosters_dict.items():
             scoring_by_roster_dict[gm] = {}
@@ -64,6 +68,19 @@ def main():
                     continue
                 scoring_by_roster_dict[gm][player] = total_scoring_dict.get(player, 0)
 
+                ## check for player swaps (due to injuries)
+                if player in player_swaps.player_swaps_dict.get(gm, {}):
+                    swapped_player = player_swaps.player_swaps_dict.get(gm, {}).get(player)
+                    swapped_player_points = total_scoring_dict.get(swapped_player, 0)
+
+                    original_player_rounds = player_swaps.player_healthy_rounds_dict.get(player, [])
+                    swap_player_points_in_original_rounds = 0
+                    for round_str in original_player_rounds:
+                        round_scoring_dict = all_weeks_scorings_dict.get(round_str, {})
+                        swap_player_points_in_original_rounds += round_scoring_dict.get(swapped_player, 0)
+                    
+                    swapped_player_points_adjusted = swapped_player_points - swap_player_points_in_original_rounds
+                    scoring_by_roster_dict[gm][player] = scoring_by_roster_dict[gm][player] + swapped_player_points_adjusted
 
         standings_dict = {} ## structure: {GM: {"Points": total_points, "# Alive": total_alive}}
         scoring_dfs_dict = {} ## structure: {GM: scoring_df}
@@ -109,6 +126,11 @@ def main():
                                 width = len(standings_df.columns) * 150 
                 )
         standings_expander.markdown("""## \n \n """)
+
+        injury_swap_expander = st.expander("Player Swaps due to Injuries", expanded = False)
+        for gm, swaps in player_swaps.player_swaps_dict.items():
+            for original_player, new_player in swaps.items():
+                injury_swap_expander.markdown(f"""**{gm}**: {original_player} ➡️ {new_player} after {player_swaps.player_healthy_rounds_dict.get(original_player, [])[-1]} round""")
         
 
         st.markdown("""
