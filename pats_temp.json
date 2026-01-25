@@ -11,7 +11,7 @@
     },
     "SF@PHI": {
             "Jake Elliott": "1 1pt PAT",
-            "Eddie Pineiro": "2 1pt PAT"
+            "Eddy Piñeiro": "2 1pt PAT"
     },
     "BUF@JAX": {
             "Matt Prater": "3 1pt PAT",
@@ -23,5 +23,21 @@
     },
     "HOU@PIT": {
             "Ka'imi Fairbairn": "3 1pt PAT"
+    },
+    "BUF@DEN": {
+            "Matt Prater": "3 1pt PAT",
+            "Wil Lutz": "3 1pt PAT"
+    },
+    "SF@SEA": {
+        "Jason Myers": "5 1pt PAT"
+    },
+    "HOU@NE": {
+        "Andy Borregales": "4 1pt PAT",
+        "Ka'imi Fairbairn": "1 1pt PAT"
+    },
+    "LAR@CHI": {
+        "Harrison Mevis": "2 1pt PAT",
+        "Cairo Santos": "2 1pt PAT"
+        
     }
 }

@@ -1,7 +1,7 @@
 ## Playoff_Fantasy.py -- the main / landing page for the app
 
 SELECTED_YEAR = '2026' ## key to access values from yearly_settings.json
-PAT_UPDATE_NOTE = "PATs updated through WC Weekend (no Divisional yet)"
+PAT_UPDATE_NOTE = "PATs updated through Divisional round (no Conference Championships) yet)"
 
 def show_league_info(current_year):
     import streamlit as st
