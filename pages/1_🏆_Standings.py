@@ -70,16 +70,20 @@ def main():
 
                 ## check for player swaps (due to injuries)
                 if player in player_swaps.player_swaps_dict.get(gm, {}):
+                    print(f"PLAYER SWAP DETECTED: {gm} swapped out {player} for {player_swaps.player_swaps_dict.get(gm, {}).get(player)}")
                     swapped_player = player_swaps.player_swaps_dict.get(gm, {}).get(player)
                     swapped_player_points = total_scoring_dict.get(swapped_player, 0)
 
                     original_player_rounds = player_swaps.player_healthy_rounds_dict.get(player, [])
                     swap_player_points_in_original_rounds = 0
                     for round_str in original_player_rounds:
+                        print(f"  - subtracting {swapped_player} points from {round_str} round")
                         round_scoring_dict = all_weeks_scorings_dict.get(round_str, {})
                         swap_player_points_in_original_rounds += round_scoring_dict.get(swapped_player, 0)
-                    
+                        print(f" ... {swap_player_points_in_original_rounds}")
+                    print(f"  - total points to subtract from {swapped_player}: SWAP_OG_ROUNDS = {swap_player_points_in_original_rounds} | SWAP TOTAL POINTS = {swapped_player_points}")
                     swapped_player_points_adjusted = swapped_player_points - swap_player_points_in_original_rounds
+                    print(f" - final adjusted points to add for {swapped_player}: {swapped_player_points_adjusted} || {swapped_player_points} - {swap_player_points_in_original_rounds} \n")
                     scoring_by_roster_dict[gm][player] = scoring_by_roster_dict[gm][player] + swapped_player_points_adjusted
 
         standings_dict = {} ## structure: {GM: {"Points": total_points, "# Alive": total_alive}}

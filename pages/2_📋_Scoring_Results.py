@@ -52,7 +52,8 @@ def main():
         all_weeks_scoring_dfs_dict[week_str] = week_scoring_dfs
         print(f"week_str: {week_str}")
         players_scoring_this_week_df, players_scoring_this_week_dict = scoring_utils.create_player_total_scoring_df(all_weeks_scoring_dfs_dict.get(week_str, {}), {})
-        scoring_by_week_dict[week_str] = players_scoring_this_week_dict
+        print(f"players_scoring_this_week_dict: {players_scoring_this_week_dict} \n \n")
+        scoring_by_week_dict[week_str] = players_scoring_this_week_dict.copy()
         if week_str == 'Wild Card':
             players_total_scoring_df, players_total_scoring_dict =  players_scoring_this_week_df, players_scoring_this_week_dict
         else:
@@ -68,6 +69,7 @@ def main():
         # with open("scoring_results.json", "w") as f:
         #     json.dump(weekly_serializable_dict, f, indent=2)
     
+    print("\n SCORING_BY_WEEK_DICT: ")
     print(scoring_by_week_dict)
 
     with open('all_weeks_scoring_dfs.json', 'w') as f:

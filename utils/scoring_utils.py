@@ -20,7 +20,8 @@ now_pst = datetime.now(pytz.timezone('US/Pacific'))
 this_postseason_for_API = f'{int(Playoff_Fantasy_Overview.SELECTED_YEAR) - 1}POST' 
 cache_ttl_logic = 3600*24 if now_pst.weekday() < 5 else 3600/4
 
-player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
+# player_name_regex = '([A-Z][a-z\'.-]*\s*(?:[A-Z][a-z\'.-]*\s*)*)'
+player_name_regex = '([A-Z][\p{Ll}\'.-]*\s*(?:[A-Z][\p{Ll}\'.-]*\s*)*)'
 
 #########################################################################
 ############## LOAD DATA FROM JSON FILES & APIs #########################
@@ -200,12 +201,13 @@ def create_game_scoring_dfs_by_week(playoff_round_name_str, season_str = this_po
                                         .fillna(0)  # Replace NaN with -1 for missing distances
                                         .astype(int)  # Convert to integer
                                     )
-        raw_scoring_df['TD'] = raw_scoring_df['PlayDescription'].str.contains('touchdown')
-        raw_scoring_df['FG'] = raw_scoring_df['PlayDescription'].str.contains('kicked')
-        raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|kicked off|punted')
-        raw_scoring_df['Safety'] = raw_scoring_df['PlayDescription'].str.contains('Safety')
-        raw_scoring_df['Def PAT return'] = raw_scoring_df['PlayDescription'].str.contains('returned PAT')
-
+        raw_scoring_df['Def TD'] = raw_scoring_df['PlayDescription'].str.contains('intercepted|fumbled|kicked off|punted')   
+        
+        raw_scoring_df['TD'] = raw_scoring_df.apply(lambda row: (not row['Def TD']) and 'touchdown' in row['PlayDescription'], axis=1)
+        raw_scoring_df['FG'] = raw_scoring_df.apply(lambda row: (not row['Def TD']) and 'kicked' in row['PlayDescription'], axis=1)
+        raw_scoring_df['Safety'] = raw_scoring_df.apply(lambda row: (not row['Def TD']) and 'Safety' in row['PlayDescription'] , axis=1)
+        raw_scoring_df['Def PAT return'] = raw_scoring_df.apply(lambda row: (not row['Def TD']) and 'returned PAT' in row['PlayDescription'], axis=1)   
+        
         raw_scoring_df['Points'] = raw_scoring_df.apply(calculate_points, axis=1)
 
         raw_scoring_df['Player1'] = raw_scoring_df.apply(extract_player1, axis=1)
